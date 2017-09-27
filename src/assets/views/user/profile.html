@@ -1,91 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Meta tags for making website for mobile-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+<html lang= "en">
+  <head>
+    <!-- Meta tags for making website for mobile-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+    <meta charset="UTF-8">
+
+    <title>Profile Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/custom_styles.css" rel="stylesheet"/>
+  </head>
 
 
-  <meta charset="UTF-8">
-  <title>User Profile</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-
-  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-  <link href="../css/style.css" rel="stylesheet"/>
-</head>
 
 <body>
+    <nav class="navbar navbar-lightblue">
+      <div class="container-fluid">
+        <p class="navbar-header pull-left">
+          <a class="navbar-brand thick ">
+            <b class="whitetitle">Profile</b>
+          </a>
+        </p>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+        <p class="navbar-text pull-right">
+          <a href="profile.html" class="navbar-link">
+            <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
+          </a>
+        </p>
+      </div>
+    </nav>
 
-    <!--heading on the nav bar-->
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b>Profile</b>
-      </a>
-    </p>
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="qizhang">
+            </div>
+        </form>
 
-    <!--tick mark-->
-    <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
-    </p>
+        <form>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="youremail@domain.com">
+            </div>
+        </form>
 
-  </div>
-</nav>
+        <form>
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" class="form-control" id="first-name" placeholder="Qi">
+            </div>
+        </form>
 
+        <form>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" class="form-control" id="last-name" placeholder="Zhang">
+          </div>
+        </form>
+        <a class="btn btn-primary btn-block"
+           href="../website/website-list.html">Websites</a>
+        <a class="btn btn-danger btn-block "
+           href="login.html">Logout</a>
 
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="walice">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" class="form-control" id="first-name" placeholder="Alice">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
-    </div>
-  </form>
-  <a class="btn btn-primary btn-block"
-     href="../website/website-list.html">Websites</a>
-  <a class="btn btn-danger btn-block "
-     href="login.html" >Logout</a>
-
-</div>
+      </div>
 
 <!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a href="profile.html">
-        <span class="glyphicon glyphicon-user"></span>
-      </a>
-    </p>
+      <nav class="navbar navbar-lightblue navbar-fixed-bottom">
+        <div class="container-fluid">
+          <p class="navbar-text pull-right">
+            <a href="profile.html">
+              <span class="glyphicon glyphicon-user glyphiconwhite"></span>
+            </a>
+          </p>
 
-  </div>
-</nav>
+        </div>
+      </nav>
 
-</body>
+    </body>
 </html>

@@ -1,0 +1,45 @@
+.navbar-lightblue{
+  background-color: #337ab7;
+}
+.glyphiconwhite {
+  color: white;
+}
+.glyphiconblack {
+  color: black;
+}
+.glyphiconlightblue {
+  color: #337ab7;
+}
+
+b.whitetitle {
+  color: white;
+}
+li.borderless {
+  border: 0 none;
+}
+li {
+  color: #337ab7
+}
+
+.qi-content {
+  width: 320px;
+  height: 180px;
+}
+
+.websites-col-sm-4 {
+  top: 0px;bottom: 0px;position: absolute;
+  left: 0px;margin-top: 50px;padding-top: 15px;margin-bottom: 50px;
+}
+
+
+body {
+  overflow-x: hidden;
+}
+
+.margin {
+  margin-left: 15px;
+}
+
+a {
+  text-decoration: none !important
+}
