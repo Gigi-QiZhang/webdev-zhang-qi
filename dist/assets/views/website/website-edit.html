@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+  <meta charset="UTF-8">
+
+  <title>Website Edit Page</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../css/custom_styles.css" rel="stylesheet"/>
+</head>
+
+<body>
+<nav class="navbar navbar-lightblue navbar-fixed-top">
+  <div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs">
+          <div class="navbar-text pull-left ">
+            <a href="website-list.html" class="glyphiconwhite">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+          </div>
+
+          <div class="navbar-header hidden-xs">
+            <a href="#" class="navbar-brand glyphiconwhite">
+              <b>Websites</b>
+            </a>
+          </div>
+
+          <div class="navbar-text pull-right hidden-xs">
+            <a href="#" class="pull-right glyphiconwhite">
+              <span class="glyphicon glyphicon-plus"></span>
+            </a>
+          </div>
+    </div>
+
+
+    <div class="col-sm-8">
+      <div class="hidden-lg visible-xs">
+        <div class="navbar-text pull-left">
+          <a href="website-list.html" class="glyphiconwhite">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="navbar-text pull-right">
+        <a href="website-list.html" class="glyphiconwhite">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header pull-left margin">
+        <a href="#" class="navbar-brand glyphiconwhite">
+          <b>Edit Website</b>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="row container-fluid padding-top">
+  <div class="col-sm-4 hidden-xs websites-col-sm-4">
+    <ul class="list-group">
+      <li class="list-group-item borderless lightblue">Address Book App
+        <a href="website-edit.html" class="pull-right">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+      <li class="list-group-item borderless lightblue">Blogger
+        <a href="website-edit.html" class="pull-right">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+      <li class="list-group-item borderless lightblue">Blogging App
+        <a href="website-edit.html" class="pull-right">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+      <li class="list-group-item borderless lightblue">Script Testing App
+        <a class="pull-right" href="website-edit.html" >
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-xs-12 col-sm-8 pull-right">
+    <div class="container-fluid">
+      <form>
+        <div class="form-group">
+          <label for="websitename">Website Name</label>
+          <input type="text" class="form-control" id="websitename" placeholder="Blogger">
+        </div>
+      </form>
+
+      <form>
+        <div class="form-group">
+          <label for="description">Website Description</label>
+          <textarea class="form-control" id="description" placeholder="Bolgger is a blog-publishing service that allows
+          multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003.
+          Generally, the blogs are hosted by Google at a susdomain of blogspot.com. Blogs can also be hosted in the
+          registered custon domain of the blogger (like www.example.com).[4] A user can have up to 100 blogs per
+          account." rows="5"></textarea>
+        </div>
+      </form>
+      <form>
+        <a href="website-list.html" class="btn btn-block btn-danger">Delete</a>
+      </form>
+    </div>
+</div>
+
+  <nav class="navbar navbar-lightblue navbar-fixed-bottom">
+    <div class="container-fluid">
+      <p class="navbar-text pull-right">
+        <a href="../user/profile.html" class="glyphiconwhite">
+          <span class="glyphicon glyphicon-user"></span>
+        </a>
+      </p>
+    </div>
+  </nav>
+</body>
+</html>
