@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <p class="navbar-text pull-left">
+        <span routerLink="/profile/:uid/website" class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
+    </p>
+
+    <p routerLink="/profile/:uid/website/:wid/page/:pid/widget" class="navbar-header navbar-brand pull-left">
+        <b>Pages</b>
+    </p>
+
+    <p class="navbar-text pull-right glyphiconblack">
+        <span routerLink="/profile/:uid/website/:wid/page/new" class="glyphicon glyphicon-plus"></span>
+    </p>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <ul class="list-group">
+    <li class="list-group-item borderless lightblue">Blog Post
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+
+
+    <li class="list-group-item borderless lightblue">Blogs
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">Home
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">About
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">Contact Us
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+        <span routerLink="/profile/:uid" class="glyphicon glyphicon-user glyphiconlightblue"></span>
+    </p>
+  </div>
+</nav>

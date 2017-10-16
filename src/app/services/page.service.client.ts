@@ -1,37 +1,54 @@
+import { Page } from '../models/page.model.client';
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
-import 'rxjs/Rx';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
-// injecting service into module
+
 @Injectable()
 export class PageService {
-  constructor() { }
-  pages = [
-    { _id: '321', name: 'Post 1', websiteID: '456', description: 'Alice'},
-    { _id: '432', name: 'Post 2', websiteID: '456', description: 'Alice'},
-    { _id: '543', name: 'Post 3', websiteID: '456', description: 'Alice'},
+  pages: Page[] = [
+    new Page('123', 'Facebook', '456'),
+    new Page('234', 'Tweeter', '456'),
+    new Page('456', 'Gizmodo', '456'),
+    new Page('890', 'Go', '123'),
+    new Page('567', 'Tic Tac Toe', '123'),
+    new Page('678', 'Checkers', '123'),
+    new Page('789', 'Chess', '234'),
   ];
-  // api = {
-  //   'createPage' : this.createPage,
-  //   'findPageByWebsiteId' : this.findPageByWebsiteId,
-  //   'findWebsiteById' : this.findWebsiteById,
-  //   // 'updateWebsite' : this.updateWebsite,
-  //   // 'deleteWebsite' : this.deleteWebsite,
-  // };
-  // createPage(websiteID: string, page: string) { // createPage(websiteId, page)
-  //   this.pages.push(websiteID);
-  //   return page;
-  // }
-  // findPageByWebsiteId(websiteId: string) {
-  //   for (let x = 0; x < this.websites.length; x++) {
-  //     if (this.websites[x]._id === websiteId) { return this.websites[x]; }
+
+  // createPage(websiteId: String, page: any) {
+  //   if (this.pages.websiteId = websiteId) {
+  //     this.pages.push(page);
+  //     return page;
   //   }
   // }
-  // findPageById(pageId: string) { for (let x = 0; x < this.websites.length; x++) {
-  //   if (this.websites[x]._id === pageId) { return this.websites[x]; }
-  // } }
-  // updatePage(pageId, page) { … }
-  // deletePage(pageId) { … }
+
+  // findPageByWebsiteId (websiteId: any) {
+  //   return this.pages.find(function (page) {
+  //     return page.websiteId === websiteId;
+  //   });
+  // }
+  //
+  // findPageById(pageId: any) {
+  //   return this.pages.find(function (page) {
+  //     return page._id === pageId;
+  //   });
+  // }
+  // updatePage(pageId: any, page: String) {
+  //   for (let i = 0; i < this.pages.length; i++) {
+  //     const _page = this.pages[i];
+  //     if (_page._id === pageId) {
+  //       this.pages[i].name = _page.name;
+  //       this.pages[i].description = _page.description;
+  //     }
+  //   }
+  // }
+  // deletePage(pageId: string) {
+  //   for (let x = 0; x < this.pages.length; x++) {
+  //     if (this.pages[x]._id === pageId) {
+  //       return delete this.pages[x];
+  //     }
+  //   }
+  // }
 }
+
+
+
 

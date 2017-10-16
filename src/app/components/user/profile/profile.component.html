@@ -1,3 +1,73 @@
-<p>
-  profile works!
-</p>
+<nav class="navbar navbar-default navbar-lightblue">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="whitetitle">Profile</b>
+      </a>
+    </p>
+
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/:uid" class="navbar-link">
+        <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
+      </a>
+    </p>
+
+
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <!--<div *ngIf='errorFlag'-->
+       <!--class="alert alert-danger">-->
+    <!--{{errorMsg}}-->
+  <!--</div>-->
+
+<label>Username</label><br/>
+<input [(ngModel)]="username"
+       placeholder="username"
+       class="form-control"
+       type="text"/>
+<br/>
+<label>Email</label><br/>
+<input
+       placeholder="jannunzi@gmail.com"
+       class="form-control"
+       type="text"/>
+<br/>
+<label>First Name</label><br/>
+<input
+       placeholder="Jose"
+       class="form-control"
+       type="text"/>
+<br/>
+<label>Last Name</label><br/>
+<input
+       placeholder="Annunziato"
+       class="form-control"
+       type="text"/>
+<br/>
+<button class="btn btn-primary form-control" routerLink="/profile/:uid/website">Update</button>
+  <!--routerLinkActive="active"-->
+  <br/>
+<br/>
+  <button class="btn btn-primary form-control">Website</button>
+  <!--routerLinkActive="active"-->
+  <br/>
+  <br/>
+<button class="btn btn-danger form-control btn btn-block" routerLink="/login">Logout</button>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom navbar-lightblue">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/:uid">
+        <span class="glyphicon glyphicon-user glyphiconwhite"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

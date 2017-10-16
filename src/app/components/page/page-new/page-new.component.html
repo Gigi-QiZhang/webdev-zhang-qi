@@ -1,0 +1,101 @@
+<nav class="navbar navbar-default">
+  <div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs">
+      <div class="navbar-text pull-left">
+        <a routerLink="/profile/:uid/website/:wid/page" class="glyphiconblack">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+      </div>
+      <div class="navbar-header navbar-brand">
+          <b>Pages</b>
+      </div>
+      <div class="navbar-text pull-right">
+        <a class="pull-right glyphiconblack">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="hidden-lg visible-xs">
+        <div class="navbar-text pull-left">
+          <a routerLink="/profile/:uid/website/:wid/page" class="glyphiconblack">
+            <span class="glyphicon glyphicon-chevron-left hidden-lg visible-xs"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-text pull-right">
+        <a routerLink="/profile/:uid/website/:wid/page" class="glyphiconblack">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </div>
+
+      <div class="navbar-header margin">
+        <a routerLink="/profile/:uid/website/:wid/page/new" class="navbar-brand">
+          <b>New Page</b>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid padding-top">
+  <div class="col-sm-4 hidden-xs websites-col-sm-4">
+  <ul class="list-group">
+    <li class="list-group-item borderless lightblue">Blog Post
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">BBlogs
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">Home
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">About
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+    <li class="list-group-item borderless lightblue">Contact Us
+      <a class="pull-right" routerLink="/profile/:uid/website/:wid/page/:pid">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+    </li>
+  </ul>
+  </div>
+</div>
+
+
+<div class="col-xs-12 col-sm-8 pull-right padding-top">
+  <div class="container-fluid">
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Page Name">
+      </div>
+    </form>
+
+    <form>
+      <div class="form-group">
+        <label for="pagetitle">Title</label>
+        <input type="text" class="form-control" id="pagetitle" placeholder="Page Title">
+      </div>
+    </form>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid ">
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/:uid">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+  </div>
+</nav>

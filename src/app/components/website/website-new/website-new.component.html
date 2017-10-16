@@ -1,0 +1,93 @@
+<nav class="navbar navbar-lightblue">
+  <div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs">
+      <div routerLink="/profile/:uid/website" class="navbar-text pull-left glyphiconwhite">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+      </div>
+
+
+      <div class="navbar-header hidden-xs navbar-brand glyphiconwhite">
+          <b>Websites</b>
+      </div>
+
+      <div routerLink="/profile/:uid/website/new" class="navbar-text pull-right hidden-xs glyphiconwhite">
+          <span class="glyphicon glyphicon-plus"></span>
+      </div>
+    </div>
+
+
+    <div class="col-sm-8">
+      <div class="hidden-lg visible-xs">
+        <div class="navbar-text pull-left">
+          <a routerLink="/profile/:uid" class="glyphiconwhite">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+        </div>
+      </div>
+
+      <div routerLink="/profile/:uid/website" class="navbar-text pull-right glyphiconwhite">
+          <span class="glyphicon glyphicon-ok"></span>
+      </div>
+
+      <div class="navbar-header pull-left navbar-brand glyphiconwhite margin">
+          <b>New Website</b>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="row container-fluid">
+  <div class="col-sm-4 hidden-xs websites-col-sm-4">
+    <ul class="list-group">
+      <li class="list-group-item borderless lightblue">Address Book App
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+        </a>
+      </li>
+      <li class="list-group-item borderless lightblue">Blogger
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+        </a>
+      </li>
+      <li class="list-group-item borderless lightblue">Blogging App
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+        </a>
+      </li>
+      <li class="list-group-item borderless lightblue">Script Testing App
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-xs-12 col-sm-8 pull-right padding-top">
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name">
+      </div>
+    </form>
+
+    <form>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+      </div>
+    </form>
+  </div>
+</div>
+
+<nav class="navbar navbar-lightblue navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/:uid" class="glyphiconwhite">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+  </div>
+</nav>
