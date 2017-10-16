@@ -31,6 +31,27 @@ export class WebsiteService {
   //     return website._id === websiteId;
   //   });
   // }
+  // findWebsiteByUser(userId) {
+  //   for (let x = 0; x < this.websites.length; x++) {
+  //     if (this.websites[x].developerId === userId ) {
+  //       return this.websites[x];
+  //     }
+  //   }
+  // }
+  // findWebsitesByUser(userId) {
+  //   const sites = this.websites;
+  //   for (let x = 0; x < this.websites.length; x++) {
+  //     sites.pop();
+  //   }
+  //   for (let x = 0; x < this.websites.length; x++) {
+  //     if (this.websites[x].developerId === userId ) {
+  //       sites.push(this.websites[x]);
+  //     }
+  //   }
+  //   return sites;
+  // }
+
+
   // updateWebsite(websiteId: any, website: String) {
   //   for (let i = 0; i < this.websites.length; i++) {
   //     const _website = this.websites[i];

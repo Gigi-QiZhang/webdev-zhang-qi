@@ -44,6 +44,18 @@
     <a class="btn btn-block btn-danger" routerLink="/profile/:uid/website/:wid/page/:pid/widget">Delete</a>
   </div>
 
+  <div [ngSwitch]="widget.type" >
+    <div *ngSwitchCase = 'header' >
+      <app-widget-header></app-widget-header>
+    </div>
+    <div *ngSwitchCase = 'image' >
+      <app-widget-image></app-widget-image>
+    </div>
+    <div *ngSwitchCase = 'youtube' >
+      <app-widget-youtube></app-widget-youtube>
+    </div>
+  </div>
+
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid navbar-text pull-right">
       <a routerLink="/profile/:uid">

@@ -20,21 +20,22 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   // function: login
-  login(username: string, password: string) {
-    console.log('login' + username);
-    console.log(password);
+  login(username: String, password: String) {
+    // console.log('login' + username);
+    // console.log(password);
 
     const user: User = this.userService.findUserByCredentials(username, password);
     if (user) {
       alert(user._id);
-      this.router.navigate(['profile', user._id]);
-      // this.router.navigate(['/profile/123']);
-    } else {
-      this.errorFlag = true;
-      this.errorMsg = 'Error';
-      alert('wrong username or password');
-
+      this.router.navigate(['/profile', user._id]);
     }
+      // this.router.navigate(['/profile/123']);
+    // } else {
+    //   this.errorFlag = true;
+    //   this.errorMsg = 'Error';
+    //  // alert('wrong username or password');
+    //
+    // }
       // if (username === 'alice' && password === 'alice') {
     //   this.router.navigate(['/profile']);
     //   // alert('username: ' + this.username);

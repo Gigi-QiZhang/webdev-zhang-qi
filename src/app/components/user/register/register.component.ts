@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
   username: String;
-  password: String;
+  password: string;
   user: User;
   verifypassword: String;
   errorFlag: boolean;
@@ -30,19 +30,20 @@ export class RegisterComponent implements OnInit {
   //   // alert(this.username);
   //   if (this.username.length === 0 || this.password.length === 0 || this.verifypassword.length === 0) {
   //     alert('please input information!');
+  //   } else if (!(this.password === this.verifypassword)) {
+  //      alert('password not matched');
+  //   } else {
+  //     this.user = this.userService.findUserByCredentials(this.username, this.password);
   //   }
-  //   const user0: User = this.userService.findUserByCredentials(this.username, this.password);
-  //
-  //   if (user0) {
-  //     alert('user exists!');
+  //   if (this.user) {
+  //     alert('user exists');
+  //   } else {
+  //     alert ('registered');
+  //   }
+  //   const newUser: User = this.userService.createUser(this.user);
+  //     this.userService.createUser(newUser);
   //     this.router.navigate(['/login']);
   //   }
-  //
-  //   const newUser: User = this.userService.createUser(this.user);
-  //   if (newUser) {
-  //     this.router.navigate(['/profile', newUser._id]);
-  //   }
-  // }
   ngOnInit() {
   }
 

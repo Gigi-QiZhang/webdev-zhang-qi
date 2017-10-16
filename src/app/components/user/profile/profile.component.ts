@@ -28,10 +28,10 @@ export class ProfileComponent implements OnInit {
   //   this.userService.updateUser(user);
   // }
   // findWebsite () {
-  //   const websites = this.websiteService.findWebsiteByUser(this.userId);
+  //   const websites = this.websiteService.findWebsitesByUser(this.userId);
   //     if (websites) {
-  //       for (const web of websites) {
-  //         this.router.navigate(['/profile', this.userId, '/website', websites]);
+  //       for (const website of websites) {
+  //         this.router.navigate(['/profile', this.userId, '/website']);
   //       }
   //       this.errorFlag = true;
   //       this.errorMsg = 'Invalid input';
