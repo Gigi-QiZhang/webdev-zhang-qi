@@ -38,11 +38,11 @@
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
 
     <div *ngFor = "let website of websites" class="container-fluid padding-top">
-      <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="list-group">
-        <li routerLink="/profile/{{ uid }}/website/{{ wid }}/page"
+      <ul class="list-group">
+        <li routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}"
             class="list-group-item borderless lightblue">{{ website.name }}
-          <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page">
-            <span class="glyphicon glyphicon-cog"></span>
+          <a class="pull-right">
+            <span routerLink="/profile/{{ uid }}/website/{{ wid }}" class="glyphicon glyphicon-cog"></span>
           </a>
         </li>
       </ul>

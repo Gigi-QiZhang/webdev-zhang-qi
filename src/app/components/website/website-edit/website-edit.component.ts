@@ -16,6 +16,7 @@ export class WebsiteEditComponent implements OnInit {
   @ViewChild('f') editForm: NgForm;
   uid: String;
   wid: string;
+  pid: string;
   developerId: String;
   name: String;
   description: String;

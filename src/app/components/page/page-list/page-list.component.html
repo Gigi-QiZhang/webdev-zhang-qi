@@ -15,10 +15,12 @@
 </nav>
 
 <div *ngFor = "let page of pages" class="container-fluid padding-top">
-  <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">
-    <li class="list-group-item borderless lightblue">{{ page.name }}
-      <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/edit">
-        <span class="glyphicon glyphicon-cog"></span>
+  <ul class="list-group" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}">
+    <li
+        class="list-group-item borderless lightblue">{{ page.name }}
+      <a class="pull-right">
+        <span class="glyphicon glyphicon-cog"
+              routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid}}"></span>
       </a>
     </li>
   </ul>
