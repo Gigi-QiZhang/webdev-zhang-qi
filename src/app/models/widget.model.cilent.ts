@@ -1,12 +1,15 @@
 export class Widget {
-  _id: String;
+  wgid: String;
   widgetType: String;
-  pageId: String;
+  pid: String;
   size: number;
   text: String;
-  constructor(_id, widgetType, pageId) {
-    this._id = _id;
+
+  constructor(websitId, widgetType, pageId) {
+    this.wgid = websitId;
     this.widgetType = widgetType;
-    this.pageId = pageId;
+    this.pid = pageId;
+    // this.size = size;
+    // this.text = text;
   }
 }

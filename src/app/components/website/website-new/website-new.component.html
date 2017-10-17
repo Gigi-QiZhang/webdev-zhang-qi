@@ -1,7 +1,7 @@
 <nav class="navbar navbar-lightblue">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div routerLink="/profile/:uid/website" class="navbar-text pull-left glyphiconwhite">
+      <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
           <span class="glyphicon glyphicon-chevron-left"></span>
       </div>
 
@@ -19,13 +19,13 @@
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
         <div class="navbar-text pull-left">
-          <a routerLink="/profile/:uid" class="glyphiconwhite">
+          <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
             <span class="glyphicon glyphicon-chevron-left"></span>
           </a>
         </div>
       </div>
 
-      <div routerLink="/profile/:uid/website" class="navbar-text pull-right glyphiconwhite">
+      <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-right glyphiconwhite">
           <span class="glyphicon glyphicon-ok"></span>
       </div>
 
@@ -42,22 +42,22 @@
     <ul class="list-group">
       <li class="list-group-item borderless lightblue">Address Book App
         <a class="pull-right">
-          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/{{ uid }}/website/{{ wid }}"></span>
         </a>
       </li>
       <li class="list-group-item borderless lightblue">Blogger
         <a class="pull-right">
-          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/{{ uid }}/website/{{ wid }}"></span>
         </a>
       </li>
       <li class="list-group-item borderless lightblue">Blogging App
         <a class="pull-right">
-          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/{{ uid }}/website/{{ wid }}"></span>
         </a>
       </li>
       <li class="list-group-item borderless lightblue">Script Testing App
         <a class="pull-right">
-          <span class="glyphicon glyphicon-cog" routerLink="/profile/:uid/website/:wid"></span>
+          <span class="glyphicon glyphicon-cog" routerLink="/profile/{{ uid }}/website/{{ wid }}"></span>
         </a>
       </li>
     </ul>
@@ -85,7 +85,7 @@
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/:uid" class="glyphiconwhite">
+      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

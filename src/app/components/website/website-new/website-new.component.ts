@@ -11,13 +11,13 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./website-new.component.css']
 })
 export class WebsiteNewComponent implements OnInit {
-  @ViewChild('f') loginForm: NgForm;
+  // @ViewChild('f') loginForm: NgForm;
   // properties
-  _id: String;
+  uid: String;
+  wid: String;
   name: String;
-  developerId: String;
-  errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+  description: String;
+
   constructor(private websiteService: WebsiteService,
               private router: Router) { }
 

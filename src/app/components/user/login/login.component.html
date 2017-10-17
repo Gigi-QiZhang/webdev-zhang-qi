@@ -1,9 +1,8 @@
 
 <div class="container-fluid">
   <h1>Login</h1>
-  <!--<label>Username</label><br/>-->
-  <!--<div class="form-group">-->
-  <!--<form (ngSubmit) = "login()" #f="ngForm">-->
+
+  <form (ngSubmit) = "login()" #f="ngForm">
     <input ngModel
            placeholder="username"
            name="username"
@@ -12,28 +11,35 @@
            required
            #username = "ngModel"/>
     <br/>
-    <!--[(ngModel)]="username"-->
-  <!--</div>-->
-  <!--<div class="form-group">-->
-    <!--<label>Password</label><br/>-->
+
     <input ngModel
            placeholder="password"
+           name="password"
            class="form-control"
            type="password"
            required
            #password="ngModel"/>
     <br/>
-  <!--</div>-->
 
-  <!--<div class="form-group">-->
     <button class="btn btn-primary btn-block form-control"
             type="submit"
-            (click)="login(username,password)">Login</button>
+            [disabled]="!f.valid"
+            >Login</button>
+    <!--(click)="login()"-->
     <br/>
-  <!--</div>-->
-  <!--<div class="form-group">-->
+
     <button class="btn btn-success btn-block form-control"
             routerLink="/register">Register</button>
-  <!--</div>-->
-  <!--</form>-->
+
+  </form>
+
 </div>
+<!--<span class="help-block" *ngIf="!username.valid && username.touched">-->
+<!--Please enter username!-->
+<!--</span>-->
+
+<!--<h1> {{title}} </h1>-->
+<!--<button [disabled] ="disabledFlag">Submit</button>-->
+<!--<button (click) ="buttonClicked($event)">Submit</button>-->
+<!--<input type="text" [(ngModel)] ="inputTxt">-->
+<!--{{inputTxt}}-->

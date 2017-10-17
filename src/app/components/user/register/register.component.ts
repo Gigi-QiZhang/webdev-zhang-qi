@@ -11,39 +11,35 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild('f') loginForm: NgForm;
+  @ViewChild('f') registerForm: NgForm;
   username: String;
   password: string;
   user: User;
   verifypassword: String;
-  errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+
   constructor(private userService: UserService,
               private router: Router) { }
+  register(username: String, password: String, verifypassword: String) {
+    // alert(this.username);
+    if (this.username.length === 0 || this.password.length === 0 || this.verifypassword.length === 0) {
+      alert('please input information');
+    } else if (!(this.password === this.verifypassword)) {
+      alert('password not matched');
+    } else if (this.user = this.userService.findUserByUsername(this.username)) {
+      alert('user exists');
+    }
 
-  // function: register
-  // createUser(user) {
-  //   // const user: User = this.userService.createUser();
-  //     this.router.navigate(['/profile', user._id]);
-  // }
-  // register() {
-  //   // alert(this.username);
-  //   if (this.username.length === 0 || this.password.length === 0 || this.verifypassword.length === 0) {
-  //     alert('please input information!');
-  //   } else if (!(this.password === this.verifypassword)) {
-  //      alert('password not matched');
-  //   } else {
-  //     this.user = this.userService.findUserByCredentials(this.username, this.password);
-  //   }
-  //   if (this.user) {
-  //     alert('user exists');
-  //   } else {
-  //     alert ('registered');
-  //   }
-  //   const newUser: User = this.userService.createUser(this.user);
-  //     this.userService.createUser(newUser);
-  //     this.router.navigate(['/login']);
-  //   }
+    const newUser: User = {
+      uid: this.userService.newUserId(),
+      username: this.username,
+      password: this.password,
+      firstName: '',
+      lastName: '',
+      email: ''
+    };
+    this.userService.createUser(newUser);
+    this.router.navigate(['/login']);
+  }
   ngOnInit() {
   }
 

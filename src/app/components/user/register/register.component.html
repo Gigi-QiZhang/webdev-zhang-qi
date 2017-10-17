@@ -6,10 +6,13 @@
 
   <h1>Register</h1>
   <br/>
+
+  <form id="registerForm" (ngSubmit) = "register()" #f="ngForm">
   <!--<label>Username</label><br/>-->
   <input [(ngModel)]="username"
          placeholder="username"
          class="form-control"
+         name="username"
          type="text"
          required/>
   <br/>
@@ -17,17 +20,21 @@
   <input [(ngModel)]="password"
          placeholder="password"
          class="form-control"
+         name="password"
          type="password"
          required/>
   <br/>
   <!--<label>Verify Password</label><br/>-->
-  <input placeholder="verify password"
+  <input [(ngModel)]="verifypassword"
+         placeholder="verify password"
          class="form-control"
-         type="password"/>
+         name="verifypassword"
+         type="password"
+         required/>
   <br/>
   <button class="btn btn-primary btn-block form-control">Register</button>
   <br/>
   <button class="btn btn-danger btn-block form-control" routerLink="/login">Cancel</button>
-
+  </form>
 </div>
 

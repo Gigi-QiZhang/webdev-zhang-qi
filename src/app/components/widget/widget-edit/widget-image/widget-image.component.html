@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/profile/:uid/website/:wid/page/:pid/widget" class="glyphiconblack">
+      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
@@ -12,7 +12,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/:uid/website/:wid/page/:pid/widget" class="glyphiconblack">
+      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
@@ -50,13 +50,13 @@
   </div>
 
   <div class="form-group">
-    <a class="btn btn-block btn-danger" routerLink="/profile/:uid/website/:wid/page/:pid/widget">Delete</a>
+    <a class="btn btn-block btn-danger" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Delete</a>
   </div>
 
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
       <p class="navbar-text pull-right">
-        <a routerLink="/profile/:uid" class="glyphiconlightblue">
+        <a routerLink="/profile/{{ uid }}" class="glyphiconlightblue">
           <span class="glyphicon glyphicon-user"></span>
         </a>
       </p>

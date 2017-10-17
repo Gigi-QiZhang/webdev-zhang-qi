@@ -10,44 +10,30 @@ export class UserService {
   users: User[];
   constructor() {
     this.users = [
-      new User('123', 'alice', 'qqq'),
-      new User('234', 'bob', 'qqq'),
-      new User('345', 'charlie', 'qqq'),
-      new User('456', 'jannunzi', 'qqq')
+      new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
+      new User('234', 'bob', 'bob', 'Bob', 'Marley'),
+      new User('345', 'charly', 'charly', 'Charly', 'Garcia'),
+      new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi')
     ];
   }
-  // users: User[] = [
-  //     new User('123', 'alice', 'qqq'),
-  //     new User('234', 'bob', 'qqq'),
-  //     new User('345', 'charlie', 'qqq'),
-  //     new User('456', 'jannunzi', 'qqq')
-  //   ];
   createUser(user: any) {
-    user._id = Math.random();
     this.users.push(user);
     return user;
   }
+  newUserId() {
+    return (Number(this.users[this.users.length - 1]. uid) + 1).toString();
+  }
 
-  // findUserById (userId) {
-  //   return this.users.find(function (user) {
-  //     return user._id === userId;
-  //   });
-  //
-  // }
-  findUserById (userId: string) {
+
+  findUserById (userId: String) {
     for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
+      if (this.users[x].uid === userId) {
         return this.users[x];
     }
    }
   }
 
-  // findUserByUsername(username) {
-  //   return this.users.find(function (user) {
-  //     return user.username === username;
-  //   });
-  // }
-  findUserByUsername(username: string) {
+  findUserByUsername(username: String) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x].username === username) {
         return this.users[x];
@@ -55,31 +41,26 @@ export class UserService {
     }
   }
 
-  // findUserByCredentials(username, password) {
-  //   return this.users.find(function (user) {
-  //     return user.username === username && user.password === password;
-  //   });
-  // }
-  findUserByCredentials(username, password) {
+  findUserByCredentials(username: String, password: String) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x].username === username && this.users[x].password === password) {
         return this.users[x];
       }
     }
   }
-  updateUser(user: User) {
+  updateUser(userId: String, user: User) {
     for (let x = 0; x < this.users.length; x++) {
       const _user = this.users[x];
-      if (_user._id === user._id) {
+      if (_user.uid === user.uid) {
         this.users[x] = user;
         // this.users[x].firstName = user.firstName;
         // this.users[x].lastName = user.lastName;
       }
     }
   }
-  deleteUser(userId: string) {
+  deleteUser(userId: String) {
     for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
+      if (this.users[x].uid === userId) {
         // return delete this.users[x];
       this.users.splice(x, 1);
       }
@@ -88,5 +69,19 @@ export class UserService {
 }
 
 
-
-
+// findUserByCredentials(username, password) {
+//   return this.users.find(function (user) {
+//     return user.username === username && user.password === password;
+//   });
+// }
+// findUserByUsername(username) {
+//   return this.users.find(function (user) {
+//     return user.username === username;
+//   });
+// }
+// findUserById (userId) {
+//   return this.users.find(function (user) {
+//     return user._id === userId;
+//   });
+//
+// }

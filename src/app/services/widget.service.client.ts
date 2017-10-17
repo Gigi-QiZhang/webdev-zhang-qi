@@ -11,7 +11,14 @@ export class WidgetService {
     new Widget('456', 'HTML', '321'),
     new Widget('567', 'HEADING', '321'),
     new Widget('678', 'YOUTUBE', '321'),
-    new Widget('789', 'HTML', '321'),
+    new Widget('789', 'HTML', '321')
+    // new Widget('123', 'HEADING', '321', 2, 'GIZMODO'),
+    // new Widget('234', 'HEADING', '321', 4, 'Lorem ipsum'),
+    // new Widget('345', 'IMAGE', '321', '100%', 'http://lorempixel.com/400/200/'),
+    // new Widget('456', 'HTML', '321', '<p>Lorem ipsum</p>'),
+    // new Widget('567', 'HEADING', '321', 4 , 'Lorem ipsum'),
+    // new Widget('678', 'YOUTUBE', '321', '100%', 'https://youtu.be/AM2Ivdi9c4E'),
+    // new Widget('789', 'HTML', '321', '<p>Lorem ipsum</p>'),
   ];
   //
   // createWidget(pageId: String, widget: any) {
@@ -21,33 +28,52 @@ export class WidgetService {
   //   }
   // }
   //
-  // findWidgetByPageId (pageId: any) {
-  //   return this.widgets.find(function (widget) {
-  //     return widget.pageId === pageId;
-  //   });
-  // }
-  //
-  // findWidgetById(widgetId: any) {
-  //   return this.widgets.find(function (widget) {
-  //     return widget._id === widgetId;
-  //   });
-  // }
-  // updateWidget(widgetId: any, widget: String) {
-  //   for (let i = 0; i < this.widgets.length; i++) {
-  //     const _widget = this.widgets[i];
-  //     if (_widget._id === widgetId) {
-  //       this.widgets[i].widgetType = _widget.widgetType;
-  //       this.widgets[i].pageId = _widget.pageId;
-  //     }
-  //   }
-  // }
-  // deleteWidget(widgetId: string) {
-  //   for (let x = 0; x < this.widgets.length; x++) {
-  //     if (this.widgets[x]._id === widgetId) {
-  //       return delete this.widgets[x];
-  //     }
-  //   }
-  // }
+  findWidgetByPageId (pageId: String) {
+      for (let x = 0; x < this.widgets.length; x++) {
+        if (this.widgets[x].pid === pageId) {
+          return this.widgets[x];
+        }
+      }
+    }
+
+  findWidgetsByPageId (pageId: String) {
+    const wgts = this.widgets;
+    for (let x = 0; x < this.widgets.length; x++) {
+      wgts.pop();
+    }
+    for (let x = 0; x < this.widgets.length; x++) {
+      if (this.widgets[x].pid === pageId) {
+        wgts.push(this.widgets[x]);
+      }
+    }
+    return wgts;
+  }
+
+
+  findWidgetById(widgetId: String) {
+      for (let x = 0; x < this.widgets.length; x++) {
+        if (this.widgets[x].pid === widgetId) {
+          return this.widgets[x];
+        }
+      }
+    }
+  updateWidget(widgetId: String, widget: Widget) {
+    for (let x = 0; x < this.widgets.length; x++) {
+      const _widget = this.widgets[x];
+      if (_widget.pid === widgetId) {
+        this.widgets[x] = _widget;
+      }
+    }
+  }
+
+  deleteWidget(widgetId: String) {
+    for (let x = 0; x < this.widgets.length; x++) {
+      if (this.widgets[x].pid === widgetId) {
+        // return delete this.widgets[x];
+        this.widgets.splice(x, 1);
+      }
+    }
+  }
 }
 
 

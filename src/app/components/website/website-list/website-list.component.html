@@ -1,19 +1,19 @@
 <nav class="navbar navbar-lightblue navbar-lightblue">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/profile/:uid" class="glyphiconwhite">
+      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-chevron-left glyphiconwhite"></span>
       </a>
     </p>
 
     <p class="navbar-header pull-left">
-      <a routerLink="/profile/:uid/website/:wid/page" class="navbar-brand">
+      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="navbar-brand">
         <b class="whitetitle">Websites</b>
       </a>
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/:uid/website/new" class="glyphiconwhite">
+      <a routerLink="/profile/{{ uid }}/website/new" class="glyphiconwhite">
         <span class="glyphicon glyphicon-plus glyphiconwhite"></span>
       </a>
     </p>
@@ -21,42 +21,25 @@
 </nav>
 
 
-<div class="container-fluid padding-top">
-  <ul class="list-group">
-    <li class="list-group-item borderless lightblue">Address Book App
-      <a class="pull-right" routerLink="/profile/:uid/website/:wid">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </li>
-    <li class="list-group-item borderless lightblue">Blogger
-      <a class="pull-right" routerLink="/profile/:uid/website/:wid">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </li>
-    <li class="list-group-item borderless lightblue">Blogging App
-      <a class="pull-right" routerLink="/profile/:uid/website/:wid">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </li>
-    <li class="list-group-item borderless lightblue">Script Testing App
-      <a class="pull-right" routerLink="/profile/:uid/website/:wid">
+<div *ngFor = "let website of websites" class="container-fluid padding-top">
+  <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="list-group">
+    <li routerLink="/profile/{{ uid }}/website/{{ wid }}/page"
+        class="list-group-item borderless lightblue">{{ website.name }}
+      <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
     </li>
   </ul>
 </div>
 
+
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/:uid" class="glyphiconwhite">
+      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
-
   </div>
-  <!--<div *ngFor="let website of websites">-->
-    <!--{{ website.name }}-->
-  <!--</div>-->
 </nav>
- <!--(click)="toProfile()"-->
+

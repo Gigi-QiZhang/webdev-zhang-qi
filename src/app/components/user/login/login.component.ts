@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../../../models/user.model.client';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,39 +10,50 @@ import { User } from '../../../models/user.model.client';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  // hello: String = 'Hello from component';
+  @ViewChild('f') loginForm: NgForm;
   errorFlag: boolean;
   errorMsg: string;
-  username: String;
-  password: String;
+  username: string;
+  password: string;
+  title: string;
+  disabledFlag: boolean;
 
   constructor(private userService: UserService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
-  // function: login
-  login(username: String, password: String) {
+
+  login() {
     // console.log('login' + username);
     // console.log(password);
-
-    const user: User = this.userService.findUserByCredentials(username, password);
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+    const user: User = this.userService.findUserByCredentials(this.username, this.password);
     if (user) {
-      alert(user._id);
-      this.router.navigate(['/profile', user._id]);
+      // alert(user._id);
+      this.router.navigate(['/profile', user.uid]);
+    } else {
+      this.errorFlag = true;
+      this.errorMsg = 'Error';
+      // alert('wrong username or password');
     }
-      // this.router.navigate(['/profile/123']);
-    // } else {
-    //   this.errorFlag = true;
-    //   this.errorMsg = 'Error';
-    //  // alert('wrong username or password');
-    //
-    // }
-      // if (username === 'alice' && password === 'alice') {
-    //   this.router.navigate(['/profile']);
-    //   // alert('username: ' + this.username);
-    // }
-  }
-  ngOnInit() {
   }
 
+  ngOnInit() {
+    this.title = 'This is Login Page';
+    this.disabledFlag = true;
+  }
+
+  buttonClicked(event: any) {
+    console.log(event); // your custom code on button click
+  }
 }
+  // if (username === 'alice' && password === 'alice') {
+  //   this.router.navigate(['/profile']);
+  //   // alert('username: ' + this.username);
+  // }
+  // this.router.navigate(['/profile/123']);
+  // }
+
+
+

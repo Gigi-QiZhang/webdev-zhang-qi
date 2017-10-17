@@ -4,6 +4,7 @@ import { WidgetService } from '../../../services/widget.service.client';
 // import { Widget } from '../../../models/widget.model.client';
 import { NgForm } from '@angular/forms';
 
+// user/:uid/website/:wid/page/:pid/widget/:wgid WidgetEditComponent
 @Component({
   selector: 'app-widget-edit',
   templateUrl: './widget-edit.component.html',
@@ -12,11 +13,14 @@ import { NgForm } from '@angular/forms';
 export class WidgetEditComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
   // properties
-  _id: String;
+  uid: String;
+  wid: String;
+  pid: String;
+  wgid: String;
   name: String;
-  developerId: String;
-  errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+  widgetType: String;
+  size: number;
+  text: String;
   constructor(private widgetService: WidgetService,
               private router: Router) { }
 

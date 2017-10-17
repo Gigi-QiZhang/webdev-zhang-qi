@@ -11,12 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class WidgetImageComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
-  // properties
-  _id: String;
+  uid: String;
+  wid: String;
+  pid: String;
+  wgid: String;
   name: String;
-  developerId: String;
-  errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+  widgetType: String;
+  size: number;
+  text: String;
   constructor(private widgetService: WidgetService,
               private router: Router) { }
 

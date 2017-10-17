@@ -4,23 +4,62 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class WebsiteService {
   websites: Website[] = [
-    new Website('123', 'Facebook', '456'),
-    new Website('234', 'Tweeter', '456'),
-    new Website('456', 'Gizmodo', '456'),
-    new Website('890', 'Go', '123'),
-    new Website('567', 'Tic Tac Toe', '123'),
-    new Website('678', 'Checkers', '123'),
-    new Website('789', 'Chess', '234'),
+    new Website('123', 'Facebook', '456', 'description'),
+    new Website('234', 'Tweeter', '456', 'description'),
+    new Website('456', 'Gizmodo', '456', 'description'),
+    new Website('890', 'Go', '123', 'description'),
+    new Website('567', 'Tic Tac Toe', '123', 'description'),
+    new Website('678', 'Checkers', '123', 'description'),
+    new Website('789', 'Chess', '234', 'description'),
   ];
 
   // createWebsite(userId: any, website: any) {
   //   if (this.websites.developerId = userId) {
   //     this.websites.push(website);
-  //     return website
+  //     return website;
   //   }
   // }
 
-  // findWebsiteByUser (userId: any) {
+  findWebsiteByUser(userId) {
+    for (let x = 0; x < this.websites.length; x++) {
+      if (this.websites[x].developerId === userId ) {
+        return this.websites[x];
+      }
+    }
+  }
+  findWebsitesByUser(userId) {
+    const webs = this.websites;
+    for (let x = 0; x < this.websites.length; x++) {
+      webs.pop();
+    }
+    for (let x = 0; x < this.websites.length; x++) {
+      if (this.websites[x].developerId === userId) {
+        webs.push(this.websites[x]);
+      }
+    }
+      return webs;
+  }
+
+  updateWebsite(websiteId: string, website: Website) {
+    for (let x = 0; x < this.websites.length; x++) {
+      const _website = this.websites[x];
+      if (_website.wid === websiteId) {
+        this.websites[x] = website;
+      }
+    }
+  }
+  deleteWebsite(websiteId: string) {
+    for (let x = 0; x < this.websites.length; x++) {
+      if (this.websites[x].wid === websiteId) {
+        // return delete this.websites[x];
+        this.websites.splice(x, 1);
+      }
+    }
+  }
+}
+
+
+// findWebsiteByUser (userId: any) {
   //   return this.websites.find(function (website) {
   //     return website.developerId === userId;
   //   });
@@ -31,13 +70,7 @@ export class WebsiteService {
   //     return website._id === websiteId;
   //   });
   // }
-  // findWebsiteByUser(userId) {
-  //   for (let x = 0; x < this.websites.length; x++) {
-  //     if (this.websites[x].developerId === userId ) {
-  //       return this.websites[x];
-  //     }
-  //   }
-  // }
+
   // findWebsitesByUser(userId) {
   //   const sites = this.websites;
   //   for (let x = 0; x < this.websites.length; x++) {
@@ -52,23 +85,6 @@ export class WebsiteService {
   // }
 
 
-  // updateWebsite(websiteId: any, website: String) {
-  //   for (let i = 0; i < this.websites.length; i++) {
-  //     const _website = this.websites[i];
-  //     if (_website._id === websiteId) {
-  //       this.websites[i].name = _website.name;
-  //       this.websites[i].description = _website.description;
-  //     }
-  //   }
-  // }
-  // deleteWebsite(websiteId: string) {
-  //   for (let x = 0; x < this.websites.length; x++) {
-  //     if (this.websites[x]._id === websiteId) {
-  //       return delete this.websites[x];
-  //     }
-  //   }
-  // }
-}
 
 
 

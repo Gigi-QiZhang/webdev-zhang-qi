@@ -1,7 +1,7 @@
 <nav class="navbar navbar-lightblue">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div routerLink="/profile/:uid/website" class="navbar-text pull-left glyphiconwhite">
+      <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
           <span class="glyphicon glyphicon-chevron-left"></span>
       </div>
 
@@ -17,13 +17,13 @@
 
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
-        <div routerLink="/profile/:uid/website" class="navbar-text pull-left glyphiconwhite">
+        <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
       </div>
 
 
-      <div routerLink="/profile/:uid/website" class="navbar-text pull-right glyphiconwhite">
+      <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-right glyphiconwhite">
           <span class="glyphicon glyphicon-ok"></span>
       </div>
 
@@ -36,31 +36,22 @@
 
 <div class="row container-fluid padding-top">
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
-    <ul class="list-group">
-      <li class="list-group-item borderless lightblue">Address Book App
-        <a routerLink="/profile/:uid/website/edit" class="pull-right">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </li>
-      <li class="list-group-item borderless lightblue">Blogger
-        <a routerLink="/profile/:uid/website/edit" class="pull-right">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </li>
-      <li class="list-group-item borderless lightblue">Blogging App
-        <a routerLink="/profile/:uid/website/edit" class="pull-right">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </li>
-      <li class="list-group-item borderless lightblue">Script Testing App
-        <a routerLink="/profile/:uid/website/edit" class="pull-right">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </li>
-    </ul>
+
+    <div *ngFor = "let website of websites" class="container-fluid padding-top">
+      <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="list-group">
+        <li routerLink="/profile/{{ uid }}/website/{{ wid }}/page"
+            class="list-group-item borderless lightblue">{{ website.name }}
+          <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 
+
+<form id="updateForm" (ngSubmit) = "edit()" #f="ngForm">
 <div class="col-xs-12 col-sm-8 pull-right">
   <div class="container-fluid">
     <form>
@@ -81,17 +72,19 @@
       </div>
     </form>
     <form>
-      <a routerLink="/profile/:uid/website" class="btn btn-block btn-danger">Delete</a>
+      <a routerLink="/profile/{{ uid }}/website" class="btn btn-block btn-danger">Delete</a>
     </form>
   </div>
 </div>
+</form>
 
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/:uid" class="glyphiconwhite">
+      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
   </div>
+
 </nav>

@@ -4,13 +4,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PageService {
   pages: Page[] = [
-    new Page('123', 'Facebook', '456'),
-    new Page('234', 'Tweeter', '456'),
-    new Page('456', 'Gizmodo', '456'),
-    new Page('890', 'Go', '123'),
-    new Page('567', 'Tic Tac Toe', '123'),
-    new Page('678', 'Checkers', '123'),
-    new Page('789', 'Chess', '234'),
+    new Page('321', 'Post 1', '456', 'Lorem'),
+    new Page('432', 'Post 2', '456', 'Lorem'),
+    new Page('543', 'Post 3', '456', 'Lorem'),
   ];
 
   // createPage(websiteId: String, page: any) {
@@ -19,34 +15,51 @@ export class PageService {
   //     return page;
   //   }
   // }
+  findPageByWebsiteId(websiteId: string) {
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x].wid === websiteId) {
+        return this.pages[x];
+      }
+    }
+  }
 
-  // findPageByWebsiteId (websiteId: any) {
-  //   return this.pages.find(function (page) {
-  //     return page.websiteId === websiteId;
-  //   });
-  // }
-  //
-  // findPageById(pageId: any) {
-  //   return this.pages.find(function (page) {
-  //     return page._id === pageId;
-  //   });
-  // }
-  // updatePage(pageId: any, page: String) {
-  //   for (let i = 0; i < this.pages.length; i++) {
-  //     const _page = this.pages[i];
-  //     if (_page._id === pageId) {
-  //       this.pages[i].name = _page.name;
-  //       this.pages[i].description = _page.description;
-  //     }
-  //   }
-  // }
-  // deletePage(pageId: string) {
-  //   for (let x = 0; x < this.pages.length; x++) {
-  //     if (this.pages[x]._id === pageId) {
-  //       return delete this.pages[x];
-  //     }
-  //   }
-  // }
+  findPagesByWebsiteId(websiteId: string) {
+    const pgs = this.pages;
+    for (let x = 0; x < this.pages.length; x++) {
+      pgs.pop();
+    }
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x].wid === websiteId) {
+        pgs.push(this.pages[x]);
+      }
+    }
+    return pgs;
+  }
+
+  findPageById(pageId: string) {
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x].pid === pageId) {
+        return this.pages[x];
+      }
+    }
+  }
+
+  updateWebsite(pageId: string, page: Page) {
+    for (let x = 0; x < this.pages.length; x++) {
+      const _page = this.pages[x];
+      if (_page.pid === pageId) {
+        this.pages[x] = page;
+      }
+    }
+  }
+  deleteWebsite(pageId: string) {
+    for (let x = 0; x < this.pages.length; x++) {
+      if (this.pages[x].pid === pageId) {
+        // return delete this.websites[x];
+        this.pages.splice(x, 1);
+      }
+    }
+  }
 }
 
 
