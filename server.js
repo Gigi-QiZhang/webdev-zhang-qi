@@ -1,26 +1,15 @@
-/**
- * Created by sesha on 6/2/17.
- */
-
 // Get the dependencies
-
-var express = require('express');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 const path = require('path');
 const http = require('http');
-// const bodyParser = require('body-parser');
-const app = express();
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.static(path.join(__dirname, 'public')));
-
-
-
-
-// Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
-
-
 
 // CORS
 app.use(function(req, res, next) {
@@ -30,9 +19,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
-
 const port = process.env.PORT || '3100';
 app.set('port', port);
 
@@ -40,8 +26,16 @@ app.set('port', port);
 // Create HTTP server
 const server = http.createServer(app);
 
-var serverSide = require("./server/test-mongodb/app");
-serverSide(app);
+// const serverSide = require("./assignment/test-mongodb/app");
+// serverSide(app);
+
+const assignment = require("./assignment/app.js")(app);
+// require("./wax-server/app")(app);
+
+
+server.listen(port);
+
+
 // app.get('*', function(req,res) {
 //    res.sendFile(path,join(__dirname, 'dist/index.html'))});
 
@@ -52,15 +46,13 @@ serverSide(app);
 // });
 
 
-server.listen( port , () => console.log('Running'));
+// server.listen( port , () => console.log('Running'));
+// var hello = require("./hello");
+// hello(app);
 
 
-var hello = require("./hello");
-hello(app);
 
-var assignment = require("./assignment/app");
-assignment(app);
-
+// app.listen(port, ipaddress);
 // var assignment = require("./assignment/app")(app);
 // require("./assignment/app")(app);
 

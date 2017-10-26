@@ -11,43 +11,38 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
-  errorFlag: boolean;
-  errorMsg: string;
+
   username: string;
   password: string;
-  title: string;
-  disabledFlag: boolean;
+  loginError: boolean;
 
   constructor(private userService: UserService,
               private router: Router) {
   }
-
 
   login() {
     // console.log('login' + username);
     // console.log(password);
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    const user: User = this.userService.findUserByCredentials(this.username, this.password);
-    if (user) {
-      // alert(user._id);
-      this.router.navigate(['/profile', user.uid]);
-    } else {
-      this.errorFlag = true;
-      this.errorMsg = 'Error';
-      // alert('wrong username or password');
-    }
+    this.userService.findUserByCredentials(this.username, this.password)
+      .subscribe((user: User) => {
+          this.loginError = false;
+          this.router.navigate(['/user', user.uid]);
+        }, (error: any) => {
+      this.loginError = true;
+    });
   }
-
   ngOnInit() {
-    this.title = 'This is Login Page';
-    this.disabledFlag = true;
-  }
-
-  buttonClicked(event: any) {
-    console.log(event); // your custom code on button click
   }
 }
+
+  // buttonClicked(event: any) {
+  //   console.log(event); // your custom code on button click
+  // }
+
+  // this.title = 'This is Login Page';
+  // this.disabledFlag = true;
   // if (username === 'alice' && password === 'alice') {
   //   this.router.navigate(['/profile']);
   //   // alert('username: ' + this.username);

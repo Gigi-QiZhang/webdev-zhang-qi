@@ -11,3 +11,6 @@ b.whitetitle {
   /*color: white;*/
 /*}*/
 
+.button-transparent {
+  background-color: transparent;
+}
