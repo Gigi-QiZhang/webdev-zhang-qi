@@ -1,19 +1,19 @@
 <nav class="navbar navbar-lightblue navbar-lightblue">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-chevron-left glyphiconwhite"></span>
       </a>
     </p>
 
     <p class="navbar-header pull-left">
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="navbar-brand">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="navbar-brand">
         <b class="whitetitle">Websites</b>
       </a>
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/{{ uid }}/website/new" class="glyphiconwhite">
+      <a (click) = 'newWebsite()' class="glyphiconwhite">
         <span class="glyphicon glyphicon-plus glyphiconwhite"></span>
       </a>
     </p>
@@ -21,22 +21,29 @@
 </nav>
 
 
-<div *ngFor = "let website of websites" class="container-fluid padding-top">
-  <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="list-group">
-    <li routerLink="/profile/{{ uid }}/website/{{ wid }}/page"
-        class="list-group-item borderless lightblue">{{ website.name }}
-      <a class="pull-right">
-        <span class="glyphicon glyphicon-cog" routerLink="/profile/{{ uid }}/website/{{ wid }}"></span>
-      </a>
-    </li>
+
+  <ul class="list-group">
+    <div class="container-fluid">
+      <div *ngFor = "let website of websites">
+        <li class="list-group-item borderless lightblue">
+          <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
+            {{ website.name }}
+          </a>
+
+          <a routerLink="/user/{{ uid }}/website/{{ wid }}" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+      </div>
+    </div>
   </ul>
-</div>
+
 
 
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

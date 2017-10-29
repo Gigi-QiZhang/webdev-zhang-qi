@@ -2,7 +2,7 @@
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
       <div class="navbar-text pull-left">
-        <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
+        <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
       </div>
@@ -18,20 +18,20 @@
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
         <div class="navbar-text pull-left">
-          <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
+          <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
             <span class="glyphicon glyphicon-chevron-left hidden-lg visible-xs"></span>
           </a>
         </div>
       </div>
 
       <div class="navbar-text pull-right">
-        <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
+        <a (click) = "create(name,description)" class="glyphiconblack">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </div>
 
       <div class="navbar-header margin">
-        <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/new" class="navbar-brand">
+        <a class="navbar-brand">
           <b>New Page</b>
         </a>
       </div>
@@ -39,48 +39,55 @@
   </div>
 </nav>
 
-<div class="container-fluid padding-top">
-  <div class="col-sm-4 hidden-xs websites-col-sm-4">
+<!--<div class="container-fluid padding-top">-->
+  <!--<div class="col-sm-4 hidden-xs websites-col-sm-4">-->
 
-    <div *ngFor = "let page of pages" class="container-fluid padding-top">
-      <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">
-        <li class="list-group-item borderless lightblue">{{ page.name }}
-          <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <!--<div *ngFor = "let page of pages" class="container-fluid padding-top">-->
+      <!--<ul routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">-->
+        <!--<li class="list-group-item borderless lightblue">{{ page.name }}-->
+          <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+          <!--</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
 
-  </div>
-</div>
-
-
-
+  <!--</div>-->
+<!--</div>-->
 
 
 <div class="col-xs-12 col-sm-8 pull-right padding-top">
   <div class="container-fluid">
     <form>
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Page Name">
+        <label for="page-name">Name</label>
+        <input [(ngModel)] = "name"
+               name = "name"
+               placeholder="Page Name"
+               type="text"
+               id = "page-name"
+               class="form-control"/>
       </div>
     </form>
 
-    <form>
-      <div class="form-group">
+    <div class="form-group">
+      <form>
         <label for="pagetitle">Title</label>
-        <input type="text" class="form-control" id="pagetitle" placeholder="Page Title">
-      </div>
-    </form>
+        <input [(ngModel)] = "description"
+               name = "description"
+               type="text"
+               class="form-control"
+               id="pagetitle"
+               placeholder="Page Title">
+      </form>
+    </div>
   </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid ">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/{{ uid }}">
+      <a routerLink="/user/{{ uid }}">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

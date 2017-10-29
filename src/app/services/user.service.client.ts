@@ -59,8 +59,7 @@ export class UserService {
   updateUser(userId, user) {
     const url = this.baseUrl + '/api/user/' + userId;
     return this.http.put(url, user)
-      .map(
-        (response: Response) => {
+      .map((response: Response) => {
           return response.json();
         });
   }

@@ -27,9 +27,9 @@ export class WebsiteListComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
   }
 
-  // newWebsite() {
-  //   this.router.navigate(['/user/', this.uid, '/website', '/new']);
-  // }
+  newWebsite() {
+    this.router.navigate(['/user/', this.uid, 'website', 'new']);
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(

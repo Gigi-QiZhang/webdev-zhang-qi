@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
@@ -11,7 +11,7 @@
       </a>
     </p>
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/new" class="glyphiconblack">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/new" class="glyphiconblack">
         <span class="glyphicon glyphicon-plus"></span>
       </a>
     </p>
@@ -24,27 +24,27 @@
     <div [ngSwitch]="widget.type">
     <div>
       <a><span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span></a>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}" >
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}" >
         <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
       </a>
       <h2>Lorem Pixels</h2>
     </div>
     <div>
       <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
         <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
       </a>
       <h3>Placeholder Images</h3>
     </div>
     <div>
       <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
         <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue" href="widget-image.html"></span>
       </a>
       <img class="content" src="http://lorempixel.com/400/200/">
     </div>
     <div>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
       <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
       <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
       </a>
@@ -57,20 +57,20 @@
   <div>
     <div>
       <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
         <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue" ></span>
       </a>
       <h2>Tom and Jerry Episode 104</h2>
     </div>
     <div>
       <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
         <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
       </a>
       <iframe class="content" src="https://www.youtube.com/embed/er8RzbAoW_g" allowfullscreen></iframe>
     </div>
     <div>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
       <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
       <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
       </a>
@@ -101,7 +101,7 @@
       </p>
 
       <p class="navbar-text pull-right">
-        <a routerLink="/profile">
+        <a routerLink="/user/{{ uid }}">
           <span class="glyphicon glyphicon-user pull-right"></span>
         </a>
       </p>

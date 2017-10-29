@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
   }
 
   findWebsite () {
-        this.router.navigate(['/user/', this.uid, '/website']);
+        this.router.navigate(['/user/', this.uid, 'website']);
       }
 
   deleteUser(userId) {

@@ -2,7 +2,7 @@
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
       <div class="navbar-text pull-left">
-          <span routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
+          <span routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
       </div>
       <div class="navbar-header">
         <a class="navbar-brand" >
@@ -31,7 +31,7 @@
       </div>
 
       <div class="navbar-text pull-right">
-        <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page"  class="glyphiconblack">
+        <a routerLink="/user/{{ uid }}/website/{{ wid }}/page"  class="glyphiconblack">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </div>
@@ -44,9 +44,9 @@
 <div class="row container-fluid">
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
     <div *ngFor = "let page of pages" class="container-fluid padding-top">
-      <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">
+      <ul routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">
         <li class="list-group-item borderless lightblue">{{ page.name }}
-          <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page">
+          <a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
         </li>
@@ -55,27 +55,27 @@
 
     <!--<ul class="list-group">-->
       <!--<li class="list-group-item borderless lightblue">Blog Post-->
-        <!--<a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/:pid" >-->
+        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid" >-->
           <!--<span class="glyphicon glyphicon-cog"></span>-->
         <!--</a>-->
       <!--</li>-->
       <!--<li class="list-group-item borderless lightblue">Blogs-->
-        <!--<a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/:pid">-->
+        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
           <!--<span class="glyphicon glyphicon-cog"></span>-->
         <!--</a>-->
       <!--</li>-->
       <!--<li class="list-group-item borderless lightblue">Home-->
-        <!--<a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/:pid">-->
+        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
           <!--<span class="glyphicon glyphicon-cog"></span>-->
         <!--</a>-->
       <!--</li>-->
       <!--<li class="list-group-item borderless lightblue">About-->
-        <!--<a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/:pid">-->
+        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
           <!--<span class="glyphicon glyphicon-cog"></span>-->
         <!--</a>-->
       <!--</li>-->
       <!--<li class="list-group-item borderless lightblue">Contact Us-->
-        <!--<a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page/:pid">-->
+        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
           <!--<span class="glyphicon glyphicon-cog"></span>-->
         <!--</a>-->
       <!--</li>-->
@@ -100,7 +100,7 @@
     </form>
 
     <form>
-      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="btn btn-block btn-danger">Delete</a>
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="btn btn-block btn-danger">Delete</a>
     </form>
   </div>
 
@@ -109,7 +109,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/{{ uid }}">
+      <a routerLink="/user/{{ uid }}">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

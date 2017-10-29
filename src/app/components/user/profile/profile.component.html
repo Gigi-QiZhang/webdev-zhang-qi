@@ -7,11 +7,16 @@
       </a>
     </p>
 
-    <button form="updateForm"  class="navbar-text pull-right">
-      <a type="submit"  class="navbar-link">
-        <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
+    <!--<button form="updateForm"  class="navbar-text pull-right">-->
+      <!--<a type="submit"  class="navbar-link">-->
+        <!--<span class="glyphicon glyphicon-ok glyphiconwhite"></span>-->
+      <!--</a>-->
+    <!--</button>-->
+    <p class="navbar-text pull-right">
+      <a (click)="update()" class="navbar-link glyphiconwhite">
+        <span class="glyphicon glyphicon-ok"></span>
       </a>
-    </button>
+    </p>
 
 
   </div>
@@ -51,10 +56,14 @@
          name="lastName"
          type="text"/>
   <br/>
-  <button routerLink="/profile/{{ uid }}/website" class="btn btn-primary form-control">Website</button>
-    <br/>
-    <br/>
-  <button class="btn btn-danger form-control btn btn-block" routerLink="/login">Logout</button>
+  <button (click)="findWebsite()"
+          class="btn btn-primary btn-block form-control"
+          type="submit">Website</button><br/>
+  <button class="btn btn-danger form-control btn btn-block"
+          routerLink="/login">Logout</button><br/>
+    <button (click)="deleteUser(userId)" class="btn btn-danger btn-block">
+      Delete
+    </button>
 
   </div>
 </form>

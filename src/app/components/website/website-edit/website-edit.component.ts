@@ -17,7 +17,6 @@ export class WebsiteEditComponent implements OnInit {
   uid: String;
   wid: String;
   pid: String;
-  developerId: String;
   name: String;
   description: String;
   website: Website;
@@ -57,7 +56,7 @@ export class WebsiteEditComponent implements OnInit {
   remove(websiteId) {
     this.websiteService.deleteWebsite(this.wid)
       .subscribe((website: Website) => {
-        this.router.navigate(['/user/', this.uid, '/website']);
+        this.router.navigate(['/user/', this.uid, 'website']);
       });
   }
 

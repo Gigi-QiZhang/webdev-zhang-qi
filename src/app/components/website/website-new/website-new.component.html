@@ -1,7 +1,8 @@
+
 <nav class="navbar navbar-lightblue">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
+      <div routerLink="/user/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
           <span class="glyphicon glyphicon-chevron-left"></span>
       </div>
 
@@ -10,7 +11,7 @@
           <b>Websites</b>
       </div>
 
-      <div routerLink="/profile/{{ uid }}/website/new" class="navbar-text pull-right hidden-xs glyphiconwhite">
+      <div routerLink="/user/{{ uid }}/website/new" class="navbar-text pull-right hidden-xs glyphiconwhite">
           <span class="glyphicon glyphicon-plus"></span>
       </div>
     </div>
@@ -19,15 +20,22 @@
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
         <div class="navbar-text pull-left">
-          <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
+          <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
             <span class="glyphicon glyphicon-chevron-left"></span>
           </a>
         </div>
       </div>
 
-      <div routerLink="/profile/{{ uid }}/website" class="navbar-text pull-right glyphiconwhite">
+      <div routerLink="/user/{{ uid }}/website" class="navbar-text pull-right glyphiconwhite">
           <span class="glyphicon glyphicon-ok"></span>
       </div>
+      <!--<p class="navbar-text pull-right">-->
+        <!--<a (click)= "createWebsite(name, description)"-->
+           <!--class="navbar-text pull-right glyphiconwhite"-->
+           <!--type="submit">-->
+          <!--<span class="glyphicon glyphicon-ok"></span>-->
+        <!--</a>-->
+      <!--</p>-->
 
       <div class="navbar-header pull-left navbar-brand glyphiconwhite margin">
           <b>New Website</b>
@@ -39,42 +47,54 @@
 
 <div class="row container-fluid">
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
-
-    <div *ngFor = "let website of websites" class="container-fluid padding-top">
-      <ul routerLink="/profile/{{ uid }}/website/{{ wid }}/page" class="list-group">
-        <li routerLink="/profile/{{ uid }}/website/{{ wid }}/page"
-            class="list-group-item borderless lightblue">{{ website.name }}
-          <a class="pull-right" routerLink="/profile/{{ uid }}/website/{{ wid }}/page">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <ul class="list-group">
+      <div class="container-fluid">
+        <div *ngFor = "let website of websites">
+            <li class="list-group-item borderless lightblue">
+              <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
+                {{ website.name }}
+              </a>
+              <a routerLink="/user/{{ uid }}/website/{{ wid }}">
+                <span class="glyphicon glyphicon-cog pull-right"></span>
+              </a>
+            </li>
+        </div>
+      </div>
+    </ul>
   </div>
-</div>
 
-<div class="col-xs-12 col-sm-8 pull-right padding-top">
-  <div class="container">
+<div class="col-xs-12 col-sm-8 pull-right">
+  <!--<div class="container">-->
+  <form (ngSubmit) = "createWebsite(name,description)" #f="ngForm">
     <form>
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Name">
+        <label for="website-name">Name</label>
+        <input [(ngModel)] = "name"
+               name = "name"
+               placeholder="Name"
+               type="text"
+               id = "website-name"
+               class="form-control"/>
       </div>
     </form>
 
-    <form>
       <div class="form-group">
-        <label for="description">Description</label>
-        <textarea class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+        <label for="website-description">Description</label>
+          <textarea [(ngModel)] = "description"
+                    name = "description"
+                    class = "form-control"
+                    placeholder="Description"
+                    id = "website-description"
+                    rows="5">
+          </textarea>
       </div>
     </form>
   </div>
-</div>
 
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/profile/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
