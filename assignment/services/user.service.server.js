@@ -1,12 +1,12 @@
 module.exports = function (app) {
   app.post("/api/user", createUser);
-  app.get("/api/user", findUsers);
+  // app.get("/api/user", findUsers);
+  app.get("/api/user", findUserByUsername);
+  app.get("/api/user", findUserByCredentials);
   app.get("/api/user/:uid", findUserById);
-  // app.get("/api/user?username=username", findUserByUsername);
-  // app.get("/api/user?username=username&password=password", findUserByCredentials);
   app.put("/api/user/:uid", updateUser);
   app.delete("/api/user/:uid", deleteUser);
-  // app.get("/api/user/hello", helloUser);
+
 
   const users = [
     { uid: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice.w@gmail.com" },
@@ -24,7 +24,7 @@ module.exports = function (app) {
   }
 
   function newUserId() {
-    return (Number(users[users.length-1].uid)+1).toString();
+    return Math.random().toString();
   }
 
   function findUserById(req, res) {
@@ -35,34 +35,53 @@ module.exports = function (app) {
     res.json(user);
   }
 
-  function findUsers(req, res) {
+  function findUserByCredentials(req, res) {
     const username = req.query["username"];
     const password = req.query["password"];
     if(username && password) {
       const user = users.find(function (user) {
         return user.username === username && user.password === password;
       });
-      if(user) {
+      if (user) {
         res.json(user);
       } else {
         res.json({});
         // res.json(null);
       }
       return;
-    } else if(username) {
-      const user = users.find(function (user) {
+    }
+    res.json(users);
+    // } else if(username) {
+    //   const user = users.find(function (user) {
+    //     return user.username === username;
+    //   });
+    //   if(user) {
+    //     res.json(user);
+    //   } else {
+    //     res.json({});
+    //     // res.json(null);
+    //   }
+    //   return;
+    // }
+    // res.json(users);
+  }
+
+  function findUserByUsername(req, res) {
+    const username = req.query["username"];
+    if (username) {
+      var user = users.find(function (user) {
         return user.username === username;
       });
-      if(user) {
-        res.json(user);
+      if (user) {
+        res.send(user);
       } else {
-        res.json(null);
-        // res.json(null);
+        res.send({});
       }
       return;
     }
     res.json(users);
   }
+
 
   function updateUser(req, res) {
     const userId = req.params["uid"];
@@ -89,8 +108,5 @@ module.exports = function (app) {
       return user.uid === userId;
     });
   }
-  // function helloUser(req, res) {
-  //   console.log();
-  //   res.send("hello user service");
-  // }
+
 };

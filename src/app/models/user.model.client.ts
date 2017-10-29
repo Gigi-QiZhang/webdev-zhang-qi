@@ -5,13 +5,12 @@ export class User {
   firstName: String;
   lastName: String;
   email: String;
-  constructor(uid, username, password, firstName, lastName, email) {
+  constructor(uid, username, password, firstName, lastName) {
     this.uid = uid;
     this.username = username;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.email = email;
   }
 }
 

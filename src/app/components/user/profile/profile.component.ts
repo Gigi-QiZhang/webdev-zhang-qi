@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { NgForm } from '@angular/forms';
 import { User } from '../../../models/user.model.client';
@@ -9,83 +9,85 @@ import { User } from '../../../models/user.model.client';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @ViewChild('f') updateForm: NgForm;
+  @ViewChild('f') profileForm: NgForm;
 
   uid: String;
-  user: User;
-  updatedUser: User;
-
   username: String;
   email: String;
   firstName: String;
   lastName: String;
+
   preUsername: String;
-  usernameTaken: boolean;
-  updateSuccess: boolean;
+  usernameOccupied: boolean;
+  // user: User;
+  user: User = {
+    uid: this.uid,
+    username: this.username,
+    password: '',
+    email: this.email,
+    firstName: this.firstName,
+    lastName: this.lastName
+  };
+  aUser: User;
+
+
   constructor(private userService: UserService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   update() {
-    // console.log(user);
-    this.username = this.updateForm.value.username;
-    this.firstName = this.updateForm.value.firstName;
-    this.lastName = this.updateForm.value.lastName;
-    this.email = this.updateForm.value.email;
-    this.usernameTaken = false;
-    this.updateSuccess = false;
+    this.username = this.profileForm.value.username;
+    this.email = this.profileForm.value.email;
+    this.firstName = this.profileForm.value.firstName;
+    this.lastName = this.profileForm.value.lastName;
 
-    this.userService.findUserByUsername(this.username)
-      .subscribe((user: User) => {
-      this.updatedUser = user;
-      });
-
-    if (this.updatedUser && this.username !== this.preUsername) {
-      this.usernameTaken = true;
+    if (this.aUser && this.username !== this.preUsername) {
+      this.usernameOccupied = true;
     } else {
       const updatedUser: User = {
-        uid: this.user.uid,
-        username: this.username,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        password: this.user.password
-      };
-      // console.log(updatedUser);
+      uid: this.uid,
+      username: this.username,
+      password: this.user.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email
+  };
       this.userService.updateUser(this.uid, updatedUser)
-        .subscribe((newUser: User) => {
-        this.user = newUser;
+        .subscribe((Nuser: User) => {
+          this.user = Nuser;
         });
-      this.updateSuccess = true;
       this.preUsername = this.username;
     }
   }
 
+  findWebsite () {
+        this.router.navigate(['/user/', this.uid, '/website']);
+      }
+
+  deleteUser(userId) {
+    this.userService.deleteUser(this.uid)
+      .subscribe((user: User) => {
+        this.router.navigate(['login/']);
+      });
+  }
+
   ngOnInit() {
-      this.activatedRoute.params.subscribe((params: any) => {
-        this.uid = params['uid'];
-      // alert('userId: ' + this.uid);
-      // this.user = this.userService.findUserById(this.uid);
+    this.activatedRoute.params
+      .subscribe((params: any) => {
+      this.uid = params['uid'];
+
       this.userService.findUserById(this.uid)
         .subscribe((user: User) => {
-        this.user = user;
-        this.username = this.user['username'];
-        this.firstName = this.user['firstName'];
-        this.lastName = this.user['lastName'];
-        this.email = this.user['email'];
-        this.preUsername = this.user['username'];
+          this.user = user;
+          console.log(this.user);
+          this.username = this.user['username'];
+          this.firstName = this.user['firstName'];
+          this.lastName = this.user['lastName'];
+          this.email = this.user['email'];
+          // this.preUsername = this.user['username'];
         });
-      });
+    });
   }
 }
 
 
-// findWebsite () {
-//   const websites = this.websiteService.findWebsitesByUser(this.userId);
-//     if (websites) {
-//       for (const website of websites) {
-//         this.router.navigate(['/profile', this.userId, '/website']);
-//       }
-//       this.errorFlag = true;
-//       this.errorMsg = 'Invalid input';
-//     }
-// }

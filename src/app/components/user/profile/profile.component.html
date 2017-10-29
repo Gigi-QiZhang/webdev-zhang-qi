@@ -7,79 +7,57 @@
       </a>
     </p>
 
-    <p class="navbar-text pull-right">
-      <button form="updateForm"
-              type="submit"
-              class="btn btn-xs navbar-link button-transparent">
-          <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
-      </button>
-    </p>
+    <button form="updateForm"  class="navbar-text pull-right">
+      <a type="submit"  class="navbar-link">
+        <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
+      </a>
+    </button>
+
+
   </div>
 </nav>
 
-<div class="container-fluid">
-  <div *ngIf="usernameTaken"
-       class="alert alert-danger">
-    Username was occupied!
+<form id="updateForm" (ngSubmit) = "update()" #f="ngForm">
+  <div class="container-fluid">
+
+  <label>Username</label><br/>
+  <input [(ngModel)]="username"
+       placeholder="username"
+       class="form-control"
+       name="username"
+       type="text"
+       required/>
+  <br/>
+
+  <label>Email</label><br/>
+  <input [(ngModel)]="email"
+         placeholder="jannunzi@gmail.com"
+         class="form-control"
+         name="email"
+         type="text"
+         required/>
+  <br/>
+  <label>First Name</label><br/>
+  <input [(ngModel)]="firstName"
+         placeholder="Jose"
+         class="form-control"
+         name="firstName"
+         type="text"/>
+  <br/>
+  <label>Last Name</label><br/>
+  <input [(ngModel)]="lastName"
+         placeholder="Annunziato"
+         class="form-control"
+         name="lastName"
+         type="text"/>
+  <br/>
+  <button routerLink="/profile/{{ uid }}/website" class="btn btn-primary form-control">Website</button>
+    <br/>
+    <br/>
+  <button class="btn btn-danger form-control btn btn-block" routerLink="/login">Logout</button>
+
   </div>
-  <div *ngIf="updateSuccess"
-       class="alert alert-success">
-    Update successfully!
-  </div>
-  <form id="updateForm" (ngSubmit) = "update()" #f="ngForm">
-    <div class="container-fluid">
-      <label>Username</label><br/>
-        <input ngModel="{{user.username}}"
-               #username="ngModel"
-               placeholder="username"
-               class="form-control"
-               name="username"
-               type="text"
-               required/><br/>
-    </div>
-      <span class="help-block"
-            *ngIf="!username.valid && username.touched">Username should be valid!</span>
-
-    <div class="container-fluid">
-      <label>Email</label><br/>
-      <input ngModel="{{user.email}}"
-             #email="ngModel"
-             placeholder="alicewonderland@gmail.com"
-             class="form-control"
-             name="email"
-             type="text"
-             required/><br/>
-    </div>
-      <span class="help-block"
-            *ngIf="!email.valid && email.touched">Email address should be valid!</span>
-
-    <div class="container-fluid">
-      <label>First Name</label><br/>
-      <input ngModel="{{user.firstName}}"
-             #firstName="ngModel"
-             placeholder="Alice"
-             class="form-control"
-             name="firstName"
-             type="text"/><br/>
-    </div>
-    <div class="container-fluid">
-      <label>Last Name</label><br/>
-      <input ngModel="{{user.lastName}}"
-             #lastName="ngModel"
-             placeholder="Wonderland"
-             class="form-control"
-             name="lastName"
-             type="text"/><br/>
-    </div>
-  </form>
-
-    <a class="btn btn-primary btn-block" routerLink="/profile/{{ uid }}/website">Website</a>
-      <br/>
-      <br/>
-    <a class="btn btn-danger form-control btn btn-block" routerLink="/login">Logout</a>
-
-    </div>
-
+</form>
   <nav class="navbar navbar-default navbar-fixed-bottom navbar-lightblue">
     <div class="container-fluid">
       <p class="navbar-text pull-right">
@@ -89,4 +67,3 @@
       </p>
     </div>
   </nav>
-

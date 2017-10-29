@@ -1,17 +1,22 @@
 // Get the dependencies
+// express library: easy to make a server, loading module express
 const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
 const path = require('path');
+// allow us to create http servers
 const http = require('http');
+// parse incoming data from json
+const bodyParser = require('body-parser');
+// app: instance of the express library
+const app = express();
 
-
+// initialize parser for json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.static(path.join(__dirname, 'public')));
+// Point static path to dist -- For building -- REMOVE
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// CORS
+// CORS  Cross Origin Request: allows browsers access servers to connect to other websites
+// we need API supporting CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -22,43 +27,14 @@ app.use(function(req, res, next) {
 const port = process.env.PORT || '3100';
 app.set('port', port);
 
-
 // Create HTTP server
 const server = http.createServer(app);
 
-// const serverSide = require("./assignment/test-mongodb/app");
-// serverSide(app);
-
-const assignment = require("./assignment/app.js")(app);
-// require("./wax-server/app")(app);
-
+require("./assignment/app") (app);
 
 server.listen(port);
 
 
-// app.get('*', function(req,res) {
-//    res.sendFile(path,join(__dirname, 'dist/index.html'))});
 
-
-// For Build: Catch all other routes and return the index file -- BUILDING
-// app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
-
-
-// server.listen( port , () => console.log('Running'));
-// var hello = require("./hello");
-// hello(app);
-
-
-
-// app.listen(port, ipaddress);
-// var assignment = require("./assignment/app")(app);
-// require("./assignment/app")(app);
-
-
-// app.get("/",function() {
-//   console.log("Hello form Root context Handler");
-// })
 
 

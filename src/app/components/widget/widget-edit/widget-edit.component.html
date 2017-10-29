@@ -1,0 +1,175 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <p class="navbar-text pull-left">
+      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+        <span class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
+      </a>
+    </p>
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand">
+        <b>Widget Edit</b>
+      </a>
+    </p>
+
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+        <span class="glyphicon glyphicon-ok glyphiconblack"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="FirstName LastName">
+  </div>
+
+  <div class="form-group">
+    <label for="txt">Text</label>
+    <input type="text" class="form-control" id="txt" placeholder="Your favorite YouTube Video!">
+  </div>
+
+  <div class="form-group">
+    <label for="youtubeurl">URL</label>
+    <input type="URL" class="form-control" id="youtubeurl" placeholder="https://youtu.be/uLWLashCXHE">
+  </div>
+
+  <div class="form-group">
+    <label for="youtubewidth">Width</label>
+    <input type="text" min="1" max="100" class="form-control" id="youtubewidth" placeholder="100%">
+  </div>
+
+  <div class="form-group">
+    <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="btn btn-block btn-danger">Delete</a>
+  </div>
+
+  <div [ngSwitch]="widget.type" >
+    <div *ngSwitchCase = 'header' >
+      <app-widget-header>
+        <div class="container-fluid">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="FirstName LastName">
+            </div>
+          </form>
+
+          <form>
+            <div class="form-group">
+              <label for="pagetitle">Text</label>
+              <input type="text" class="form-control" id="pagetitle" placeholder="US Senate Reaches Compromising on Emergency">
+            </div>
+          </form>
+
+          <form>
+            <div class="form-group">
+              <label for="sizenumber">Size</label>
+              <input type="number" class="form-control" id="sizenumber" placeholder="3">
+            </div>
+          </form>
+
+          <form>
+            <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="btn btn-block btn-danger" >Delete</a>
+          </form>
+        </div>
+      </app-widget-header>
+    </div>
+    <div *ngSwitchCase = 'image' >
+      <app-widget-image>
+        <div class="container-fluid">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="FirstName LastName">
+          </div>
+
+          <div class="form-group">
+            <label for="txt">Text</label>
+            <input type="text" class="form-control" id="txt" placeholder="This image was taken in 2016">
+          </div>
+
+          <div class="form-group">
+            <label for="imageurl">URL</label>
+            <input type="URL" class="form-control" id="imageurl" placeholder="https://i.kinja-img.com/gawker-media/image">
+          </div>
+
+          <div class="form-group">
+            <label for="imagewidth">Width</label>
+            <input type="text" min="0" max="100" class="form-control" id="imagewidth" placeholder="100%">
+          </div>
+
+          <div class="form-group">
+            <label for="imageupload">Upload</label>
+            <input type="file" class="form-control" id="imageupload">
+          </div>
+
+          <div class="form-group">
+            <a class="btn btn-block btn-primary">Upload Image</a>
+          </div>
+
+          <div class="form-group">
+            <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"  class="btn btn-block btn-danger">Delete</a>
+          </div>
+        </div>
+      </app-widget-image>
+    </div>
+    <div *ngSwitchCase = 'youtube' >
+      <app-widget-youtube>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <p class="navbar-text pull-left">
+              <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+            </p>
+            <p class="navbar-header pull-left">
+              <a class="navbar-brand">
+                <b>Widget Youtube</b>
+              </a>
+            </p>
+
+            <p class="navbar-text pull-right">
+              <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+                <span class="glyphicon glyphicon-ok"></span>
+              </a>
+            </p>
+          </div>
+        </nav>
+
+        <div class="container-fluid">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="FirstName LastName">
+          </div>
+
+          <div class="form-group">
+            <label for="txt">Text</label>
+            <input type="text" class="form-control" id="txt" placeholder="Your favorite YouTube Video!">
+          </div>
+
+          <div class="form-group">
+            <label for="youtubeurl">URL</label>
+            <input type="URL" class="form-control" id="youtubeurl" placeholder="https://youtu.be/uLWLashCXHE">
+          </div>
+
+          <div class="form-group">
+            <label for="youtubewidth">Width</label>
+            <input type="text" min="1" max="100" class="form-control" id="youtubewidth" placeholder="100%">
+          </div>
+
+          <div class="form-group">
+            <a routerLink="/profile/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="btn btn-block btn-danger">Delete</a>
+          </div>
+        </div>
+      </app-widget-youtube>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid navbar-text pull-right">
+      <a routerLink="/profile/{{ uid }}">
+          <span  class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </nav>
+</div>
