@@ -19,27 +19,19 @@ export class PageNewComponent implements OnInit {
   uid: String;
   name: String;
   description: String;
-  title: String;
   page: Page;
   pages: Page[];
-  errorFlag: Boolean;
-  errorMsg: String;
 
   constructor(private pageService: PageService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
 
-
-  create(name, description) {
-    if (name === '' || description === '') {
-      this.errorFlag = true;
-      this.errorMsg = 'Must input valid name or description';
-    } else {
-      return this.pageService.createPage(this.wid, new Page('', name, this.wid, description))
-        .subscribe((page: Page) => {
-          this.router.navigate(['/user/', this.uid, 'website', this.wid, 'page']);
-        });
-    }
+  createPage(name, title) {
+    const page: Page = new Page('', name, '', title);
+    this.pageService.createPage(this.wid, page)
+      .subscribe((pages) => {
+        this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
+      });
   }
 
   ngOnInit() {
@@ -47,13 +39,14 @@ export class PageNewComponent implements OnInit {
       this.uid = params['uid'];
       this.wid = params['wid'];
     });
-    // alert('userId: ' + this.uid);
-    this.pageService.findAllPagesForWebsiteId(this.wid)
+
+    this.pageService.findAllPagesForWebsite(this.wid)
       .subscribe((pages: Page[]) => {
         this.pages = pages;
-        this.name = this.page['name'];
-        this.description = this.page['description'];
+        // this.name = this.page['name'];
+        // this.description = this.page['description'];
       });
   }
 }
+
 

@@ -11,7 +11,8 @@
           <b>Websites</b>
       </div>
 
-      <div routerLink="/user/{{ uid }}/website/new" class="navbar-text pull-right hidden-xs glyphiconwhite">
+      <div routerLink="/user/{{ uid }}/website/new"
+           class="navbar-text pull-right hidden-xs glyphiconwhite">
           <span class="glyphicon glyphicon-plus"></span>
       </div>
     </div>
@@ -26,16 +27,11 @@
         </div>
       </div>
 
-      <div routerLink="/user/{{ uid }}/website" class="navbar-text pull-right glyphiconwhite">
-          <span class="glyphicon glyphicon-ok"></span>
-      </div>
-      <!--<p class="navbar-text pull-right">-->
-        <!--<a (click)= "createWebsite(name, description)"-->
-           <!--class="navbar-text pull-right glyphiconwhite"-->
-           <!--type="submit">-->
-          <!--<span class="glyphicon glyphicon-ok"></span>-->
-        <!--</a>-->
-      <!--</p>-->
+      <a (click)="createWebsite(name, description)"
+              class="navbar-text pull-right button-transparent">
+        <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
+      </a>
+
 
       <div class="navbar-header pull-left navbar-brand glyphiconwhite margin">
           <b>New Website</b>
@@ -70,10 +66,10 @@
       <div class="form-group">
         <label for="website-name">Name</label>
         <input [(ngModel)] = "name"
+               id = "website-name"
                name = "name"
                placeholder="Name"
                type="text"
-               id = "website-name"
                class="form-control"/>
       </div>
     </form>
@@ -81,10 +77,10 @@
       <div class="form-group">
         <label for="website-description">Description</label>
           <textarea [(ngModel)] = "description"
+                    id = "website-description"
                     name = "description"
                     class = "form-control"
                     placeholder="Description"
-                    id = "website-description"
                     rows="5">
           </textarea>
       </div>
@@ -100,3 +96,4 @@
     </p>
   </div>
 </nav>
+</div>

@@ -7,72 +7,79 @@
       </a>
     </p>
 
-    <!--<button form="updateForm"  class="navbar-text pull-right">-->
-      <!--<a type="submit"  class="navbar-link">-->
-        <!--<span class="glyphicon glyphicon-ok glyphiconwhite"></span>-->
-      <!--</a>-->
-    <!--</button>-->
     <p class="navbar-text pull-right">
-      <a (click)="update()" class="navbar-link glyphiconwhite">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
+      <!--<a (click)="updateUser()" class="navbar-link glyphiconwhite">-->
+        <!--<span class="glyphicon glyphicon-ok"></span>-->
+      <!--</a>-->
+      <button type="submit"
+              form="profileForm"
+              class="btn btn-xs navbar-link button-transparent">
+      <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
+    </button>
     </p>
-
-
   </div>
 </nav>
 
-<form id="updateForm" (ngSubmit) = "update()" #f="ngForm">
-  <div class="container-fluid">
+<form id="profileForm" (ngSubmit) = "updateUser()" #f="ngForm">
 
-  <label>Username</label><br/>
-  <input [(ngModel)]="username"
-       placeholder="username"
-       class="form-control"
-       name="username"
-       type="text"
-       required/>
-  <br/>
+<div class="container-fluid">
+  <div *ngIf="submitSuccess"
+       class="alert alert-success" >
+    Submit successfully!
+  </div>
 
-  <label>Email</label><br/>
-  <input [(ngModel)]="email"
-         placeholder="jannunzi@gmail.com"
-         class="form-control"
-         name="email"
-         type="text"
-         required/>
-  <br/>
-  <label>First Name</label><br/>
-  <input [(ngModel)]="firstName"
-         placeholder="Jose"
-         class="form-control"
-         name="firstName"
-         type="text"/>
-  <br/>
-  <label>Last Name</label><br/>
-  <input [(ngModel)]="lastName"
-         placeholder="Annunziato"
-         class="form-control"
-         name="lastName"
-         type="text"/>
-  <br/>
-  <button (click)="findWebsite()"
-          class="btn btn-primary btn-block form-control"
-          type="submit">Website</button><br/>
-  <button class="btn btn-danger form-control btn btn-block"
-          routerLink="/login">Logout</button><br/>
-    <button (click)="deleteUser(userId)" class="btn btn-danger btn-block">
-      Delete
-    </button>
+    <label>Username</label><br/>
+    <input [(ngModel)]="username"
+           placeholder="username"
+           class="form-control"
+           name="username"
+           type="text"
+           required/>
+    <br/>
+
+    <label>Email</label><br/>
+    <input [(ngModel)]="email"
+           placeholder="jannunzi@gmail.com"
+           class="form-control"
+           name="email"
+           type="text"
+           required/>
+    <br/>
+    <label>First Name</label><br/>
+    <input [(ngModel)]="firstName"
+           placeholder="Jose"
+           class="form-control"
+           name="firstName"
+           type="text"/>
+    <br/>
+    <label>Last Name</label><br/>
+    <input [(ngModel)]="lastName"
+           placeholder="Annunziato"
+           class="form-control"
+           name="lastName"
+           type="text"/>
+    <br/>
+    <button (click)="findWebsite()"
+            class="btn btn-primary btn-block form-control"
+            type="submit">Website</button><br/>
+    <!--<button (click)="updateUser()"-->
+            <!--class="btn btn-success btn-block form-control"-->
+            <!--type="submit">Update</button><br/>-->
+    <button class="btn btn-danger form-control btn btn-block"
+            routerLink="/login">Logout</button><br/>
+    <!--<button (click)="deleteUser(userId)" class="btn btn-danger btn-block">-->
+      <!--Delete-->
+    <!--</button>-->
 
   </div>
 </form>
-  <nav class="navbar navbar-default navbar-fixed-bottom navbar-lightblue">
-    <div class="container-fluid">
-      <p class="navbar-text pull-right">
-        <a routerLink="/profile/{{ uid }}/">
-          <span class="glyphicon glyphicon-user glyphiconwhite"></span>
-        </a>
-      </p>
-    </div>
-  </nav>
+<nav class="navbar navbar-default navbar-fixed-bottom navbar-lightblue">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="/profile/{{ uid }}/">
+        <span class="glyphicon glyphicon-user glyphiconwhite"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+

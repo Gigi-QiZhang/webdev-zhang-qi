@@ -36,10 +36,10 @@
       <div class="container-fluid">
         <div *ngFor = "let page of pages">
           <li class="list-group-item borderless lightblue">
-            <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ page.pid }}/widget">
+            <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/page">
               {{ page.name }}
             </a>
-            <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ page.pid }}">
+            <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/edit">
                 <span class = "glyphicon glyphicon-cog pull-right"></span>
             </a>
           </li>

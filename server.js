@@ -28,12 +28,22 @@ const port = process.env.PORT || '3100';
 app.set('port', port);
 
 // Create HTTP server
+// const server = http.createServer(app);
+
+
+// Create HTTP server
 const server = http.createServer(app);
+
 
 require("./assignment/app") (app);
 
-server.listen(port);
+// For Build: Catch all other routes and return the index file -- BUILDING
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
+// server.listen(port);
+server.listen( port , () => console.log('Running'));
 
 
 

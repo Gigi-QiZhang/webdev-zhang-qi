@@ -25,7 +25,7 @@
       </div>
 
       <div class="navbar-text pull-right">
-        <a (click) = "create(name,description)" class="glyphiconblack">
+        <a (click) = "createPage(name,description)" class="glyphiconblack">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </div>
@@ -39,24 +39,8 @@
   </div>
 </nav>
 
-<!--<div class="container-fluid padding-top">-->
-  <!--<div class="col-sm-4 hidden-xs websites-col-sm-4">-->
 
-    <!--<div *ngFor = "let page of pages" class="container-fluid padding-top">-->
-      <!--<ul routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">-->
-        <!--<li class="list-group-item borderless lightblue">{{ page.name }}-->
-          <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page">-->
-            <!--<span class="glyphicon glyphicon-cog"></span>-->
-          <!--</a>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-
-  <!--</div>-->
-<!--</div>-->
-
-
-<div class="col-xs-12 col-sm-8 pull-right padding-top">
+<div class="col-xs-12 col-sm-8 pull-right">
   <div class="container-fluid">
     <form>
       <div class="form-group">

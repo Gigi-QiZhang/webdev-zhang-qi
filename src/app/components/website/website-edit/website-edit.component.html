@@ -9,7 +9,8 @@
           <b>Websites</b>
       </div>
 
-      <div class="navbar-text pull-right hidden-xs glyphiconwhite">
+      <div routerLink="/user/{{ uid }}/website/new"
+           class="navbar-text pull-right hidden-xs glyphiconwhite">
           <span class="glyphicon glyphicon-plus"></span>
       </div>
     </div>
@@ -23,11 +24,11 @@
       </div>
 
 
-      <a (click)="edit(name,description)" class="navbar-text pull-right glyphiconwhite">
+      <a (click)="editWebsite()" class="navbar-text pull-right glyphiconwhite">
           <span class="glyphicon glyphicon-ok"></span>
       </a>
 
-      <p class="navbar-header navbar-brand glyphiconwhite pull-left margin">
+      <p class="navbar-header navbar-brand glyphiconwhite pull-left">
           <b>Edit Website</b>
       </p>
     </div>
@@ -44,6 +45,7 @@
             <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
               {{ website.name }}
             </a>
+
             <a routerLink="/user/{{ uid }}/website/{{ wid }}">
               <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
@@ -53,17 +55,17 @@
     </ul>
   </div>
 
-  <!--<form id="updateForm" (ngSubmit) = "edit()" #f="ngForm">-->
+
 <div class="col-xs-12 col-sm-8 pull-right">
   <div class="container-fluid">
     <form>
       <div class="form-group">
         <label for="website-edit">Website Name</label>
         <input [(ngModel)] = "name"
+               id="website-edit"
                name="name"
                type="text"
                class="form-control"
-               id="website-edit"
                placeholder="Blogger">
       </div>
     </form>
@@ -73,19 +75,23 @@
       <div class="form-group">
         <label for="edit-description">Website Description</label>
         <textarea [(ngModel)] = "description"
+                  id="edit-description"
                   name="description"
                   class="form-control"
-                  id="edit-description"
                   placeholder="Bolgger is a blog-publishing service."
                   rows="5"></textarea>
       </div>
     </form>
     <form>
-      <a (click)="deleteWebsite(websiteId)" class="btn btn-block btn-danger">Delete</a>
+      <a (click)="deleteWebsite()" class="btn btn-block btn-danger">Delete</a>
+    </form>
+    <form>
+      <a routerLink="/user/{{ uid }}/website"
+         class="btn btn-warning btn-block">Cancel</a>
     </form>
   </div>
 </div>
-
+</div>
 
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
@@ -95,5 +101,4 @@
       </a>
     </p>
   </div>
-
 </nav>

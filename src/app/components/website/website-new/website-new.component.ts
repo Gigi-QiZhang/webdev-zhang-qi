@@ -16,14 +16,11 @@ export class WebsiteNewComponent implements OnInit {
   @ViewChild('f') websiteNewForm: NgForm;
 
   uid: String;
-  wid: string;
   name: String;
   description: String;
   website: Website;
   websites: Website[];
-  user = {};
-  errorFlag: Boolean;
-  errorMsg: String;
+
 
 
   constructor(private websiteService: WebsiteService,
@@ -32,24 +29,20 @@ export class WebsiteNewComponent implements OnInit {
 
 
   createWebsite(name, description) {
-    if (name === '' || description === '') {
-      this.errorFlag = true;
-      this.errorMsg = 'Must input valid name or description';
-    } else {
-      return this.websiteService.createWebsite(this.uid, new Website('', name, '', description))
-        .subscribe((website: Website) => {
-          this.router.navigate(['/user/', this.uid, '/website']);
-        });
-    }
+    const website: Website = new Website('', name, '', description);
+    this.websiteService.createWebsite(this.uid, website)
+      .subscribe((websites) => {
+        this.router.navigate(['user', this.uid, 'website']);
+      });
   }
 
+
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: any) => {
+    this.activatedRoute.params
+      .subscribe((params: any) => {
       this.uid = params['uid'];
-      this.wid = params['wid'];
     });
-    // alert('userId: ' + this.uid);
-    this.websiteService.findAllWebsitesForUser(this.uid)
+    this.websiteService.findWebsitesByUser(this.uid)
       .subscribe((websites: Website[]) => {
       this.websites = websites;
     });

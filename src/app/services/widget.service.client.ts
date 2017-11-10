@@ -12,26 +12,26 @@ export class WidgetService {
 
   constructor(private http: Http) { }
 
-  api = {
-    'createWidget': this.createWidget,
-    'findAllWidgetsForPageId': this.findAllWidgetsForPageId,
-    'findWidgetById': this.findWidgetById,
-    'updateWidget': this.updateWidget,
-    'deleteWidget': this.deleteWidget
-  };
+  // api = {
+  //   'createWidget': this.createWidget,
+  //   'findAllWidgetsForPageId': this.findAllWidgetsForPageId,
+  //   'findWidgetById': this.findWidgetById,
+  //   'updateWidget': this.updateWidget,
+  //   'deleteWidget': this.deleteWidget
+  // };
 
 
   createWidget(pageId, widget) {
-    widget.wgid = Math.random().toString();
     const url = this.baseUrl + '/api/page/' + pageId + '/widget';
     return this.http.post(url, widget)
       .map((response: Response) => {
+        // console.log(response);
         return response.json();
       });
   }
 
 
-  findAllWidgetsForPageId(pageId) {
+  findAllWidgetsForPage(pageId) {
     const url = this.baseUrl + '/api/page/' + pageId + '/widget';
     return this.http.get(url)
       .map((response: Response) => {
@@ -64,6 +64,8 @@ export class WidgetService {
       });
   }
 }
+
+
 
 
 

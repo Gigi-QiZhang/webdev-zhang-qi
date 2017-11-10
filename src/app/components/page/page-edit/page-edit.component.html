@@ -1,49 +1,46 @@
 <nav class="navbar navbar-default">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div class="navbar-text pull-left">
-          <span routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
+      <div routerLink="/user/{{ uid }}/website/{{ wid }}/page"
+           class="navbar-text pull-left glyphiconblack">
+        <span class="glyphicon glyphicon-chevron-left"></span>
       </div>
-      <div class="navbar-header">
-        <a class="navbar-brand" >
-          <b>Pages</b>
-        </a>
+
+      <div class="navbar-header hidden-xs navbar-brand glyphiconwhite">
+        <b>Pages</b>
       </div>
-      <div class="navbar-text pull-right">
-        <a class="pull-right">
-          <span class="glyphicon glyphicon-plus glyphiconblack"></span>
-        </a>
+
+      <div routerLink="/user/{{ uid }}/website/{{ wid }}/page/new"
+           class="navbar-text pull-right hidden-xs glyphiconblack">
+        <span class="glyphicon glyphicon-plus"></span>
       </div>
     </div>
+
+
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
-        <div class="navbar-text pull-left">
-          <a class="glyphiconblack">
-            <span class="glyphicon glyphicon-chevron-left hidden-lg visible-xs"></span>
-          </a>
+        <div routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="navbar-text pull-left glyphiconblack">
+          <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
       </div>
 
-      <div class="navbar-header margin">
-        <a class="navbar-brand">
-          <b>Edit Page</b>
-        </a>
-      </div>
 
-      <div class="navbar-text pull-right">
-        <a routerLink="/user/{{ uid }}/website/{{ wid }}/page"  class="glyphiconblack">
-          <span class="glyphicon glyphicon-ok"></span>
-        </a>
-      </div>
+      <a (click)="editPage()" class="navbar-text pull-right glyphiconblack">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+
+      <p class="navbar-header navbar-brand pull-left margin">
+        <b>Edit Page</b>
+      </p>
     </div>
   </div>
 </nav>
 
 
-
 <div class="row container-fluid">
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
-    <div *ngFor = "let page of pages" class="container-fluid padding-top">
+    <div *ngFor = "let page of pages"
+         class="container-fluid">
       <ul routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">
         <li class="list-group-item borderless lightblue">{{ page.name }}
           <a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page">
@@ -53,33 +50,6 @@
       </ul>
     </div>
 
-    <!--<ul class="list-group">-->
-      <!--<li class="list-group-item borderless lightblue">Blog Post-->
-        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid" >-->
-          <!--<span class="glyphicon glyphicon-cog"></span>-->
-        <!--</a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item borderless lightblue">Blogs-->
-        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
-          <!--<span class="glyphicon glyphicon-cog"></span>-->
-        <!--</a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item borderless lightblue">Home-->
-        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
-          <!--<span class="glyphicon glyphicon-cog"></span>-->
-        <!--</a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item borderless lightblue">About-->
-        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
-          <!--<span class="glyphicon glyphicon-cog"></span>-->
-        <!--</a>-->
-      <!--</li>-->
-      <!--<li class="list-group-item borderless lightblue">Contact Us-->
-        <!--<a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page/:pid">-->
-          <!--<span class="glyphicon glyphicon-cog"></span>-->
-        <!--</a>-->
-      <!--</li>-->
-    <!--</ul>-->
   </div>
 </div>
 
@@ -100,10 +70,14 @@
     </form>
 
     <form>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="btn btn-block btn-danger">Delete</a>
+      <a (click)="remove()" class="btn btn-block btn-danger">Delete</a>
+    </form>
+
+    <form>
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page"
+         class="btn btn-warning btn-block">Cancel</a>
     </form>
   </div>
-
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

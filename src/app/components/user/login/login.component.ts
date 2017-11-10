@@ -13,24 +13,36 @@ import {NgForm} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   @ViewChild('f') loginForm: NgForm;
-
+  // user: any;
   username: String;
   password: String;
-  errorFlag: boolean;
+
 
   constructor(private userService: UserService, private router: Router) { }
 
   login() {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-
     this.userService.findUserByCredentials(this.username, this.password)
-      .subscribe((user: User) => {
-          if (user) {
-            this.router.navigate(['/user/', user.uid]);
-          }
-        });
+      .subscribe((user: any) => {
+        if (user) {
+          this.router.navigate(['/user/', user._id]);
+        }
+      });
   }
+
+
+  // login() {
+  //   this.username = this.loginForm.value.username;
+  //   this.password = this.loginForm.value.password;
+  //   this.userService.findUserByCredentials(this.username, this.password)
+  //     .subscribe(
+  //       (data: any) => {
+  //         this.user = data;
+  //         this.router.navigate(['/user/', this.user._id]);
+  //       }
+  //     );
+  // }
 
   ngOnInit() {
   }

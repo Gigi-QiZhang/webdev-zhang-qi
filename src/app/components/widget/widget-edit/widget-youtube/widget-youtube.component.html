@@ -1,3 +1,91 @@
-<p>
-  widget-youtube works!
-</p>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <p class="navbar-text pull-left">
+      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
+         class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
+      </a>
+    </p>
+    <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}"
+       class="pull-left navbar-brand">
+      <b>Widget edit</b>
+    </a>
+    <button type="submit"
+            form="widgetForm"
+            class="btn btn-xs button-transparent navbar-link navbar-text pull-right">
+      <span class="glyphicon glyphicon-ok glyphiconblack"></span>
+    </button>
+  </div>
+</nav>
+
+<form class="container-fluid">
+  <form (ngSubmit)="update()"
+        id="widgetForm"
+        #f ="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text"
+             id="name"
+             name="name"
+             placeholder="Your favorite YouTube video!"
+             ngModel="{{ widget.name }}"
+             #name="ngModel"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="text">Text</label>
+      <input type="text"
+             id="text"
+             name="text"
+             placeholder="Text description of the video"
+             ngModel="{{ widget.text }}"
+             #text="ngModel"
+             class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="url">URL</label>
+      <input type="text"
+             id="url"
+             name="url"
+             placeholder="The url of the video"
+             ngModel="{{ widget.url }}"
+             required
+             #url="ngModel"
+             class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="width">Width</label>
+      <input type="text"
+             id="width"
+             name="width"
+             placeholder="100%"
+             ngModel="{{ widget.width }}"
+             required
+             #width="ngModel"
+             class="form-control"/>
+    </div>
+
+
+      <form>
+        <a (click)="remove()"
+           class="btn btn-danger btn-block">Delete</a>
+      </form>
+
+    <form>
+    <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
+    class="btn btn-warning btn-block">Cancel</a>
+    </form>
+
+  </form>
+
+</form>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid navbar-text pull-right">
+    <a routerLink="/user/{{ uid }}">
+      <span class="glyphicon glyphicon-user pull-right"></span>
+    </a>
+  </div>
+</nav>
+

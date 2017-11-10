@@ -7,7 +7,7 @@
     </p>
     <p class="navbar-header pull-left">
       <a class="navbar-brand">
-        <b>Widget Image</b>
+        <b>Widget Edit</b>
       </a>
     </p>
 
@@ -16,42 +16,99 @@
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
+
   </div>
 </nav>
 
 <div class="container-fluid">
+  <form (ngSubmit)="update()"
+        id="widgetForm"
+        #f ="ngForm">
+
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="FirstName LastName">
+    <input ngModel="{{ widget.name }}"
+           #name="ngModel"
+           type="text"
+           class="form-control"
+           id="name"
+           name="name"
+           placeholder="Name of the image">
   </div>
 
   <div class="form-group">
     <label for="txt">Text</label>
-    <input type="text" class="form-control" id="txt" placeholder="This image was taken in 2016">
+    <input ngModel="{{ widget.text }}"
+           #text="ngModel"
+           type="text"
+           class="form-control"
+           id="txt"
+           name="text"
+           placeholder="This image was taken in 2016">
   </div>
 
   <div class="form-group">
     <label for="imageurl">URL</label>
-    <input type="URL" class="form-control" id="imageurl" placeholder="https://i.kinja-img.com/gawker-media/image">
+    <input ngModel="{{ widget.text }}"
+           #text="ngModel"
+           type="text"
+           class="form-control"
+           id="imageurl"
+           name="imageurl"
+           placeholder="http://lorempixel.com/400/200/"
+           required>
   </div>
 
   <div class="form-group">
     <label for="imagewidth">Width</label>
-    <input type="text" min="0" max="100" class="form-control" id="imagewidth" placeholder="100%">
+    <input ngModel="{{ widget.width }}"
+           #width="ngModel"
+           type="text"
+           min="0"
+           max="100"
+           class="form-control"
+           id="imagewidth"
+           name="imagewidth"
+           placeholder="100%"
+           required>
   </div>
 
-  <div class="form-group">
-    <label for="imageupload">Upload</label>
-    <input type="file" class="form-control" id="imageupload">
-  </div>
 
-  <div class="form-group">
-    <a class="btn btn-block btn-primary">Upload Image</a>
-  </div>
+    <form ngNoForm action="{{ baseUrl }}/api/upload" method="post" enctype="multipart/form-data">
+      <input  name="myFile"   type="file" class="form-control"/>
+      <input  name="widgetId" value="{{ wgid }}" style="display: none"/>
+      <input  name="websiteId" value="{{ wid }}" style="display: none"/>
+      <input  name="pageId" value="{{pid}}" style="display: none"/>
+      <input  name="userId" value="{{uid}}" style="display: none"/>
+      <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+      <br/>
+    </form>
 
-  <div class="form-group">
-    <a class="btn btn-block btn-danger" routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Delete</a>
-  </div>
+
+  <!--<div class="form-group">-->
+    <!--<label for="imageupload">Upload</label>-->
+    <!--<input type="file" class="form-control" id="imageupload">-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<a class="btn btn-block btn-primary">Upload Image</a>-->
+  <!--</div>-->
+
+    <div class="form-group">
+      <a (click)="remove()"
+         class="btn btn-block btn-danger">Delete</a>
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-block btn-warning"
+         routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Cancel</a>
+    </div>
+
+
+  </form>
+</div>
+
+
 
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
@@ -62,4 +119,4 @@
       </p>
     </div>
   </nav>
-</div>
+

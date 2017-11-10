@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { WidgetService } from '../../../services/widget.service.client';
-// import { Widget } from '../../../models/widget.model.client';
+import { Widget } from '../../../models/widget.model.cilent';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -10,17 +10,103 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./widget-chooser.component.css']
 })
 export class WidgetChooserComponent implements OnInit {
-  @ViewChild('f') loginForm: NgForm;
-  // properties
-  _id: String;
-  name: String;
-  developerId: String;
-  errorFlag: boolean;
-  errorMsg = 'Invalid username or password !';
+  uid: String;
+  wid: String;
+  pid: String;
+  wgid: String;
+  widgets: Widget[];
+  widget: Widget= {
+    wgid: '',
+    widgetType: '',
+    pid: '',
+  };
+
   constructor(private widgetService: WidgetService,
+              private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
+  createHeading() {
+    const newWidget: Widget = {
+      widgetType: 'HEADING',
+      pid: this.pid,
+    };
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe((widget: Widget) => {
+          this.wgid = widget.wgid;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
+  }
+
+  createImage() {
+    // const newWidget: Widget = new Widget ('', 'IMAGE', this.pid);
+    const newWidget: Widget = {
+      widgetType: 'IMAGE',
+      pid: this.pid,
+    };
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget.wgid;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
+  }
+
+  createYoutube() {
+    // const newWidget: Widget = new Widget ('', 'YOUTUBE', this.pid);
+    const newWidget: Widget = {
+      widgetType: 'YOUTUBE',
+      pid: this.pid,
+    };
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget.wgid;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
+  }
+
+  createHtml() {
+    const newWidget: Widget = {
+      widgetType: 'HTML',
+      pid: this.pid,
+    };
+
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget.wgid;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
+  }
+
+  createText() {
+    const newWidget: Widget = {
+      widgetType: 'Text',
+      pid: this.pid,
+    };
+    this.widgetService.createWidget(this.pid, newWidget)
+      .subscribe(
+        (widget: Widget) => {
+          this.wgid = widget.wgid;
+          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
+        }
+      );
+  }
+
   ngOnInit() {
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.uid = params['uid'];
+          this.wid = params['wid'];
+          this.pid = params['pid'];
+          console.log(params);
+        }
+      );
   }
 
 }

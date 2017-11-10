@@ -7,13 +7,13 @@
     </p>
 
     <p class="navbar-header pull-left">
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="navbar-brand">
+      <a class="navbar-brand">
         <b class="whitetitle">Websites</b>
       </a>
     </p>
 
     <p class="navbar-text pull-right">
-      <a (click) = 'newWebsite()' class="glyphiconwhite">
+      <a routerLink="/user/{{ uid }}/website/new" class="glyphiconwhite">
         <span class="glyphicon glyphicon-plus glyphiconwhite"></span>
       </a>
     </p>
@@ -23,20 +23,27 @@
 
 
   <ul class="list-group">
-    <div class="container-fluid">
+    <ul class="container-fluid">
       <div *ngFor = "let website of websites">
         <li class="list-group-item borderless lightblue">
           <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
             {{ website.name }}
           </a>
 
-          <a routerLink="/user/{{ uid }}/website/{{ wid }}" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
+          <!--<a (click)="deleteWebsite()" class="pull-right">-->
+            <!--<span class="glyphicon glyphicon-remove"></span>-->
+          <!--</a>-->
+
+          <a routerLink="/user/{{ uid }}/website/{{ wid }}/edit">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
           </a>
+
         </li>
       </div>
-    </div>
+    </ul>
   </ul>
+
+
 
 
 

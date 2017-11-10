@@ -4,15 +4,18 @@
       <a routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
+      <!--<a routerLink="user/:uid/website/:wid/page/:pid/widget" class="glyphiconblack">-->
+        <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+      <!--</a>-->
     </p>
     <p class="navbar-header pull-left">
       <a class="navbar-brand">
-        <b>Widget Heading</b>
+        <b>Widget Edit</b>
       </a>
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+      <a routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="glyphiconblack">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
@@ -20,29 +23,60 @@
 </nav>
 
 <div class="container-fluid">
-  <form>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="FirstName LastName">
-    </div>
-  </form>
+  <form (ngSubmit)="update()"
+        id="widgetForm"
+        #f ="ngForm">
 
-  <form>
-    <div class="form-group">
-      <label for="pagetitle">Text</label>
-      <input type="text" class="form-control" id="pagetitle" placeholder="US Senate Reaches Compromising on Emergency">
-    </div>
-  </form>
+    <form>
+      <div class="form-group">
+        <label for="headingName">Name</label>
+        <input ngModel="{{ widget.name }}"
+               #name="ngModel"
+               type="text"
+               class="form-control"
+               id="headingName"
+               name="headingName"
+               placeholder="Heading~~~">
+      </div>
+    </form>
+
+    <form>
+      <div class="form-group">
+        <label for="headingText">Text</label>
+        <input ngModel="{{ widget.text }}"
+               #text="ngModel"
+               type="text"
+               class="form-control"
+               id="headingText"
+               name="headingText"
+               placeholder="The main text of the heading"
+               required>
+      </div>
+    </form>
 
   <form>
     <div class="form-group">
       <label for="sizenumber">Size</label>
-      <input type="number" class="form-control" id="sizenumber" placeholder="3">
+      <input [(ngModel)]="widget.size"
+             #size="ngModel"
+             type="number"
+             class="form-control"
+             id="sizenumber"
+             name="sizenumber"
+             placeholder="3"
+             required>
     </div>
   </form>
 
-  <form>
-    <a class="btn btn-block btn-danger" routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Delete</a>
+    <form>
+      <a class="btn btn-block btn-danger" (click)="remove()">Delete</a>
+    </form>
+
+    <form>
+      <a class="btn btn-block btn-warning"
+         routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Cancel</a>
+    </form>
+
   </form>
 
   <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -54,4 +88,5 @@
       </p>
     </div>
   </nav>
+
 </div>

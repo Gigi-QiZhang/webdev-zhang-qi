@@ -19,93 +19,77 @@
 </nav>
 
 
+
 <div class="container-fluid">
   <div *ngFor = "let widget of widgets">
-    <div [ngSwitch]="widget.type">
     <div>
       <a><span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span></a>
       <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}" >
         <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
       </a>
-      <h2>Lorem Pixels</h2>
-    </div>
-    <div>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
-        <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
-      </a>
-      <h3>Placeholder Images</h3>
-    </div>
-    <div>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
-        <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue" href="widget-image.html"></span>
-      </a>
-      <img class="content" src="http://lorempixel.com/400/200/">
-    </div>
-    <div>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
-      <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
-      </a>
-      <p class="justify">Placeholder Images for every case. Webdesign or Print. It's simple and absolutely free!
-        Just put the custom url in your code to get your FPO / dummy image.</p>
     </div>
   </div>
 
+    <div [ngSwitch]="widget.widgetType">
+      <div *ngSwitchCase="'HEADING'">
+        <div [ngSwitch]="widget.size">
+          <div *ngSwitchCase="1">
+            <h1>{{ widget.text }}</h1>
+          </div>
+          <div *ngSwitchCase="2">
+            <h2>{{ widget.text }}</h2>
+          </div>
+          <div *ngSwitchCase="3">
+            <h3>{{ widget.text }}</h3>
+          </div>
+        </div>
+      </div>
 
-  <div>
-    <div>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
-        <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue" ></span>
-      </a>
-      <h2>Tom and Jerry Episode 104</h2>
+      <div *ngSwitchCase="'IMAGE'">
+        <div>
+          <img [style.width]="widget.width"
+               [src]="widget.url"/>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'YOUTUBE'">
+        <div class="embed-responsive embed-responsive-16by9 youtube‐widget">
+          <iframe [style.width]="widget.width"
+                  [style.height]="widget.width"
+                  [src]="getEmbedUrl(widget.url)"
+                  frameborder="0"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+      <div *ngSwitchCase="'HTML'">
+        <div [innerHTML]="widget.text"></div>
+      </div>
+
+
+      <div *ngSwitchCase="'Text'">
+        <div *ngIf="widget.formatted">
+          <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+        </div>
+
+        <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"
+               placeholder="{{ widget.placeholder }}" class="form-control"/>
+
+        <textarea *ngIf="!widget.formatted && (widget.rows > 1)"
+                  rows="{{ widget.rows }}" placeholder="{{ widget.placeholder }}"
+                  class="form-control">{{ widget.text }}</textarea>
+      </div>
+
     </div>
-    <div>
-      <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
-        <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a routerLink="/user/{{ uid }}">
+        <span class="glyphicon glyphicon-user glyphiconlightblue"></span>
       </a>
-      <iframe class="content" src="https://www.youtube.com/embed/er8RzbAoW_g" allowfullscreen></iframe>
-    </div>
-    <div>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}">
-      <span class="glyphicon glyphicon-menu-hamburger pull-right glyphiconblack"></span>
-      <span class="glyphicon glyphicon-cog pull-right glyphiconlightblue"></span>
-      </a>
-      <p class="justify">Tom and Jerry is an American animated series of short films created in 1940, by William Hanna and Joseph
-        Barbera. It centers on a rivalry between its two title characters, Tom and Jerry, and many recurring
-        characters, based around slapstick comedy.
-        In its original run, Hanna and Barbera produced 114 Tom and Jerry shorts for Metro-Goldwyn-Mayer from 1940
-        to 1958. During this time, they won seven Academy Awards for Animated Short Film, tying for first place with
-        Walt Disney's Silly Symphonies with the most awards in the category. After the MGM cartoon studio closed in
-        1958, MGM revived the series with Gene Deitch directing an additional 13 Tom and Jerry shorts for Rembrandt
-        Films from 1961 to 1962. Tom and Jerry then became the highest-grossing animated short film series of that
-        time, overtaking Looney Tunes. Chuck Jones then produced another 34 shorts with Sib-Tower 12 Productions
-        between 1963 and 1967. Three more shorts were produced, The Mansion Cat in 2001, The Karate Guard in 2005,
-        and "A Fundraising Adventure" in 2014, making a total of 164 shorts. Various shorts have been released for
-        home media since the 1990s.
-      </p>
-    </div>
+    </p>
   </div>
+</nav>
 
-
-  <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-      <p class="navbar-text ">
-        <a class="glyphiconblack">
-          <span class="glyphicon glyphicon-play pull-left"></span>
-          <span class="glyphicon glyphicon-eye-open pull-left margin"></span>
-        </a>
-      </p>
-
-      <p class="navbar-text pull-right">
-        <a routerLink="/user/{{ uid }}">
-          <span class="glyphicon glyphicon-user pull-right"></span>
-        </a>
-      </p>
-    </div>
-  </nav>
-</div>
-</div>

@@ -22,41 +22,28 @@ export class WebsiteEditComponent implements OnInit {
   website: Website;
   websites: Website[];
   user: {};
-  errorFlag: Boolean;
-  errorMsg: String;
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
   }
 
-  edit(name, description) {
+  editWebsite () {
     this.name = this.editForm.value.name;
     this.description = this.editForm.value.description;
-
-    const editedWebsite: Website = {
-      wid: this.website.wid,
-      name: this.name,
-      developerId: this.uid,
-      description: this.description
-    };
-    if (name === '') {
-      this.errorFlag = true;
-      this.errorMsg = 'Must input valid website name';
-    }
-    // console.log(editedWebsite);
+    const editedWebsite = new Website(this.website.wid, this.name, this.uid, this.description);
     this.websiteService.updateWebsite(this.wid, editedWebsite)
-      .subscribe((website: Website) => {
-        this.website = editedWebsite;
-        this.name = name;
-        this.description = description;
-      });
+    .subscribe((website: Website) => {
+      this.website = website;
+      this.router.navigate(['user', this.uid, 'website']);
+    });
   }
 
-  remove(websiteId) {
+  deleteWebsite() {
     this.websiteService.deleteWebsite(this.wid)
-      .subscribe((website: Website) => {
-        this.router.navigate(['/user/', this.uid, 'website']);
+      .subscribe((websites: Website[]) => {
+        this.websites = websites;
+        this.router.navigate(['user', this.uid, 'website']);
       });
   }
 
@@ -65,16 +52,15 @@ export class WebsiteEditComponent implements OnInit {
       this.uid = params['uid'];
       this.wid = params['wid'];
     });
-    // alert('userId: ' + this.uid);
-    this.websiteService.findWebsiteById(this.uid, this.wid)
-      .subscribe((website: Website) => {
-        // this.website = website;
-        this.name = this.website['name'];
-        this.description = this.website['description'];
-      });
-    this.websiteService.findAllWebsitesForUser(this.uid)
+    this.websiteService.findWebsitesByUser(this.uid)
       .subscribe((websites: Website[]) => {
         this.websites = websites;
+        // this.name = this.website['name'];
+        // this.description = this.website['description'];
+        this.websiteService.findWebsiteById(this.wid)
+          .subscribe((website: Website) => {
+            this.website = website;
+          });
       });
   }
 }

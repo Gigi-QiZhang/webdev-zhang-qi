@@ -32,34 +32,27 @@ export class PageEditComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
 
-  edit(name, description) {
+  editPage() {
     this.name = this.editForm.value.name;
     this.description = this.editForm.value.description;
 
     const editedPage: Page = {
-      pid: this.page.pid,
+      // pid: this.page.pid,
       name: this.name,
       wid: this.wid,
       description: this.description,
     };
-
-    if (name === '') {
-      this.errorFlag = true;
-      this.errorMsg = 'Invalid new page name';
-    } else {
       this.pageService.updatePage(this.pid, editedPage)
         .subscribe((page: Page) => {
         this.page = editedPage;
-          this.name = name;
-          this.description = description;
+        this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
         });
-    }
   }
 
-  remove(PageId) {
+  remove() {
     this.pageService.deletePage(this.pid)
-      .subscribe((page: Page) => {
-        this.router.navigate(['/user', this.uid, 'website', this.wid, 'page']);
+      .subscribe((pages: Page[]) => {
+        this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
       });
   }
 
@@ -73,15 +66,15 @@ export class PageEditComponent implements OnInit {
         this.pid = params['pid'];
       }
     );
-    this.pageService.findAllPagesForWebsiteId(this.wid)
+    this.pageService.findAllPagesForWebsite(this.wid)
       .subscribe((pages: Page[]) => {
         this.pages = pages;
       });
     this.pageService.findPageById(this.pid)
       .subscribe((page: Page) => {
         this.page = page;
-        this.name = this.page['name'];
-        this.description = this.page['description'];
+        // this.name = this.page.name;
+        // this.description = this.page.description;
       });
   }
 }

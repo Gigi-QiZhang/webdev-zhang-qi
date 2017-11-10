@@ -1,10 +1,10 @@
-import { Website } from '../models/website.model.client';
-// import { WEBSITES } from './website.mock.client';
+
 import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { Website } from '../models/website.model.client';
 
 @Injectable()
 export class WebsiteService {
@@ -12,25 +12,27 @@ export class WebsiteService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: Http) { }
+  //
+  // api = {
+  //   'createWebsite': this.createWebsite,
+  //   'findWebsitesByUser': this.findWebsitesByUser,
+  //   'findWebsiteById': this.findWebsiteById,
+  //   'updateWebsite': this.updateWebsite,
+  //   'deleteWebsite': this.deleteWebsite
+  // };
 
-  api = {
-    'createWebsite': this.createWebsite,
-    'findAllWebsitesForUser': this.findAllWebsitesForUser,
-    'findWebsiteById': this.findWebsiteById,
-    'updateWebsite': this.updateWebsite,
-    'deleteWebsite': this.deleteWebsite
-  };
-
-  createWebsite(userId, website) {
-    website.wid = (new Date()).getTime().toString();
-    const url = this.baseUrl + '/api/user/' + userId + '/website';
+  createWebsite(userId: String, website: Website) {
+    // user.uid = (Math.random()).toString();
+    const url =  this.baseUrl + '/api/user/' + userId + '/website';
     return this.http.post(url, website)
       .map((response: Response) => {
-        return response.json();
-      });
+          return response.json();
+        });
   }
 
-  findAllWebsitesForUser(userId) {
+
+
+  findWebsitesByUser(userId: String) {
     const url = this.baseUrl + '/api/user/' + userId + '/website';
     return this.http.get(url)
       .map((response: Response) => {
@@ -38,7 +40,7 @@ export class WebsiteService {
       });
   }
 
-  findWebsiteById(userId, websiteId) {
+  findWebsiteById(websiteId: String) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.get(url)
       .map((response: Response) => {
@@ -46,15 +48,15 @@ export class WebsiteService {
       });
   }
 
-  updateWebsite(websiteId, newWebsite) {
+  updateWebsite(websiteId: String, editedWebsite: Website) {
     const url = this.baseUrl + '/api/website/' + websiteId;
-    return this.http.put(url, newWebsite)
+    return this.http.put(url, editedWebsite)
       .map((response: Response) => {
         return response.json();
       });
   }
 
-  deleteWebsite(websiteId) {
+  deleteWebsite(websiteId: String) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.delete(url)
       .map((response: Response) => {

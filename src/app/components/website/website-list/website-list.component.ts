@@ -12,14 +12,14 @@ import { UserService } from '../../../services/user.service.client';
   styleUrls: ['./website-list.component.css']
 })
 export class WebsiteListComponent implements OnInit {
-  @ViewChild('f') websiteForm: NgForm;
+  // @ViewChild('f') websiteForm: NgForm;
 
   wid: String;
   uid: String;
-  name: String;
-  developerId: String;
-  user: {};
   websites: Website[];
+  name: String;
+  // developerId: String;
+  // user: {};
   description: String;
 
   constructor(private websiteService: WebsiteService,
@@ -27,19 +27,47 @@ export class WebsiteListComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
   }
 
-  newWebsite() {
-    this.router.navigate(['/user/', this.uid, 'website', 'new']);
-  }
+  // newWebsite() {
+  //   this.router.navigate(['user', this.uid, 'website', 'new']);
+  // }
+
+  // findEditWebsite(website) {
+  //   if (website) {
+  //     this.router.navigate(['user', this.uid, 'website', website.wid]);
+  //   }
+  // }
+
+  // selectWebsite(websiteId) {
+  //   this.websiteService.findWebsiteById(websiteId)
+  //     .subscribe((website) => {
+  //       this.name = website.name;
+  //       this.description = website.description;
+  //     });
+  // }
+  //
+  // deleteWebsite(websiteId) {
+  //   this.websiteService.deleteWebsite(websiteId)
+  //     .subscribe((websites) => {
+  //       this.websites = websites;
+  //     });
+  // }
+  // deleteWebsite() {
+  //   this.websiteService.deleteWebsite(this.wid)
+  //     .subscribe((websites: Website[]) => {
+  //       this.websites = websites;
+  //       this.router.navigate(['user', this.uid, 'website']);
+  //     });
+  // }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.uid = params['uid'];
-        this.wid = params['wid'];
-      });
-    this.websiteService.findAllWebsitesForUser(this.uid)
-      .subscribe((websites: Website[]) => {
-      this.websites = websites;
+        // this.wid = params['wid'];
+        this.websiteService.findWebsitesByUser(this.uid)
+          .subscribe((websites: Website[]) => {
+            this.websites = websites;
+          });
       });
   }
 }

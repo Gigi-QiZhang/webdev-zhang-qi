@@ -10,19 +10,11 @@ export class UserService {
 
   baseUrl = environment.baseUrl;
 
-  constructor(private  http: Http) { }
 
-  api = {
-    'createUser': this.createUser,
-    'findUserById': this.findUserById,
-    'findUserByUsername': this.findUserByUsername,
-    'findUserByCredentials': this.findUserByCredentials,
-    'updateUser': this.updateUser,
-    'deleteUser': this.deleteUser
-  };
+  constructor(private  http: Http)   { }
 
   createUser(user) {
-    user.uid = (Math.random()).toString();
+    // user.uid = (Math.random()).toString();
     const url =  this.baseUrl + '/api/user';
     return this.http.post(url, user)
       .map((response: Response) => {
@@ -44,31 +36,32 @@ export class UserService {
     const url =  this.baseUrl + '/api/user?username=' + username;
     return this.http.get(url)
       .map((response: Response) => {
-          return response.json();
-        });
+        return response.json();
+      });
   }
 
   findUserByCredentials(username, password) {
     const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
     return this.http.get(url)
+      .map((res: Response) => {
+        const data = res.json();
+        return data;
+      });
+  }
+
+  updateUser(userId: String, user: User) {
+    const url = this.baseUrl + '/api/user/' + userId;
+    return this.http.put(url, user)
       .map((response: Response) => {
         return response.json();
       });
   }
-
-  updateUser(userId, user) {
-    const url = this.baseUrl + '/api/user/' + userId;
-    return this.http.put(url, user)
-      .map((response: Response) => {
-          return response.json();
-        });
-  }
-  deleteUser(userId) {
+  deleteUser(userId: String) {
     const url = this.baseUrl + '/api/user/' + userId;
     return this.http.delete(url)
       .map((response: Response) => {
-          return response.json();
-        });
+        return response.json();
+      });
   }
 }
 

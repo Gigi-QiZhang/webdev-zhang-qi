@@ -12,31 +12,27 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./widget-list.component.css']
 })
 export class WidgetListComponent implements OnInit {
-  @ViewChild('f') widgetForm: NgForm;
-
+  // @ViewChild('f') widgetForm: NgForm;
   uid: String;
   wid: String;
   pid: String;
-  wgid: String;
-  name: String;
-  widget: Widget;
   widgets: Widget[];
-  // widgetType: String;
-  // size: number;
-  // text: String;
+  widget: Widget= {
+    wgid: '',
+    widgetType: '',
+    pid: '',
+  };
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
               private sanitizer: DomSanitizer) { }
 
-
-  getYoutubeEmbedUrl(link: String) {
+  getEmbedUrl(link: String) {
     let embedUrl = 'https://www.youtube.com/embed/';
     const parsedLink = link.split('/');
     embedUrl += parsedLink[parsedLink.length - 1];
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
-
 
   ngOnInit() {
     this.activatedRoute.params
@@ -44,8 +40,8 @@ export class WidgetListComponent implements OnInit {
         this.uid = params['uid'];
         this.wid = params['wid'];
         this.pid = params['pid'];
-        this.wgid = params['wgid'];
-        this.widgetService.findAllWidgetsForPageId(this.pid)
+        // this.wgid = params['wgid'];
+        this.widgetService.findAllWidgetsForPage(this.pid)
           .subscribe((widgets: Widget[]) => {
           this.widgets = widgets;
           });
