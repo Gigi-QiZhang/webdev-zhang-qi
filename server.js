@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // CORS  Cross Origin Request: allows browsers access servers to connect to other websites
 // we need API supporting CORS
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -42,7 +43,10 @@ app.set('port', port);
 
 // Create HTTP server
 const server = http.createServer(app);
+
+var connectionString = 'mongodb://admin:admin@ds015335.mlab.com:15335/heroku_1snctwg2';
 var mongoose = require('mongoose');
+mongoose.connect( connectionString);
 
 require("./assignment/app") (app);
 
