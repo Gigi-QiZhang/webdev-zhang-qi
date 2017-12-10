@@ -31,19 +31,10 @@ function findUserByCredentials(username, password) {
 
 function updateUser(userId, user) {
   return UserModel.update({ _id: userId }, user);
-  // UserModel.find(username, function(err, doc) {
-  //   console.log(err);
-  //   console.log(doc);
-  // });
 }
 
 function deleteUser(userId) {
   return UserModel.remove({ _id: userId });
-  // UserModel.find(username, function(err, doc) {
-  //   console.log(err);
-  //   console.log(doc);
-  // });
-
 }
 
 // function findAllUsers(){

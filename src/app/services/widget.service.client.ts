@@ -8,18 +8,8 @@ import { environment } from '../../environments/environment';
 export class WidgetService {
 
   baseUrl = environment.baseUrl;
-  // 'http://localhost:3100'
 
-  constructor(private http: Http) { }
-
-  // api = {
-  //   'createWidget': this.createWidget,
-  //   'findAllWidgetsForPageId': this.findAllWidgetsForPageId,
-  //   'findWidgetById': this.findWidgetById,
-  //   'updateWidget': this.updateWidget,
-  //   'deleteWidget': this.deleteWidget
-  // };
-
+  constructor(private http: Http) {}
 
   createWidget(pageId, widget) {
     const url = this.baseUrl + '/api/page/' + pageId + '/widget';
@@ -47,12 +37,11 @@ export class WidgetService {
       });
   }
 
-
-  updateWidget(widgetId, editedWidget) {
+  updateWidget(widgetId, widget) {
     const url = this.baseUrl + '/api/widget/' + widgetId;
-    return this.http.put(url, editedWidget)
+    return this.http.put(url, widget)
       .map((response: Response) => {
-        return response.json();
+        return response;
       });
   }
 
@@ -60,8 +49,18 @@ export class WidgetService {
     const url = this.baseUrl + '/api/widget/' + widgetId;
     return this.http.delete(url)
       .map((response: Response) => {
-        return response.json();
+        return response;
       });
+  }
+
+  reorderWidgets(startIndex, endIndex, pageId) {
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
+    return this.http.put(url, '')
+      .map(
+        (res: Response) => {
+          return res;
+        }
+      );
   }
 }
 

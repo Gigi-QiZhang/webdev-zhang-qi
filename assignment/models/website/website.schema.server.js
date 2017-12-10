@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var WebsiteSchema = mongoose.Schema ({
-  name: String,
-  developerId: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
+  developerId : {type : mongoose.Schema.Types.ObjectId, ref: "UserModel"},
+  name: {type : String, required : true},
   description: String,
   pages: [{type: mongoose.Schema.Types.ObjectId, ref: 'PageModel'}],
   // visitCount: Number,

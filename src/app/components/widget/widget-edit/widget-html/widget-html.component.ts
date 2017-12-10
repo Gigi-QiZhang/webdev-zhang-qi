@@ -8,73 +8,55 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-widget-html',
   templateUrl: './widget-html.component.html',
-  styleUrls: ['./widget-html.component.css']
-})
-export class WidgetHtmlComponent implements OnInit {
-  @ViewChild('f') widgetForm: NgForm;
+  styleUrls: ['./widget-html.component.css']})
 
-  uid: String;
-  wid: String;
-  pid: String;
-  wgid: String;
-  text: String;
-  name: String;
-  widgets: Widget[];
-  widget: Widget= {
-    wgid: '',
-    widgetType: '',
-    pid: '',
-    text: '',
-    name: ''
-  };
+  export class WidgetHtmlComponent implements OnInit {
 
+    widgetNew = {name: '', text: ''};
+    error: string;
+    alert: string;
+    flag = false;
+    widget = {};
+    userId: string;
+    websiteId: string;
+    pageId: string;
+    widgetId: string;
+    baseUrl: string;
 
-  constructor(private widgetService: WidgetService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
-  update() {
-    this.text = this.widgetForm.value.text;
-    this.name = this.widgetForm.value.name;
+    ngOnInit() {
+      this.error = 'Enter the name of the widget';
+      this.alert = 'Enter the widget name';
 
-    const editedWidget: Widget = {
-      widgetType: this.widget.widgetType,
-      pid: this.widget.pid,
-      text: this.text,
-      name: this.name
-    };
-    this.widgetService.updateWidget(this.wgid, editedWidget)
-      .subscribe(
-        (widget: Widget) => {
-          this.widget = widget;
-          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-        }
-      );
-  }
-
-  remove() {
-    this.widgetService.deleteWidget(this.wgid)
-      .subscribe(
-        (widgets: Widget[]) => {
-          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-        }
-      );
-  }
-
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.uid = params['uid'];
-      this.wid = params['wid'];
-      this.pid = params['pid'];
-      this.wgid = params['wgid'];
-      this.widgetService.findWidgetById(this.wgid)
+      this.activatedRoute.params
         .subscribe(
-          (widget: Widget) => {
-            this.widget = widget;
-          }
-        );
-    });
+          (params: any) => {
+            this.websiteId = params['wid'];
+            this.pageId = params['pid'];
+            this.widgetId = params['wgid'];
+            this.widgetService.findWidgetById(this.widgetId)
+              .subscribe(
+                (data: any) => this.widget = data,
+                (error: any) => console.log(error)
+              );
+          });
+    }
+
+  updateWidget() {
+    this.widgetService.updateWidget(this.widgetId, this.widget)
+      .subscribe(
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
+      );
   }
 
-}
 
+  deleteWidget() {
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe(
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
+      );
+  }
+}

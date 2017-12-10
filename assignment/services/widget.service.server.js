@@ -10,18 +10,9 @@ module.exports = function (app) {
   app.get("/api/widget/:wgid", findWidgetById);
   app.put("/api/widget/:wgid", updateWidget);
   app.delete("/api/widget/:wgid", deleteWidget);
+  app.put("/api/page/:pid/widget",reorderWidgets);
   app.post ("/api/upload", upload.single( 'myFile' ), uploadImage );
 
-
-  // var widgets = [
-  //   { wgid: '123', widgetType: 'HEADING', pageId: '321', size: 2, text: 'GIZMODO'},
-  //   { wgid: '234', widgetType: 'HEADING', pageId: '321', size: 4, 'text': 'Lorem ipsum'},
-  //   { wgid: '345', widgetType: 'IMAGE', pageId: '321', width: '100%', url: 'http://lorempixel.com/400/200/'},
-  //   { wgid: '456', widgetType: 'HTML', pageId: '321', 'text': '<p>Lorem ipsum</p>'},
-  //   { wgid: '567', widgetType: 'HEADING', pageId: '321', size: 4, text: 'Lorem ipsum'},
-  //   { wgid: '678', widgetType: 'YOUTUBE', pageId: '321', width: '100%', url: 'https://youtu.be/AM2Ivdi9c4E' },
-  //   { wgid: '789', widgetType: 'HTML', pageId: '321', text: '<p>Lorem ipsum</p>'}
-  // ];
 
   function uploadImage(req, res) {
 
@@ -55,21 +46,42 @@ module.exports = function (app) {
 
   function createWidget(req, res) {
     var pageId = req.params["pid"];
-    // console.log(pageId);
     var newWidget = req.body;
     // console.log(newWidget);
+
     widgetModel.createWidget(pageId, newWidget)
       .then(function(widget) {
         // console.log(widget);
         res.json(widget);
+      }, function (err){
+        res.sendStatus(400).send(err);
       });
   }
+  // function createWidget(req, res) {
+  //   var pageId = req.params['pid'];
+  //   // var widgetId = newId();
+  //   var widget = req.body;
+  //
+  //   delete widget._id;
+  //   widget._page = pageId;
+  //   widget.type = widget.widgetType;
+  //
+  //   return widgetModel
+  //     .createWidget(widget)
+  //     .then(function (widget){
+  //       return res.json(widget);
+  //     });
+  // }
+  //
 
   function findAllWidgetsForPage(req, res) {
     var pageId = req.params["pid"];
     widgetModel.findAllWidgetsForPage(pageId)
       .then(function(widgets) {
         res.json(widgets);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
       });
   }
 
@@ -77,9 +89,15 @@ module.exports = function (app) {
   function findWidgetById(req, res) {
     var widgetId = req.params["wgid"];
     widgetModel.findWidgetById(widgetId)
+      // .then(function (widget) {
+      //   res.json(widget);
+      // });
       .then(function (widget) {
-        res.json(widget);
-      });
+          res.json(widget);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
   }
 
 
@@ -87,17 +105,46 @@ module.exports = function (app) {
     var widgetId = req.params["wgid"];
     var updatedWidget = req.body;
     widgetModel.updateWidget(widgetId, updatedWidget)
-      .then(function () {
-        res.json(null);
-      });
+      // .then(function () {
+      //   res.json(null);
+      // });
+      .then(function (stats) {
+          console.log(stats);
+          res.send(200);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
   }
 
 
   function deleteWidget(req, res) {
     var widgetId = req.params["wgid"];
+    // var pageId = req.query.pid;
     widgetModel.deleteWidget(widgetId)
-      .then(function () {
-        res.json(null);
+      .then (function (stats) {
+          // console.log(stats);
+          res.send(200);
+        },
+        function (err) {
+          res.sendStatus(404).send(err);
+        });
+      // .then(function () {
+      //   res.json(null);
+      // });
+  }
+
+  function reorderWidgets(req,res) {
+    var pageId = req.params["pid"];
+    var startIndex = parseInt(req.query.start);
+    var endIndex = parseInt(req.query.end);
+    widgetModel
+      .reorderWidgets(pageId, startIndex, endIndex)
+      .then(function (stats) {
+        res.send(200);
+
+      }, function (err) {
+        res.sendStatus(400).send(err);
       });
   }
 

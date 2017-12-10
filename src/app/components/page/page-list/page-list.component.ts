@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { WebsiteService} from '../../../services/website.service.client';
 import { UserService} from '../../../services/user.service.client';
 import { ActivatedRoute } from '@angular/router';
+import {SharedService} from "../../../services/shared.service.client";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class PageListComponent implements OnInit {
   wid: String;
   uid: String;
   name: String;
+  user: any;
   description: String;
   // page: Page;
   // pages: Page[];
@@ -27,15 +29,22 @@ export class PageListComponent implements OnInit {
   pages = [];
   constructor(private pageService: PageService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private sharedService: SharedService) { }
 
-
+  getUser() {
+    this.user = this.sharedService.user;
+    this.uid = this.user['_id'];
+  }
 
 
   ngOnInit() {
+    this.getUser();
+    this.user = this.sharedService.user;
+    this.uid = this.user['_id'];
+
     this.activatedRoute.params
       .subscribe((params: any) => {
-        this.uid = params['uid'];
         this.wid = params['wid'];
         // this.pid = params['pid'];
       });

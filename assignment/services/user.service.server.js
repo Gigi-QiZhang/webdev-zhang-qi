@@ -1,28 +1,101 @@
 
+
 module.exports = function (app) {
   var userModel = require("../models/user/user.model.server");
+  var passport = require('passport');
+  var LocalStrategy = require('passport-local').Strategy;
+ // var bcrypt = require("bcrypt-nodejs");
+
+  // app.use(passport.initialize());
+  passport.use(new LocalStrategy(localStrategy));
+  passport.serializeUser(serializeUser);
+  passport.deserializeUser(deserializeUser);
+
+
 
   app.post("/api/user", createUser);
   app.get("/api/user", findUsers);
-  app.get("/api/user", findUserByUsername);
-  app.get("/api/user", findUserByCredentials);
+  // app.get("/api/user", findUserByUsername);
+  // app.get("/api/user", findUserByCredentials);
   app.get("/api/user/:uid", findUserById);
   app.put("/api/user/:uid", updateUser);
   app.delete("/api/user/:uid", deleteUser);
 
 
-  // app.get("/api/test", testapi);
-  // function testapi(req, res){
-  //   console.log("I was called from client");
-  //   res.send({message  : "HELLO"})
-  // }
 
-  var users = [
-    { uid: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice.w@gmail.com" },
-    { uid: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "bob.m@gmail.com" },
-    { uid: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "charly.g@gmail.com" },
-    { uid: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "jose.a@gmail.com" }
-  ];
+  app.post('/api/login', passport.authenticate('local'), login);
+  app.post('/api/register', register);
+  app.post('/api/logout', logout);
+  app.post ('/api/loggedIn', loggedIn);
+
+
+
+
+
+  function localStrategy(username, password, done) {
+    userModel
+      .findUserByCredentials(username, password)
+      .then(
+        function(user) {
+          if(user.username === username && user.password === password) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        }
+      );
+  }
+
+
+  function register(req, res) {
+    var user = req.body;
+    userModel
+      .createUser(user)
+      .then(function (user) {
+        req.login(user, function (err) {
+          res.json(user);
+        });
+      });
+  }
+
+  function loggedIn(req, res) {
+    if(req.isAuthenticated()) {
+      res.json(req.user);
+    } else {
+      res.send(null);
+    }
+  }
+
+  function logout(req, res) {
+    req.logout();
+    res.send(200);
+  }
+
+  function login(req, res) {
+    res.json(req.user);
+  }
+
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+  function deserializeUser(user, done) {
+    userModel
+      .findUserById(user._id)
+      .then(
+        function(user){
+          done(null, user);
+        },
+        function(err){
+          done(err, null);
+        }
+      );
+  }
+
+
 
   function createUser(req, res) {
     var newUser = req.body;
@@ -114,6 +187,7 @@ module.exports = function (app) {
 
 
 };
+
 
 
 

@@ -1,28 +1,29 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
+      <a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget"
          class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
       </a>
     </p>
-    <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}"
-       class="pull-left navbar-brand">
+    <a class="pull-left navbar-brand">
       <b>Widget edit</b>
     </a>
-    <button type="submit"
-            form="widgetForm"
-            class="btn btn-xs button-transparent navbar-link navbar-text pull-right">
-      <span class="glyphicon glyphicon-ok glyphiconblack"></span>
-    </button>
+    <p class="navbar-text pull-right">
+      <a  (click) = "updateWidget()"
+          class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </p>
   </div>
 </nav>
 
 
 <div class="container-fluid">
-  <form (ngSubmit)="update()"
-        id="widgetForm"
-        #f ="ngForm">
+    <div *ngIf=flag
+         class="alert alert-danger">
+      {{error}}
+    </div>
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text"
@@ -82,18 +83,18 @@
       </div>
     </div>
 
-    <a (click)="remove()"
+    <a (click)="deleteWidget()"
        class="btn btn-danger btn-block">Delete</a>
 
-    <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
+    <a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget"
        class="btn btn-warning btn-block">Cancel</a>
-  </form>
+
 </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid navbar-text pull-right">
-    <a routerLink="/user/{{ uid }}">
+    <a routerLink="/profile">
       <span class="glyphicon glyphicon-user pull-right"></span>
     </a>
   </div>

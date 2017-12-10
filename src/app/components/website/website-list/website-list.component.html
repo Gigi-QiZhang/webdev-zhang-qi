@@ -1,7 +1,7 @@
 <nav class="navbar navbar-lightblue navbar-lightblue">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/profile" class="glyphiconwhite">
         <span class="glyphicon glyphicon-chevron-left glyphiconwhite"></span>
       </a>
     </p>
@@ -13,7 +13,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}/website/new" class="glyphiconwhite">
+      <a routerLink="/user/website/new" class="glyphiconwhite">
         <span class="glyphicon glyphicon-plus glyphiconwhite"></span>
       </a>
     </p>
@@ -26,7 +26,7 @@
     <ul class="container-fluid">
       <div *ngFor = "let website of websites">
         <li class="list-group-item borderless lightblue">
-          <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
+          <a routerLink="/user/website/{{ website._id }}/page">
             {{ website.name }}
           </a>
 
@@ -34,7 +34,7 @@
             <!--<span class="glyphicon glyphicon-remove"></span>-->
           <!--</a>-->
 
-          <a routerLink="/user/{{ uid }}/website/{{ wid }}/edit">
+          <a [routerLink]="['/user', 'website', website._id]">
             <span class="glyphicon glyphicon-cog pull-right"></span>
           </a>
 
@@ -50,7 +50,7 @@
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/profile" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

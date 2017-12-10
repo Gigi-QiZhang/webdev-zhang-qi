@@ -1,12 +1,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+      <a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget"
+         class="glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
-      <!--<a routerLink="user/:uid/website/:wid/page/:pid/widget" class="glyphiconblack">-->
-        <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-      <!--</a>-->
     </p>
     <p class="navbar-header pull-left">
       <a class="navbar-brand">
@@ -15,7 +13,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="glyphiconblack">
+      <a (click)="updateWidget()" class="glyphiconblack">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
@@ -23,70 +21,63 @@
 </nav>
 
 <div class="container-fluid">
-  <form (ngSubmit)="update()"
-        id="widgetForm"
-        #f ="ngForm">
-
+  <div *ngIf=flag
+       class="alert alert-danger">
+    {{error}}
+  </div>
     <form>
       <div class="form-group">
-        <label for="headingName">Name</label>
-        <input ngModel="{{ widget.name }}"
-               #name="ngModel"
-               type="text"
+        <label for="name">Name</label>
+        <input type="text"
                class="form-control"
-               id="headingName"
-               name="headingName"
-               placeholder="Heading~~~">
+               id="name"
+               name="name"
+               placeholder="Name of Header~~~"
+               [(ngModel)]="widget.name">
       </div>
     </form>
 
     <form>
       <div class="form-group">
-        <label for="headingText">Text</label>
-        <input ngModel="{{ widget.text }}"
-               #text="ngModel"
-               type="text"
+        <label for="text">Text</label>
+        <input type="text"
                class="form-control"
-               id="headingText"
-               name="headingText"
+               id="text"
+               name="text"
                placeholder="The main text of the heading"
-               required>
+               [(ngModel)]="widget.text">
       </div>
     </form>
 
   <form>
     <div class="form-group">
-      <label for="sizenumber">Size</label>
-      <input [(ngModel)]="widget.size"
-             #size="ngModel"
-             type="number"
+      <label for="size">Size</label>
+      <input type="text"
              class="form-control"
-             id="sizenumber"
-             name="sizenumber"
+             id="size"
+             name="size"
              placeholder="3"
-             required>
+             [(ngModel)]="widget.size">
     </div>
   </form>
 
     <form>
-      <a class="btn btn-block btn-danger" (click)="remove()">Delete</a>
+      <a class="btn btn-block btn-danger" (click)="deleteWidget()">Delete</a>
     </form>
 
     <form>
       <a class="btn btn-block btn-warning"
-         routerLink="user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Cancel</a>
+         routerLink="user/website/{{ wid }}/page/{{ pid }}/widget">Cancel</a>
     </form>
-
-  </form>
-
+</div>
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
       <p class="navbar-text pull-right">
-        <a routerLink="/user/{{ uid }}">
+        <a routerLink="/profile">
           <span class="glyphicon glyphicon-user"></span>
         </a>
       </p>
     </div>
   </nav>
 
-</div>
+

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div routerLink="/user/{{ uid }}/website/{{ wid }}/page"
+      <div routerLink="/user/website/{{ wid }}/page"
            class="navbar-text pull-left glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </div>
@@ -10,7 +10,7 @@
         <b>Pages</b>
       </div>
 
-      <div routerLink="/user/{{ uid }}/website/{{ wid }}/page/new"
+      <div routerLink="/user/website/{{ wid }}/page/new"
            class="navbar-text pull-right hidden-xs glyphiconblack">
         <span class="glyphicon glyphicon-plus"></span>
       </div>
@@ -19,13 +19,13 @@
 
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
-        <div routerLink="/user/{{ uid }}/website/{{ wid }}/page" class="navbar-text pull-left glyphiconblack">
+        <div routerLink="/user/website/{{ wid }}/page" class="navbar-text pull-left glyphiconblack">
           <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
       </div>
 
 
-      <a (click)="editPage()" class="navbar-text pull-right glyphiconblack">
+      <a (click)="updatePage()" class="navbar-text pull-right glyphiconblack">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
 
@@ -39,42 +39,64 @@
 
 <div class="row container-fluid">
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
-    <div *ngFor = "let page of pages"
-         class="container-fluid">
-      <ul routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}" class="list-group">
-        <li class="list-group-item borderless lightblue">{{ page.name }}
-          <a class="pull-right" routerLink="/user/{{ uid }}/website/{{ wid }}/page">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <ul class="list-group">
+      <div class="container-fluid">
+        <ul class="list-group">
+          <div class="container-fluid">
+            <div *ngFor = "let page of pages">
+              <li class="list-group-item borderless lightblue">
+                <a routerLink="/user/website/{{ wid }}/page/{{ page.pid }}/widget">
+                  {{ page.name }}
+                </a>
+                <a routerLink="/user/website/{{ wid }}/page/{{ page.pid }}/">
+                  <span class = "glyphicon glyphicon-cog pull-right"></span>
+                </a>
+              </li>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </ul>
+
 
   </div>
 </div>
+
+
 
 <div class="col-xs-12 col-sm-8 pull-right">
   <div class="container-fluid">
 
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Page Name">
+        <label for="pagename">Name</label>
+        <input [(ngModel)] = "page.name"
+               type="text"
+               class="form-control"
+               id="pagename"
+               name = "name"
+               placeholder="Page Name">
       </div>
 
 
     <form>
       <div class="form-group">
         <label for="pagetitle">Title</label>
-        <input type="text" class="form-control" id="pagetitle" placeholder="Page Title">
+        <input [(ngModel)] = "page.description"
+               type="text"
+               class="form-control"
+               id="pagetitle"
+               name="description"
+               placeholder="Page Title">
       </div>
     </form>
 
+
     <form>
-      <a (click)="remove()" class="btn btn-block btn-danger">Delete</a>
+      <a (click)="deletePage()" class="btn btn-block btn-danger">Delete</a>
     </form>
 
     <form>
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page"
+      <a routerLink="/user/website/{{ wid }}/page"
          class="btn btn-warning btn-block">Cancel</a>
     </form>
   </div>
@@ -83,7 +105,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}">
+      <a routerLink="/profile">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

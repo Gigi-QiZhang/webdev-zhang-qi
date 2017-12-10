@@ -1,7 +1,7 @@
 <nav class="navbar navbar-lightblue">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div routerLink="/user/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
+      <div routerLink="/user/website" class="navbar-text pull-left glyphiconwhite">
           <span class="glyphicon glyphicon-chevron-left"></span>
       </div>
 
@@ -9,7 +9,7 @@
           <b>Websites</b>
       </div>
 
-      <div routerLink="/user/{{ uid }}/website/new"
+      <div routerLink="/user/website/new"
            class="navbar-text pull-right hidden-xs glyphiconwhite">
           <span class="glyphicon glyphicon-plus"></span>
       </div>
@@ -18,13 +18,14 @@
 
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
-        <div routerLink="/user/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
+        <div routerLink="/user/website"
+             class="navbar-text pull-left glyphiconwhite">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
       </div>
 
 
-      <a (click)="editWebsite()" class="navbar-text pull-right glyphiconwhite">
+      <a (click)="updateWebsite()" class="navbar-text pull-right glyphiconwhite">
           <span class="glyphicon glyphicon-ok"></span>
       </a>
 
@@ -42,11 +43,11 @@
       <div class="container-fluid">
         <div *ngFor = "let website of websites">
           <li class="list-group-item borderless lightblue">
-            <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
+            <a routerLink="/user/website/{{ website.wid }}/page">
               {{ website.name }}
             </a>
 
-            <a routerLink="/user/{{ uid }}/website/{{ wid }}">
+            <a routerLink="/user/website/{{ website.wid }}">
               <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
           </li>
@@ -61,7 +62,7 @@
     <form>
       <div class="form-group">
         <label for="website-edit">Website Name</label>
-        <input [(ngModel)] = "name"
+        <input [(ngModel)] = "website.name"
                id="website-edit"
                name="name"
                type="text"
@@ -74,7 +75,7 @@
     <form>
       <div class="form-group">
         <label for="edit-description">Website Description</label>
-        <textarea [(ngModel)] = "description"
+        <textarea [(ngModel)] = "website.description"
                   id="edit-description"
                   name="description"
                   class="form-control"
@@ -86,7 +87,7 @@
       <a (click)="deleteWebsite()" class="btn btn-block btn-danger">Delete</a>
     </form>
     <form>
-      <a routerLink="/user/{{ uid }}/website"
+      <a routerLink="/user/website"
          class="btn btn-warning btn-block">Cancel</a>
     </form>
   </div>
@@ -96,7 +97,7 @@
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/profile" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

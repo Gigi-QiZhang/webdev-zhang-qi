@@ -10,67 +10,65 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./widget-youtube.component.css']
 })
 export class WidgetYoutubeComponent implements OnInit {
-  @ViewChild('f') widgetForm: NgForm;
-
-  uid: String;
-  wid: String;
-  pid: String;
-  wgid: String;
+  flag = false;
+  error: string;
+  alert: string;
+  websiteId: string;
+  pageId: string;
+  widgetId: string;
+  widget = {};
+  widgetType: string;
+  // widget: Widget = {
+  //   wgid: '',
+  //   widgetType: '',
+  //   pid: ''
+  // };
   widgets: Widget[];
-  widget: Widget= {
-    wgid: '',
-    widgetType: '',
-    pid: '',
-  };
   name: String;
-  text: String;
   size: Number;
-  // src: String;
+  text: String;
+  width: String;
+  url: String;
+  formatted?: Boolean;
+  rows?: number;
+  placeholder?: String;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
-  update() {
-    this.name = this.widgetForm.value.name;
-    this.wgid = this.widgetForm.value.wgid;
-    this.pid = this.widgetForm.value.pid;
-    this.text = this.widgetForm.value.text;
-    this.size = this.widgetForm.value.size;
-    // this.src = this.widgetForm.value.src;
-
-    const editedWidget: Widget = new Widget(this.name, this.widget.widgetType, this.widget.pid);
-
-    this.widgetService.updateWidget(this.wgid, editedWidget)
+  updateWidget() {
+    this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
-        (widget: Widget) => {
-          this.widget = widget;
-          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-        }
+        (data: any) => this.router.navigate(['user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
       );
   }
 
-  remove() {
-    this.widgetService.deleteWidget(this.wgid)
+  deleteWidget() {
+    this.widgetService.deleteWidget(this.widgetId)
       .subscribe(
-        (widgets: Widget[]) => {
-          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-        }
+        (data: any) => this.router.navigate(['user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
       );
   }
+
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.uid = params['uid'];
-      this.wid = params['wid'];
-      this.pid = params['pid'];
-      this.wgid = params['wgid'];
-      this.widgetService.findWidgetById(this.wgid)
-        .subscribe(
-          (widget: Widget) => {
-            this.widget = widget;
-          }
-        );
-    });
+    this.error = 'Enter the name of the widget';
+    this.alert = 'Enter the widget name';
+
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.websiteId = params['wid'];
+          this.pageId = params['pid'];
+          this.widgetId = params['wgid'];
+          this.widgetService.findWidgetById(this.widgetId)
+            .subscribe(
+              (widget) => this.widget = widget,
+              (error: any) => console.log(error)
+            );
+        });
   }
 
 }

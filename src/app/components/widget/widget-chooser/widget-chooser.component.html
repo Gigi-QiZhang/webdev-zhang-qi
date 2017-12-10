@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+      <a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget" class="glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
@@ -17,55 +17,35 @@
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item borderless">
-      <a (click)="createHeading()">
+      <a (click)="createWidget('Header')">
         <button class="btn button-transparent">Header</button>
       </a>
     </li>
     <li class="list-group-item borderless">
-      <a href="#">
-        <button class="btn button-transparent">Label</button>
-      </a>
-    </li>
-    <li class="list-group-item borderless">
-      <a (click)="createHtml()">
-        <button class="btn button-transparent">HTML</button>
-      </a>
-    </li>
-    <li class="list-group-item borderless">
-      <a (click)="createText()">
-        <button class="btn button-transparent">Text Input</button>
-      </a>
-    </li>
-    <li class="list-group-item borderless">
-      <a href="#">
-        <button class="btn button-transparent">Link</button>
-      </a>
-    </li>
-    <li class="list-group-item borderless">
-      <a href="#">
-        <button class="btn button-transparent">Button</button>
-      </a>
-    </li>
-    <li class="list-group-item borderless">
-      <a (click)="createImage()">
-        <button class="btn button-transparent">Image</button>
-      </a>
-    </li>
-    <li class="list-group-item borderless">
-      <a (click)="createYoutube()">
+      <a (click)="createWidget('YouTube')">
         <button class="btn button-transparent">Youtube</button>
       </a>
     </li>
     <li class="list-group-item borderless">
-      <a href="#">
-        <button class="btn button-transparent">Data Table</button>
+      <a (click)="createWidget('Image')">
+        <button class="btn button-transparent">Image</button>
+      </a>
+    </li>
+
+    <li class="list-group-item borderless">
+      <a (click)="createWidget('HTML')">
+        <button class="btn button-transparent">HTML</button>
       </a>
     </li>
     <li class="list-group-item borderless">
-      <a href="#">
-        <button class="btn button-transparent">Repeater</button>
+      <a (click)="createWidget('Text')">
+        <button class="btn button-transparent">Text Input</button>
       </a>
     </li>
+
+
+
+
   </ul>
 </div>
 
@@ -74,7 +54,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}">
+      <a routerLink="/profile">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

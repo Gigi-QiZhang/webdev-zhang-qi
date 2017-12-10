@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WidgetService } from '../../../../../services/widget.service.client';
 // import { Widget } from '../../../../../models/widget.model.client';
 import { Widget } from '../../../../../models/widget.model.cilent';
-
+import { SharedService } from '../../../../../services/shared.service.client';
 
 @Component({
   selector: 'app-flickr-image-search',
@@ -12,23 +12,21 @@ import { Widget } from '../../../../../models/widget.model.cilent';
   styleUrls: ['./flickr-image-search.component.css']
 })
 export class FlickrImageSearchComponent implements OnInit {
-  uid: String;
-  wid: String;
-  pid: String;
-  wgid: String;
-  photos: {};
-  searchText: String;
 
-  widget: Widget= {
-    wgid: '',
-    widgetType: '',
-    pid: '',
-  };
+  userId: string;
+  websiteId: string;
+  pageId: string;
+  widgetId: string;
+  photos: [any];
+  error: string;
+  searchText: string;
+  // photo: any;
 
   constructor(private flickrService: FlickrService,
               private widgetService: WidgetService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private sharedService: SharedService) { }
 
   searchPhotos() {
     this.flickrService
@@ -45,36 +43,34 @@ export class FlickrImageSearchComponent implements OnInit {
   selectPhoto(photo) {
     let url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
     url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
-    this.widget.url = url;
+
     const widget = {
-      websiteId: this.wid,
-      pageId: this.pid,
+      websiteId : this.websiteId,
+      pageId : this.pageId,
       url: url
     };
-    // this.widgetService
-    //   .updateWidget(this.wgid, this.widget)
-    //   .subscribe(
-    //     (data: any) => {
-    //       this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget', this.wgid]);
-    //     }
-    //   );
+
+    this.widgetService
+      .updateWidget(this.widgetId, widget)
+      .subscribe(
+        (data: any) => {
+          if (data) { this.router.navigate(['user' + 'website' + this.websiteId + 'page' + this.pageId + 'widget' + this.widgetId] );
+          } else { this.error = 'failed!'; }
+        }
+      );
+
   }
 
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.uid = params['uid'];
-      this.wid = params['wid'];
-      this.pid = params['pid'];
-      this.wgid = params['wgid'];
-      this.photos = [''];
-      this.widgetService.findWidgetById(this.wgid)
-        .subscribe(
-          (widget: Widget) => {
-            this.widget = widget;
-          }
-        );
-    });
+    this.userId = this.sharedService.user['_id'];
+    this.activatedRoute.params
+      .subscribe((params: any) => {
+          this.websiteId = params['wid'];
+          this.pageId = params['pid'];
+          this.widgetId = params['wgid'];
+        }
+      );
   }
 
 }

@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { WebsiteService} from '../../../services/website.service.client';
 import { UserService} from '../../../services/user.service.client';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../../services/shared.service.client';
+
 
 @Component({
   selector: 'app-page-new',
@@ -19,34 +21,65 @@ export class PageNewComponent implements OnInit {
   uid: String;
   name: String;
   description: String;
-  page: Page;
+  title: String;
+  page = {
+    name: '',
+    title: '',
+    _websiteId: '',
+    widgets: []
+  };
+
   pages: Page[];
+  user: {};
 
   constructor(private pageService: PageService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private sharedService: SharedService) { }
 
-  createPage(name, title) {
-    const page: Page = new Page('', name, '', title);
-    this.pageService.createPage(this.wid, page)
-      .subscribe((pages) => {
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
-      });
+  getUser() {
+    this.user = this.sharedService.user;
+    this.uid = this.user['_id'];
+  }
+
+
+  create() {
+    const newPage: Page = {
+      pid: this.pid,
+      name: this.name,
+      _websiteId: this.wid,
+      description: this.title
+    };
+
+    this.pageService.createPage(this.wid, newPage)
+      .subscribe((page) =>
+        // this.pages = pages;
+          this.router.navigate(['user', 'website', this.wid, 'page']),
+        (error: any) => console.log(error)
+      );
   }
 
   ngOnInit() {
+    this.getUser();
+
     this.activatedRoute.params.subscribe((params: any) => {
-      this.uid = params['uid'];
       this.wid = params['wid'];
+      this.pid = params['pid'];
     });
 
-    this.pageService.findAllPagesForWebsite(this.wid)
-      .subscribe((pages: Page[]) => {
-        this.pages = pages;
-        // this.name = this.page['name'];
-        // this.description = this.page['description'];
-      });
+    this.pageService.findPageById(this.pid)
+      .subscribe((page) => {
+        this.page = page;
+    }, (error) => console.log(error)
+      );
+
+    // this.pageService.findAllPagesForWebsite(this.wid)
+    //   .subscribe((pages) => {
+    //     this.pages = pages;
+    //     }, (error) => console.log(error)
+    //   );
   }
+
 }
 
 

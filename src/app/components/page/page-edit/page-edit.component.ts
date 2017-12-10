@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { WebsiteService} from '../../../services/website.service.client';
 import { UserService} from '../../../services/user.service.client';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../../services/shared.service.client';
 
 
 @Component({
@@ -17,62 +18,73 @@ export class PageEditComponent implements OnInit {
   @ViewChild('f') editForm: NgForm;
 
   pid: String;
-  wid: string;
+  wid: String;
   uid: String;
   name: String;
   description: String;
-
-  page: Page;
+  page: Page = {
+    pid: '',
+    name: '',
+    _websiteId: '',
+    description: ''
+  };
   pages: Page[];
-  errorFlag: boolean;
-  errorMsg: string;
+  user: {};
 
   constructor(private pageService: PageService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private sharedService: SharedService) { }
 
-
-  editPage() {
-    this.name = this.editForm.value.name;
-    this.description = this.editForm.value.description;
-
-    const editedPage: Page = {
-      // pid: this.page.pid,
-      name: this.name,
-      wid: this.wid,
-      description: this.description,
-    };
-      this.pageService.updatePage(this.pid, editedPage)
-        .subscribe((page: Page) => {
-        this.page = editedPage;
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
-        });
+  getUser() {
+    this.user = this.sharedService.user;
+    this.uid = this.user['_id'];
   }
 
-  remove() {
+
+  deletePage() {
     this.pageService.deletePage(this.pid)
-      .subscribe((pages: Page[]) => {
-        this.router.navigate(['user', this.uid, 'website', this.wid, 'page']);
+      .subscribe((data: any) => this.router.navigate(['user', 'website', this.wid, 'page']),
+        (error) => console.log(error)
+      );
+  }
+
+  updatePage() {
+    const newPage: Page = {
+      pid: this.pid,
+      name: this.page.name,
+      _websiteId: this.uid,
+      description: this.page.description,
+    };
+    // console.log(this.page);
+    this.pageService.updatePage(this.pid, newPage)
+      .subscribe((page) => {
+        this.router.navigate(['user', 'website', this.wid, 'page']);
+        console.log(this.page);
       });
   }
 
 
 
   ngOnInit() {
-    this.activatedRoute.params
-      .subscribe((params: any) => {
-        this.uid = params['uid'];
-        this.wid = params['wid'];
-        this.pid = params['pid'];
-      }
-    );
-    this.pageService.findAllPagesForWebsite(this.wid)
-      .subscribe((pages: Page[]) => {
-        this.pages = pages;
-      });
+    this.getUser();
+
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.wid = params['wid'];
+      this.pid = params['pid'];
+    });
+
+
     this.pageService.findPageById(this.pid)
-      .subscribe((page: Page) => {
+      .subscribe((page) => {
         this.page = page;
+        // this.name = this.page.name;
+        // this.description = this.page.description;
+      });
+
+    this.pageService.findAllPagesForWebsite(this.wid)
+      .subscribe((pages) => {
+        this.pages = pages;
         // this.name = this.page.name;
         // this.description = this.page.description;
       });

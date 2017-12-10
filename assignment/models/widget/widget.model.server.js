@@ -16,40 +16,54 @@ WidgetModel.deleteWidget = deleteWidget;
 
 module.exports = WidgetModel;
 
-function createWidget(pageId, widget) {
-  var newWidget = null;
-  return WidgetModel.create(widget)
-    .then(function (widget) {
-      // console.log(widget);
-      return PageModel.findPageById(pageId)
-    }).then(function (page) {
-      // console.log(page);
-      page.widgets.push(newWidget);
-      page.widgets.push(newWidget.pid);
-      // console.log(newWidget.pid);
-      return page.save();
-    }).then(function(page) {
-      return newWidget;
-    })
+
+// function createWidget(pageId, widget) {
+//
+//   widget._page = pageId;
+//   console.log(widget);
+//   return WidgetModel.create(widget);
+//  var newPage = null;
+//   return WidgetModel
+//     .create(widget)
+//     .then(function(widget){
+//       var newWidget = widget;
+//       return PageModel
+//         .findPageById(newWidget._page)
+//         .then(function(page){
+//           page.widgets.push(newWidget._id);
+//         console.log(newWidget);
+//           return newWidget;
+//         });
+//     });
+// }
+function createWidget(pageId, widget)  {
+  widget._page = pageId;
+  return WidgetModel.create(widget);
 }
 
 
 function findAllWidgetsForPage(pageId) {
-  return WidgetModel.find({ pageId: pageId });
-    // .populate('pageId','name')
-    // .exec();
+  return WidgetModel.find({ _page: pageId });
 }
+
 
 function findWidgetById(widgetId) {
-  return WidgetModel.findById(widgetId);
+  return WidgetModel.findById({_id: widgetId});
 }
 
+// function updateWidget(widgetId, widget) {
+//   return WidgetModel.update({ _id: widgetId}, widget);
+// }
 function updateWidget(widgetId, widget) {
-  return WidgetModel.update({ wgid: widgetId}, widget);
+  delete widget._id;
+  return WidgetModel
+    .update({_id: widgetId},{
+      $set : widget
+    })
 }
 
 function deleteWidget(widgetId) {
-  return WidgetModel.remove({ wgid: widgetId});
+  return WidgetModel.remove({ _id: widgetId});
 }
 
 

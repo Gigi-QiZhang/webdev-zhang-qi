@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
 import { User } from '../../../models/user.model.client';
+import { SharedService } from '../../../services/shared.service.client';
+
 
 @Component({
   selector: 'app-website-edit',
@@ -16,52 +18,70 @@ export class WebsiteEditComponent implements OnInit {
   @ViewChild('f') editForm: NgForm;
   uid: String;
   wid: String;
-  pid: String;
   name: String;
   description: String;
-  website: Website;
+  website: Website = {
+    wid: '',
+    name: '',
+    developerId: '',
+    description: ''
+  };
   websites: Website[];
   user: {};
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private sharedService: SharedService) {
   }
 
-  editWebsite () {
-    this.name = this.editForm.value.name;
-    this.description = this.editForm.value.description;
-    const editedWebsite = new Website(this.website.wid, this.name, this.uid, this.description);
-    this.websiteService.updateWebsite(this.wid, editedWebsite)
-    .subscribe((website: Website) => {
-      this.website = website;
-      this.router.navigate(['user', this.uid, 'website']);
-    });
+  getUser() {
+    this.user = this.sharedService.user;
+    this.uid = this.user['_id'];
   }
+
+  updateWebsite () {
+    const newWebsite: Website = {
+      wid: this.wid,
+      name: this.website.name,
+      developerId: this.uid,
+      description: this.website.description,
+    };
+    this.websiteService.updateWebsite(this.wid, newWebsite)
+      .subscribe((status) => {
+        this.router.navigate(['user', 'website']);
+        // console.log(status);
+      });
+  }
+
 
   deleteWebsite() {
     this.websiteService.deleteWebsite(this.wid)
-      .subscribe((websites: Website[]) => {
-        this.websites = websites;
-        this.router.navigate(['user', this.uid, 'website']);
-      });
+      .subscribe((website) => this.router.navigate(['user', 'website']),
+        (error) => console.log(error)
+      );
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.uid = params['uid'];
+    this.getUser();
+    this.activatedRoute.params.subscribe(params => {
       this.wid = params['wid'];
     });
+
+   this.websiteService.findWebsiteById(this.wid)
+      .subscribe(
+        (data: any) => {
+          this.website = data;
+         // console.log('website by id: ', this.website);
+        }
+      );
+
     this.websiteService.findWebsitesByUser(this.uid)
-      .subscribe((websites: Website[]) => {
-        this.websites = websites;
-        // this.name = this.website['name'];
-        // this.description = this.website['description'];
-        this.websiteService.findWebsiteById(this.wid)
-          .subscribe((website: Website) => {
-            this.website = website;
-          });
-      });
+      .subscribe(
+        (data: any) => {
+          this.websites = data; },
+        (error) => console.log(error)
+      );
   }
 }
 

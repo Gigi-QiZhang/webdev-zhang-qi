@@ -2,32 +2,34 @@
 <nav class="navbar navbar-lightblue">
   <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-      <div routerLink="/user/{{ uid }}/website" class="navbar-text pull-left glyphiconwhite">
+      <a [routerLink]="['/user', 'website']"
+           class="navbar-text pull-left glyphiconwhite">
           <span class="glyphicon glyphicon-chevron-left"></span>
-      </div>
+      </a>
 
 
       <div class="navbar-header hidden-xs navbar-brand glyphiconwhite">
           <b>Websites</b>
       </div>
 
-      <div routerLink="/user/{{ uid }}/website/new"
-           class="navbar-text pull-right hidden-xs glyphiconwhite">
+      <a (click)="create()"
+         class="navbar-text pull-right hidden-xs glyphiconwhite">
           <span class="glyphicon glyphicon-plus"></span>
-      </div>
+      </a>
     </div>
 
 
     <div class="col-sm-8">
       <div class="hidden-lg visible-xs">
         <div class="navbar-text pull-left">
-          <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
+          <a [routerLink]="['/user', 'website']"
+             class="glyphiconwhite">
             <span class="glyphicon glyphicon-chevron-left"></span>
           </a>
         </div>
       </div>
 
-      <a (click)="createWebsite(name, description)"
+      <a (click)="create()"
               class="navbar-text pull-right button-transparent">
         <span class="glyphicon glyphicon-ok glyphiconwhite"></span>
       </a>
@@ -42,31 +44,47 @@
 
 
 <div class="row container-fluid">
+  <!--<div class="col-sm-4 hidden-xs websites-col-sm-4">-->
+    <!--<ul class="list-group">-->
+      <!--<div class="container-fluid">-->
+        <!--<div *ngFor = "let website of websites">-->
+            <!--<li class="list-group-item borderless lightblue">-->
+              <!--<a routerLink="/user/website/{{ website.wid }}/page">-->
+                <!--{{ website.name }}-->
+              <!--</a>-->
+              <!--<a routerLink="/user/website/{{ website.wid }}">-->
+                <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+              <!--</a>-->
+            <!--</li>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ul>-->
+  <!--</div>-->
   <div class="col-sm-4 hidden-xs websites-col-sm-4">
     <ul class="list-group">
       <div class="container-fluid">
         <div *ngFor = "let website of websites">
-            <li class="list-group-item borderless lightblue">
-              <a routerLink="/user/{{ uid }}/website/{{ wid }}/page">
-                {{ website.name }}
-              </a>
-              <a routerLink="/user/{{ uid }}/website/{{ wid }}">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-              </a>
-            </li>
+          <li class="list-group-item borderless lightblue">
+            <a routerLink="/user/website/{{ website.wid }}/page">
+              {{ website.name }}
+            </a>
+
+            <a routerLink="/user/website/{{ website.wid }}">
+              <span class="glyphicon glyphicon-cog pull-right"></span>
+            </a>
+          </li>
         </div>
       </div>
     </ul>
   </div>
 
 <div class="col-xs-12 col-sm-8 pull-right">
-  <!--<div class="container">-->
-  <form (ngSubmit) = "createWebsite(name,description)" #f="ngForm">
+  <form (ngSubmit) = "create()" #f="ngForm">
     <form>
       <div class="form-group">
-        <label for="website-name">Name</label>
-        <input [(ngModel)] = "name"
-               id = "website-name"
+        <label for="websitename">Name</label>
+        <input [(ngModel)] = "website.name"
+               id = "websitename"
                name = "name"
                placeholder="Name"
                type="text"
@@ -76,7 +94,7 @@
 
       <div class="form-group">
         <label for="website-description">Description</label>
-          <textarea [(ngModel)] = "description"
+          <textarea [(ngModel)] = "website.description"
                     id = "website-description"
                     name = "description"
                     class = "form-control"
@@ -90,7 +108,7 @@
 <nav class="navbar navbar-lightblue navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}" class="glyphiconwhite">
+      <a routerLink="/profile" class="glyphiconwhite">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

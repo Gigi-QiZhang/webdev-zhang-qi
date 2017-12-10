@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+      <a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget" class="glyphiconblack">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
@@ -12,7 +12,7 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget" class="glyphiconblack">
+      <a (click)="updateWidget()" class="glyphiconblack">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
@@ -21,91 +21,78 @@
 </nav>
 
 <div class="container-fluid">
-  <form (ngSubmit)="update()"
-        id="widgetForm"
-        #f ="ngForm">
-
   <div class="form-group">
     <label for="name">Name</label>
-    <input ngModel="{{ widget.name }}"
-           #name="ngModel"
+    <input [(ngModel)]="widget.name"
            type="text"
            class="form-control"
            id="name"
            name="name"
            placeholder="Name of the image">
+    <!--ngModel="{{ widget.name }}"-->
+    <!--#name="ngModel"-->
   </div>
 
   <div class="form-group">
     <label for="txt">Text</label>
-    <input ngModel="{{ widget.text }}"
-           #text="ngModel"
+    <input [(ngModel)]="widget.text"
            type="text"
            class="form-control"
            id="txt"
            name="text"
            placeholder="This image was taken in 2016">
+    <!--ngModel="{{ widget.text }}"-->
+    <!--#text="ngModel"-->
   </div>
 
   <div class="form-group">
     <label for="imageurl">URL</label>
-    <input ngModel="{{ widget.text }}"
-           #text="ngModel"
+    <input [(ngModel)]="widget.url"
            type="text"
            class="form-control"
            id="imageurl"
            name="imageurl"
-           placeholder="http://lorempixel.com/400/200/"
-           required>
+           placeholder="http://lorempixel.com/400/200/">
+    <!--ngModel="{{ widget.text }}"-->
+    <!--#text="ngModel"-->
   </div>
 
   <div class="form-group">
     <label for="imagewidth">Width</label>
-    <input ngModel="{{ widget.width }}"
-           #width="ngModel"
+    <input [(ngModel)]="widget.width"
            type="text"
            min="0"
            max="100"
            class="form-control"
            id="imagewidth"
            name="imagewidth"
-           placeholder="100%"
-           required>
+           placeholder="100%">
+    <!--ngModel="{{ widget.width }}"-->
+    <!--#width="ngModel"-->
   </div>
 
 
     <form ngNoForm action="{{ baseUrl }}/api/upload" method="post" enctype="multipart/form-data">
       <input  name="myFile"   type="file" class="form-control"/>
-      <input  name="widgetId" value="{{ wgid }}" style="display: none"/>
-      <input  name="websiteId" value="{{ wid }}" style="display: none"/>
-      <input  name="pageId" value="{{pid}}" style="display: none"/>
-      <input  name="userId" value="{{uid}}" style="display: none"/>
+      <input  name="widgetId" value="{{ widgetId }}" style="display: none"/>
+      <input  name="websiteId" value="{{ websiteId }}" style="display: none"/>
+      <input  name="pageId" value="{{ pageId }}" style="display: none"/>
+      <input  name="userId" value="{{ userId }}" style="display: none"/>
       <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
       <br/>
     </form>
 
 
-  <!--<div class="form-group">-->
-    <!--<label for="imageupload">Upload</label>-->
-    <!--<input type="file" class="form-control" id="imageupload">-->
-  <!--</div>-->
+  <a class="btn btn-primary btn-block "
+     [routerLink]="['/user'+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId+'/flickr']" >
+    Choose From Flickr</a>
 
-  <!--<div class="form-group">-->
-    <!--<a class="btn btn-block btn-primary">Upload Image</a>-->
-  <!--</div>-->
+  <a (click)="deleteWidget()" class="form-group btn btn-block btn-danger">Delete
+    </a>
 
-    <div class="form-group">
-      <a (click)="remove()"
-         class="btn btn-block btn-danger">Delete</a>
-    </div>
-
-    <div class="form-group">
-      <a class="btn btn-block btn-warning"
-         routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget">Cancel</a>
-    </div>
-
-
-  </form>
+    <a class="form-group btn btn-block btn-warning"
+         routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget">Cancel
+    </a>
 </div>
 
 
@@ -113,7 +100,7 @@
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
       <p class="navbar-text pull-right">
-        <a routerLink="/user/{{ uid }}" class="glyphiconlightblue">
+        <a routerLink="/profile" class="glyphiconlightblue">
           <span class="glyphicon glyphicon-user"></span>
         </a>
       </p>

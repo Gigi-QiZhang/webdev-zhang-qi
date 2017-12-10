@@ -12,25 +12,20 @@ export class WebsiteService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: Http) { }
-  //
-  // api = {
-  //   'createWebsite': this.createWebsite,
-  //   'findWebsitesByUser': this.findWebsitesByUser,
-  //   'findWebsiteById': this.findWebsiteById,
-  //   'updateWebsite': this.updateWebsite,
-  //   'deleteWebsite': this.deleteWebsite
-  // };
 
   createWebsite(userId: String, website: Website) {
-    // user.uid = (Math.random()).toString();
+    const body = {
+      name : website.name,
+      description : website.description,
+      developerId : userId
+    };
     const url =  this.baseUrl + '/api/user/' + userId + '/website';
-    return this.http.post(url, website)
+    console.log(website);
+    return this.http.post(url, body)
       .map((response: Response) => {
           return response.json();
         });
   }
-
-
 
   findWebsitesByUser(userId: String) {
     const url = this.baseUrl + '/api/user/' + userId + '/website';
@@ -40,7 +35,7 @@ export class WebsiteService {
       });
   }
 
-  findWebsiteById(websiteId: String) {
+  findWebsiteById(websiteId) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.get(url)
       .map((response: Response) => {
@@ -48,7 +43,7 @@ export class WebsiteService {
       });
   }
 
-  updateWebsite(websiteId: String, editedWebsite: Website) {
+  updateWebsite(websiteId, editedWebsite) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.put(url, editedWebsite)
       .map((response: Response) => {
@@ -56,7 +51,7 @@ export class WebsiteService {
       });
   }
 
-  deleteWebsite(websiteId: String) {
+  deleteWebsite(websiteId) {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.delete(url)
       .map((response: Response) => {

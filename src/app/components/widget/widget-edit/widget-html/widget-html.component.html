@@ -1,56 +1,124 @@
-<nav class="navbar navbar-default">
+<!--<nav class="navbar navbar-default">-->
+  <!--<div class="container-fluid">-->
+    <!--<p class="navbar-text pull-left">-->
+      <!--<a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget"-->
+         <!--class="navbar-link">-->
+        <!--<span class="glyphicon glyphicon-chevron-left glyphiconblack"></span>-->
+      <!--</a>-->
+    <!--</p>-->
+    <!--<a class="pull-left navbar-brand">-->
+      <!--<b>Widget edit</b>-->
+    <!--</a>-->
+    <!--<p class="navbar-text pull-right">-->
+      <!--<a (click) = "updateWidget()" class="navbar-link">-->
+        <!--<span class="glyphicon glyphicon-ok"></span>-->
+      <!--</a>-->
+    <!--</p>-->
+    <!--&lt;!&ndash;<button type="submit"&ndash;&gt;-->
+            <!--&lt;!&ndash;form="widgetForm"&ndash;&gt;-->
+            <!--&lt;!&ndash;class="btn btn-xs button-transparent navbar-link navbar-text pull-right">&ndash;&gt;-->
+      <!--&lt;!&ndash;<span class="glyphicon glyphicon-ok glyphiconblack"></span>&ndash;&gt;-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!--</div>-->
+<!--</nav>-->
+
+
+<!--<div class="container-fluid">-->
+  <!--<div *ngIf="flag"-->
+       <!--class="alert alert-danger">-->
+    <!--{{error}}-->
+    <!--<div class="form-group">-->
+      <!--<label for="name">Name</label>-->
+      <!--<input [(ngModel)]="widget.name"-->
+             <!--type="text"-->
+             <!--id="name"-->
+             <!--name="name"-->
+             <!--placeholder="Widget name"-->
+             <!--class="form-control"/>-->
+      <!--<span class="alert-class"-->
+            <!--*ngIf="flag">{{alert}}</span>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+      <!--<quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--<a (click)="deleteWidget()"-->
+       <!--class="btn btn-danger btn-block">Delete</a>-->
+
+    <!--<a routerLink="/user/website/{{ wid }}/page/{{ pid }}/widget"-->
+       <!--class="btn btn-warning btn-block">Cancel</a>-->
+
+  <!--</div>-->
+<!--</div>-->
+
+
+<!--<nav class="navbar navbar-default navbar-fixed-bottom">-->
+  <!--<div class="container-fluid navbar-text pull-right">-->
+    <!--<a routerLink="/profil">-->
+      <!--<span class="glyphicon glyphicon-user pull-right"></span>-->
+    <!--</a>-->
+  <!--</div>-->
+<!--</nav>-->
+
+
+<!--Header-->
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <p class="navbar-text pull-left">
-      <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
-         class="navbar-link">
-        <span class="glyphicon glyphicon-chevron-left glyphiconblack"></span>
+      <a [routerLink]="['/user', 'website', websiteId, 'page', pageId, 'widget']" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
-    <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{ wgid }}"
-       class="pull-left navbar-brand">
-      <b>Widget edit</b>
-    </a>
-    <button type="submit"
-            form="widgetForm"
-            class="btn btn-xs button-transparent navbar-link navbar-text pull-right">
-      <span class="glyphicon glyphicon-ok glyphiconblack"></span>
-    </button>
+    <p class="navbar-header navbar-brand pull-left">
+      <b>Widget Edit</b></p>
+
+    <p class="navbar-text pull-right">
+      <a (click) = "updateWidget()" class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </p>
+
   </div>
 </nav>
 
 
-<div class="container-fluid">
-  <form (ngSubmit)="update()"
-        id="widgetForm"
-        #f ="ngForm">
+<div class="container">
+  <div *ngIf="flag"
+       class="alert alert-danger">
+    {{error}}
+  </div>
+  <form novalidate name="model.myform">
     <div class="form-group">
-      <label for="name">Name</label>
-      <input ngModel="{{ widget.name }}"
-             #name="ngModel"
+      <label for="Name">Name</label>
+      <input [(ngModel)]="widget.name"
              type="text"
-             id="name"
-             name="name"
-             placeholder="Widget name"
-             class="form-control"/>
+             class="form-control"
+             id="Name"
+             name="widname"
+             placeholder="Name"
+             required>
+      <span class="alert-class"
+            *ngIf="flag">{{alert}}</span>
     </div>
-    <div class="form-group">
-      <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
-    </div>
-
-    <a (click)="remove()"
-       class="btn btn-danger btn-block">Delete</a>
-
-    <a routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
-       class="btn btn-warning btn-block">Cancel</a>
-
+    <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
   </form>
+  <p></p>
+
+  <a (click)="deleteWidget()"
+  class="btn btn-danger btn-block">Delete</a>
+
+  <a routerLink="/user/website/{{ websiteId }}/page/{{ pageId }}/widget"
+  class="btn btn-warning btn-block">Cancel</a>
+
 </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid navbar-text pull-right">
-    <a routerLink="/user/{{ uid }}">
-      <span class="glyphicon glyphicon-user pull-right"></span>
-    </a>
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/profile']">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
   </div>
 </nav>

@@ -3,6 +3,9 @@ import { Router, ActivatedRoute} from '@angular/router';
 import { WidgetService } from '../../../../services/widget.service.client';
 import { Widget } from '../../../../models/widget.model.cilent';
 import { NgForm } from '@angular/forms';
+import { environment } from '../../../../../environments/environment';
+import { SharedService } from '../../../../services/shared.service.client';
+
 
 @Component({
   selector: 'app-widget-image',
@@ -10,76 +13,54 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./widget-image.component.css']
 })
 export class WidgetImageComponent implements OnInit {
-  @ViewChild('f') widgetForm: NgForm;
-
-  uid: String;
-  wid: String;
-  pid: String;
-  wgid: String;
-  widgets: Widget[];
-  widget: Widget= {
-    wgid: '',
-    widgetType: '',
-    pid: '',
-  };
-  name: String;
-  width: String;
-  url: String;
-  text: String;
-  size: Number;
-  // src: String;
+  flag = false;
+  widget = {};
+  userId: string;
+  websiteId: string;
+  pageId: string;
+  widgetId: string;
+  baseUrl: string;
 
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedService) { }
 
-  update() {
-    this.name = this.widgetForm.value.name;
-    // this.wgid = this.widgetForm.value.wgid;
-    // this.pid = this.widgetForm.value.pid;
-    this.text = this.widgetForm.value.text;
-    this.width = this.widgetForm.value.width;
-    this.url = this.widgetForm.value.url;
-
-
-    // const editedWidget: Widget = new Widget(this.name, this.widget.widgetType, this.widget.pid);
-    const editedWidget: Widget = {
-      name: this.name,
-      widgetType: this.widget.widgetType,
-      pid: this.widget.pid,
-      width: this.width,
-      url: this.url,
-      text: this.text
-    };
-    this.widgetService.updateWidget(this.wgid, editedWidget)
+  updateWidget() {
+    this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
-        (widget: Widget) => {
-          this.widget = widget;
-          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-        }
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
       );
   }
 
-  remove() {
-    this.widgetService.deleteWidget(this.wgid)
+
+  deleteWidget() {
+    this.widgetService.deleteWidget(this.widgetId)
       .subscribe(
-        (widgets: Widget[]) => {
-          this.router.navigate(['user', this.uid, 'website', this.wid, 'page', this.pid, 'widget']);
-        }
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
       );
   }
+
+
+
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.uid = params['uid'];
-      this.wid = params['wid'];
-      this.pid = params['pid'];
-      this.wgid = params['wgid'];
-      this.widgetService.findWidgetById(this.wgid)
-        .subscribe((widget: Widget) => {
-            this.widget = widget;
-          }
-        );
-    });
+    // this.error = 'Enter the name of the widget';
+    // this.alert = 'Enter the widget name';
+    this.baseUrl = environment.baseUrl;
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = this.sharedService.user['_id'];
+          this.websiteId = params['wid'];
+          this.pageId = params['pid'];
+          this.widgetId = params['wgid'];
+          this.widgetService.findWidgetById(this.widgetId)
+            .subscribe(
+              (data: any) => this.widget = data,
+              (error: any) => console.log(error)
+            );
+        });
   }
-
 }

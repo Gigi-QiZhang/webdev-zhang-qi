@@ -12,17 +12,7 @@ export class PageService {
 
   constructor(private http: Http) { }
 
-  // api = {
-  //   'createPage': this.createPage,
-  //   'findAllPagesForWebsiteId': this.findAllPagesForWebsiteId,
-  //   'findPageById': this.findPageById,
-  //   'updatePage': this.updatePage,
-  //   'deletePage': this.deletePage
-  // };
-
-
-  createPage(websiteId, page: Page) {
-    // page.pid = Math.random().toString();
+  createPage(websiteId, page) {
     const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this.http.post(url, page)
       .map((response: Response) => {
@@ -49,11 +39,11 @@ export class PageService {
   }
 
 
-  updatePage(pageId, editedPage: Page) {
+  updatePage(pageId, editedPage) {
     const url = this.baseUrl + '/api/page/' + pageId;
     return this.http.put(url, editedPage)
       .map((response: Response) => {
-        return response.json();
+        return response;
       });
   }
 
@@ -61,7 +51,7 @@ export class PageService {
     const url = this.baseUrl + '/api/page/' + pageId;
     return this.http.delete(url)
       .map((response: Response) => {
-        return response.json();
+        return response;
       });
   }
 }

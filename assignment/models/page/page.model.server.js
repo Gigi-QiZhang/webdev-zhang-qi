@@ -15,42 +15,51 @@ PageModel.deletePage = deletePage;
 
 module.exports = PageModel;
 
-function createPage(websiteId, page) {
-  // var newPage = null;
+function createPage(page) {
+  var newPage = null;
   return PageModel.create(page)
     .then(function (page) {
-      var newPage = page;
-      WebsiteModel.findWebsiteById(websiteId)
+      newPage = page;
+      // console.log(newPage);
+      return WebsiteModel
+        .findWebsiteById(newPage._websiteId)
         .then(function (website) {
           website.pages.push(newPage);
-          website.pages.push(newPage.pid);
-          return website.save();
+          return website();
+          // console.log(website);
         });
     });
 }
 
 
 function findAllPagesForWebsite(websiteId) {
-  return PageModel.find({ websiteId: websiteId });
-  // .populate('websiteId','name')
-  // .exec();
+  return PageModel.find({ _websiteId: websiteId });
 }
 
 
 function findPageById(pageId) {
-  return PageModel.findById({pageId});
+  return PageModel.findById({ _id:pageId });
 }
-
-// function findPageById(pageId) {
-//   return PageModel.findOne({pid: pageId});
-// }
 
 function updatePage(pageId, page) {
-  return PageModel.update({ pid: pageId }, page);
+  return PageModel.update({ _id: pageId }, page);
 }
 
+// function updatePage(pageId, page) {
+//   // delete page._id;
+//   return PageModel
+//     .update({_id: pageId}, {
+//         $set: {
+//           name: page.name,
+//           description: page.description
+//         }
+//       }
+//     );
+// }
+
+
 function deletePage(pageId) {
-  return PageModel.remove({ pid: pageId });
+  return PageModel.remove({ _id: pageId });
 }
 
 

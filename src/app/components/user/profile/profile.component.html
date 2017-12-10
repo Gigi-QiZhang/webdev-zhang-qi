@@ -8,9 +8,6 @@
     </p>
 
     <p class="navbar-text pull-right">
-      <!--<a (click)="updateUser()" class="navbar-link glyphiconwhite">-->
-        <!--<span class="glyphicon glyphicon-ok"></span>-->
-      <!--</a>-->
       <button type="submit"
               form="profileForm"
               class="btn btn-xs navbar-link button-transparent">
@@ -20,7 +17,7 @@
   </div>
 </nav>
 
-<form id="profileForm" (ngSubmit) = "updateUser()" #f="ngForm">
+<form id="profileForm" (ngSubmit) = "update()" #f="ngForm">
 
 <div class="container-fluid">
   <div *ngIf="submitSuccess"
@@ -59,17 +56,19 @@
            name="lastName"
            type="text"/>
     <br/>
-    <button (click)="findWebsite()"
-            class="btn btn-primary btn-block form-control"
-            type="submit">Website</button><br/>
-    <!--<button (click)="updateUser()"-->
-            <!--class="btn btn-success btn-block form-control"-->
-            <!--type="submit">Update</button><br/>-->
+
+  <a [routerLink]="['/user', 'website']"
+     class="btn btn-primary btn-block form-control">Website</a>
+  <br/>
+
     <button class="btn btn-danger form-control btn btn-block"
-            routerLink="/login">Logout</button><br/>
-    <!--<button (click)="deleteUser(userId)" class="btn btn-danger btn-block">-->
-      <!--Delete-->
-    <!--</button>-->
+            routerLink="/login">Logout</button>
+    <br/>
+    <button (click)="deleteUser()"
+            class="btn btn-danger btn-block"
+            routerLink="/login">
+      Delete User
+    </button>
 
   </div>
 </form>

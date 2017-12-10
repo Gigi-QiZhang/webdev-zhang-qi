@@ -10,40 +10,24 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./widget-edit.component.css']
 })
 export class WidgetEditComponent implements OnInit {
-  // @ViewChild('f') loginForm: NgForm;
-  uid: String;
-  wid: String;
-  pid: String;
-  wgid: String;
-  widgets: Widget[];
-  widget: Widget= {
-    wgid: '',
-    widgetType: '',
-    pid: '',
-  };
-  // name: String;
-  // widgetType: String;
-  // size: number;
-  // text: String;
+  widgetId: string;
+  widget = {widgetType: ''};
+  header = 'Header'; youtube = 'YouTube'; text = 'Text'; html = 'HTML'; image = 'Image';
+
   constructor(private widgetService: WidgetService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(
-        (params: any) => {
-          this.uid = params['userId'];
-          this.wid = params['wid'];
-          this.pid = params['pid'];
-          this.wgid = params['wgid'];
-          this.widgetService.findWidgetById(this.wgid)
-            .subscribe(
-              (widget: Widget) => {
-                this.widget = widget;
-              }
-            );
+        (params) => {
+          this.widgetId = params['wgid'];
         }
       );
-  }
 
+    this.widgetService.findWidgetById(this.widgetId)
+      .subscribe(
+        (data: any) => this.widget.widgetType = data.widgetType
+      );
+  }
 }

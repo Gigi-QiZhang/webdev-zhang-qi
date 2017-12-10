@@ -37,6 +37,11 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import { SharedService } from './services/shared.service.client';
+import { AuthenticationService } from './services/authentication.service.client';
+// import { SortableDirective } from './components/widget/widget-list/sortable.directive';
+// import { OrderByPipe } from './components/widget/widget-list/order-by-pipe.pipe';
+// import { SafePipe } from './components/widget/widget-list/safe-pipe.pipe';
 
 
 
@@ -63,6 +68,9 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
     HomeComponent,
     TestComponent,
     FlickrImageSearchComponent,
+    // SafePipe,
+    // SortableDirective,
+    // OrderByPipe,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +81,8 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
   ],
 
   providers: [
-    UserService, WebsiteService, PageService, TestService, WidgetService, FlickrService
+    UserService, WebsiteService, PageService, TestService, WidgetService, FlickrService,
+    SharedService, AuthenticationService
   ],
   bootstrap: [
     AppComponent
