@@ -7,27 +7,12 @@ module.exports = function (app) {
 
   var PageModel = require('../models/page/page.model.server');
 
-
-  // function createPage(req, res) {
-  //   var websiteId = req.params["wid"];
-  //   var newPage = req.body;
-  //   newPage._websiteId = websiteId;
-  //   PageModel
-  //     .createPage(websiteId, newPage)
-  //     .then(function (website) {
-  //       PageModel
-  //         .findAllPagesForWebsite(website._id)
-  //         .then(function (pages) {
-  //           res.json(pages);
-  //         })
-  //     });
-  // }
   function createPage(req, res) {
     var websiteId = req.params["wid"];
     var newPage = req.body;
     newPage._websiteId = websiteId;
     PageModel
-      .createPage(websiteId, newPage)
+      .createPage(newPage)
       .then(function (page) {
         PageModel
           .res.json(page);

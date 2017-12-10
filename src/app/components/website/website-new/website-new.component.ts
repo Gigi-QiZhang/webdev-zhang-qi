@@ -44,8 +44,8 @@ export class WebsiteNewComponent implements OnInit {
 
 
   create() {
-    const website: Website = {
-      wid: this.wid,
+    const website = {
+      wid: '',
       name: this.website.name,
       description: this.website.description,
       developerId: this.uid

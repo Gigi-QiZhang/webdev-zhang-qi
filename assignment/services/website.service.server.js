@@ -12,10 +12,10 @@ module.exports = function (app) {
   function createWebsite(req, res) {
     var userId = req.params["uid"];
     var newWeb = req.body;
+    // delete newWeb.wid;
     newWeb.developerId = userId;
-    // delete newWeb._id;
     websiteModel
-      .createWebsite(userId, newWeb)
+      .createWebsite(newWeb)
       .then(function (website) {
         res.json(website);
       }, function(err) {

@@ -1382,7 +1382,7 @@ var WebsiteNewComponent = (function () {
     WebsiteNewComponent.prototype.create = function () {
         var _this = this;
         var website = {
-            wid: this.wid,
+            wid: '',
             name: this.website.name,
             description: this.website.description,
             developerId: this.uid
