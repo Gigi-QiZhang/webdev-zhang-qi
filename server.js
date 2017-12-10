@@ -44,8 +44,8 @@ app.set('port', port);
 // Create HTTP server
 const server = http.createServer(app);
 
-var connectionString = 'mongodb://admin:admin@ds015335.mlab.com:15335/heroku_1snctwg2';
-mongoose.connect( connectionString);
+// var connectionString = 'mongodb://admin:admin@ds015335.mlab.com:15335/heroku_1snctwg2';
+// mongoose.connect( connectionString);
 var mongoose = require('mongoose');
 
 
