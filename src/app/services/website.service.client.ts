@@ -47,7 +47,7 @@ export class WebsiteService {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.put(url, editedWebsite)
       .map((response: Response) => {
-        return response.json();
+        return response;
       });
   }
 
@@ -55,7 +55,7 @@ export class WebsiteService {
     const url = this.baseUrl + '/api/website/' + websiteId;
     return this.http.delete(url)
       .map((response: Response) => {
-        return response.json();
+        return response;
       });
   }
 }

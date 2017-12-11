@@ -11,7 +11,7 @@ WidgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
 WidgetModel.findWidgetById = findWidgetById;
 WidgetModel.updateWidget = updateWidget;
 WidgetModel.deleteWidget = deleteWidget;
-
+WidgetModel.updateImage = updateImage;
 
 
 module.exports = WidgetModel;
@@ -60,6 +60,13 @@ function updateWidget(widgetId, widget) {
     .update({_id: widgetId},{
       $set : widget
     })
+}
+
+function updateImage(widgetId, image) {
+  delete image._id;
+  return WidgetModel.update({_id: widgetId},{
+    $set: image
+  });
 }
 
 function deleteWidget(widgetId) {

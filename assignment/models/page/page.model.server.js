@@ -25,17 +25,14 @@ function createPage(page) {
         .findWebsiteById(newPage._websiteId)
         .then(function (website) {
           website.pages.push(newPage);
-          return website();
-          // console.log(website);
+          return website;
         });
     });
 }
 
-
 function findAllPagesForWebsite(websiteId) {
   return PageModel.find({ _websiteId: websiteId });
 }
-
 
 function findPageById(pageId) {
   return PageModel.findById({ _id:pageId });
@@ -44,19 +41,6 @@ function findPageById(pageId) {
 function updatePage(pageId, page) {
   return PageModel.update({ _id: pageId }, page);
 }
-
-// function updatePage(pageId, page) {
-//   // delete page._id;
-//   return PageModel
-//     .update({_id: pageId}, {
-//         $set: {
-//           name: page.name,
-//           description: page.description
-//         }
-//       }
-//     );
-// }
-
 
 function deletePage(pageId) {
   return PageModel.remove({ _id: pageId });

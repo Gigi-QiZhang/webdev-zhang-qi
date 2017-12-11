@@ -51,10 +51,10 @@
           <div class="container-fluid">
             <div *ngFor = "let page of pages">
               <li class="list-group-item borderless lightblue">
-                <a routerLink="/user/website/{{ websiteId }}/page/{{ page._id }}/widget">
+                <a routerLink="/user/website/{{ wid }}/page/{{ page.pid }}/widget">
                   {{ page.name }}
                 </a>
-                <a routerLink="/user/website/{{ websiteId }}/page/{{ page._id }}/">
+                <a routerLink="/user/website/{{ wid }}/page/{{ page.pid }}/">
                   <span class = "glyphicon glyphicon-cog pull-right"></span>
                 </a>
               </li>
@@ -73,7 +73,7 @@
     <form>
       <div class="form-group">
         <label for="page-name">Name</label>
-        <input [(ngModel)] = "name"
+        <input [(ngModel)] = "page.name"
                name = "name"
                placeholder="Page Name"
                type="text"
@@ -85,7 +85,7 @@
     <div class="form-group">
       <form>
         <label for="pagetitle">Title</label>
-        <input [(ngModel)] = "description"
+        <input [(ngModel)] = "page.description"
                name = "description"
                type="text"
                class="form-control"

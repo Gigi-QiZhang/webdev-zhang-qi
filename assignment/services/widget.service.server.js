@@ -16,13 +16,12 @@ module.exports = function (app) {
 
   function uploadImage(req, res) {
 
-    var widgetId = req.body.wgid;
+    var widgetId = req.body.widgetId;
     var width = req.body.width;
     var myFile = req.file;
-
-    var userId = req.body.uid;
-    var websiteId = req.body.wid;
-    var pageId = req.body.pid;
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
 
     var originalname = myFile.originalname; // file name on user's computer
     var filename = myFile.filename;     // new file name in upload folder
@@ -31,15 +30,27 @@ module.exports = function (app) {
     var size = myFile.size;
     var mimetype = myFile.mimetype;
 
-    widget = widgetModel.findWidgetById(widgetId);
-    widget.url = '/assets/uploads/'+filename;
-    widgetModel.updateWidget(widgetId, widget)
-      .then(function () {
-        res.json(null);
+    var callbackUrl = "https://webdev-zhang-qi.herokuapp.com/user/website/"
+      + websiteId + '/page/' + pageId + '/widget/' ;
+
+    if(myFile === null) {
+      res.redirect(callbackUrl);
+      return;
+    }
+    var url = '/assets/uploads/' + filename;
+
+    var image = {
+      url: url,
+      name: filename
+    };
+
+    widgetModel.updateImage(widgetId, image).then(function(status){
+        console.log(stats);
+        res.send(200);
+      },
+      function (err) {
+        res.sendStatus(404).send(err);
       });
-
-    var callbackUrl = req.headers.origin + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
-
     res.redirect(callbackUrl);
   }
 
@@ -47,8 +58,6 @@ module.exports = function (app) {
   function createWidget(req, res) {
     var pageId = req.params["pid"];
     var newWidget = req.body;
-    // console.log(newWidget);
-
     widgetModel.createWidget(pageId, newWidget)
       .then(function(widget) {
         // console.log(widget);
@@ -57,22 +66,6 @@ module.exports = function (app) {
         res.sendStatus(400).send(err);
       });
   }
-  // function createWidget(req, res) {
-  //   var pageId = req.params['pid'];
-  //   // var widgetId = newId();
-  //   var widget = req.body;
-  //
-  //   delete widget._id;
-  //   widget._page = pageId;
-  //   widget.type = widget.widgetType;
-  //
-  //   return widgetModel
-  //     .createWidget(widget)
-  //     .then(function (widget){
-  //       return res.json(widget);
-  //     });
-  // }
-  //
 
   function findAllWidgetsForPage(req, res) {
     var pageId = req.params["pid"];
@@ -89,9 +82,6 @@ module.exports = function (app) {
   function findWidgetById(req, res) {
     var widgetId = req.params["wgid"];
     widgetModel.findWidgetById(widgetId)
-      // .then(function (widget) {
-      //   res.json(widget);
-      // });
       .then(function (widget) {
           res.json(widget);
         },
@@ -105,9 +95,6 @@ module.exports = function (app) {
     var widgetId = req.params["wgid"];
     var updatedWidget = req.body;
     widgetModel.updateWidget(widgetId, updatedWidget)
-      // .then(function () {
-      //   res.json(null);
-      // });
       .then(function (stats) {
           console.log(stats);
           res.send(200);
@@ -120,7 +107,6 @@ module.exports = function (app) {
 
   function deleteWidget(req, res) {
     var widgetId = req.params["wgid"];
-    // var pageId = req.query.pid;
     widgetModel.deleteWidget(widgetId)
       .then (function (stats) {
           // console.log(stats);
@@ -129,9 +115,6 @@ module.exports = function (app) {
         function (err) {
           res.sendStatus(404).send(err);
         });
-      // .then(function () {
-      //   res.json(null);
-      // });
   }
 
   function reorderWidgets(req,res) {
@@ -142,7 +125,6 @@ module.exports = function (app) {
       .reorderWidgets(pageId, startIndex, endIndex)
       .then(function (stats) {
         res.send(200);
-
       }, function (err) {
         res.sendStatus(400).send(err);
       });

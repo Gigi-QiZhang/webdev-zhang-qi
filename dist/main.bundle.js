@@ -351,7 +351,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"row container-fluid\">\n    <div class=\"col-sm-4 hidden-xs\">\n      <div routerLink=\"/user/website/{{ wid }}/page\"\n           class=\"navbar-text pull-left glyphiconblack\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </div>\n\n      <div class=\"navbar-header hidden-xs navbar-brand glyphiconwhite\">\n        <b>Pages</b>\n      </div>\n\n      <div routerLink=\"/user/website/{{ wid }}/page/new\"\n           class=\"navbar-text pull-right hidden-xs glyphiconblack\">\n        <span class=\"glyphicon glyphicon-plus\"></span>\n      </div>\n    </div>\n\n\n    <div class=\"col-sm-8\">\n      <div class=\"hidden-lg visible-xs\">\n        <div routerLink=\"/user/website/{{ wid }}/page\" class=\"navbar-text pull-left glyphiconblack\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </div>\n      </div>\n\n\n      <a (click)=\"updatePage()\" class=\"navbar-text pull-right glyphiconblack\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n\n      <p class=\"navbar-header navbar-brand pull-left margin\">\n        <b>Edit Page</b>\n      </p>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"row container-fluid\">\n  <div class=\"col-sm-4 hidden-xs websites-col-sm-4\">\n    <ul class=\"list-group\">\n      <div class=\"container-fluid\">\n        <ul class=\"list-group\">\n          <div class=\"container-fluid\">\n            <div *ngFor = \"let page of pages\">\n              <li class=\"list-group-item borderless lightblue\">\n                <a routerLink=\"/user/website/{{ wid }}/page/{{ page.pid }}/widget\">\n                  {{ page.name }}\n                </a>\n                <a routerLink=\"/user/website/{{ wid }}/page/{{ page.pid }}/\">\n                  <span class = \"glyphicon glyphicon-cog pull-right\"></span>\n                </a>\n              </li>\n            </div>\n          </div>\n        </ul>\n      </div>\n    </ul>\n\n\n  </div>\n</div>\n\n\n\n<div class=\"col-xs-12 col-sm-8 pull-right\">\n  <div class=\"container-fluid\">\n\n      <div class=\"form-group\">\n        <label for=\"pagename\">Name</label>\n        <input [(ngModel)] = \"page.name\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"pagename\"\n               name = \"name\"\n               placeholder=\"Page Name\">\n      </div>\n\n\n    <form>\n      <div class=\"form-group\">\n        <label for=\"pagetitle\">Title</label>\n        <input [(ngModel)] = \"page.description\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"pagetitle\"\n               name=\"description\"\n               placeholder=\"Page Title\">\n      </div>\n    </form>\n\n\n    <form>\n      <a (click)=\"deletePage()\" class=\"btn btn-block btn-danger\">Delete</a>\n    </form>\n\n    <form>\n      <a routerLink=\"/user/website/{{ wid }}/page\"\n         class=\"btn btn-warning btn-block\">Cancel</a>\n    </form>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/profile\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"row container-fluid\">\n    <div class=\"col-sm-4 hidden-xs\">\n      <div routerLink=\"/user/website/{{ wid }}/page\"\n           class=\"navbar-text pull-left glyphiconblack\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </div>\n\n      <div class=\"navbar-header hidden-xs navbar-brand glyphiconwhite\">\n        <b>Pages</b>\n      </div>\n\n      <div routerLink=\"/user/website/{{ wid }}/page/new\"\n           class=\"navbar-text pull-right hidden-xs glyphiconblack\">\n        <span class=\"glyphicon glyphicon-plus\"></span>\n      </div>\n    </div>\n\n\n    <div class=\"col-sm-8\">\n      <div class=\"hidden-lg visible-xs\">\n        <div routerLink=\"/user/website/{{ wid }}/page\" class=\"navbar-text pull-left glyphiconblack\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </div>\n      </div>\n\n\n      <a (click)=\"updatePage()\" class=\"navbar-text pull-right glyphiconblack\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n\n      <p class=\"navbar-header navbar-brand pull-left margin\">\n        <b>Edit Page</b>\n      </p>\n    </div>\n  </div>\n</nav>\n\n\n<div class=\"row container-fluid\">\n  <div class=\"col-sm-4 hidden-xs websites-col-sm-4\">\n    <ul class=\"list-group\">\n      <div class=\"container-fluid\">\n        <ul class=\"list-group\">\n          <div class=\"container-fluid\">\n            <div *ngFor = \"let page of pages\">\n              <li class=\"list-group-item borderless lightblue\">\n                <a routerLink=\"/user/website/{{ wid }}/page/{{ page.pid }}/widget\">\n                  {{ page.name }}\n                </a>\n                <a routerLink=\"/user/website/{{ wid }}/page/{{ page._id }}/\">\n                  <span class = \"glyphicon glyphicon-cog pull-right\"></span>\n                </a>\n              </li>\n            </div>\n          </div>\n        </ul>\n      </div>\n    </ul>\n  </div>\n</div>\n\n\n\n<div class=\"col-xs-12 col-sm-8 pull-right\">\n  <div class=\"container-fluid\">\n\n      <div class=\"form-group\">\n        <label for=\"pagename\">Name</label>\n        <input [(ngModel)] = \"page.name\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"pagename\"\n               name = \"name\"\n               placeholder=\"Page Name\">\n      </div>\n\n\n    <form>\n      <div class=\"form-group\">\n        <label for=\"pagetitle\">Title</label>\n        <input [(ngModel)] = \"page.description\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"pagetitle\"\n               name=\"description\"\n               placeholder=\"Page Title\">\n      </div>\n    </form>\n\n\n    <form>\n      <a (click)=\"deletePage()\" class=\"btn btn-block btn-danger\">Delete</a>\n    </form>\n\n    <form>\n      <a routerLink=\"/user/website/{{ wid }}/page\"\n         class=\"btn btn-warning btn-block\">Cancel</a>\n    </form>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/profile\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -405,18 +405,31 @@ var PageEditComponent = (function () {
     PageEditComponent.prototype.updatePage = function () {
         var _this = this;
         var newPage = {
-            pid: this.pid,
+            pid: '',
             name: this.page.name,
-            _websiteId: this.uid,
+            _websiteId: this.wid,
             description: this.page.description,
         };
         // console.log(this.page);
         this.pageService.updatePage(this.pid, newPage)
             .subscribe(function (page) {
             _this.router.navigate(['user', 'website', _this.wid, 'page']);
-            console.log(_this.page);
+            // console.log(this.page);
         });
     };
+    // updateWebsite () {
+    //   const newWebsite: Website = {
+    //     wid: this.wid,
+    //     name: this.website.name,
+    //     developerId: this.uid,
+    //     description: this.website.description,
+    //   };
+    //   this.websiteService.updateWebsite(this.wid, newWebsite)
+    //     .subscribe((status) => {
+    //       this.router.navigate(['user', 'website']);
+    //       // console.log(status);
+    //     });
+    // }
     PageEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getUser();
@@ -578,7 +591,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"row container-fluid\">\n    <div *ngIf=\"errFlag\" class=\"alert alert-danger\">\n      {{error}}\n    </div>\n    <div class=\"col-sm-4 hidden-xs\">\n      <div class=\"navbar-text pull-left\">\n        <a routerLink=\"/user/website/{{ wid }}/page\" class=\"glyphiconblack\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-header navbar-brand\">\n          <b>Pages</b>\n      </div>\n      <div class=\"navbar-text pull-right\">\n        <a routerLink=\"/user/website/{{ wid }}/page/new\" class=\"pull-right glyphiconblack\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-sm-8\">\n      <div class=\"hidden-lg visible-xs\">\n        <div class=\"navbar-text pull-left\">\n          <a routerLink=\"/user/website/{{ wid }}/page\" class=\"glyphiconblack\">\n            <span class=\"glyphicon glyphicon-chevron-left hidden-lg visible-xs\"></span>\n          </a>\n        </div>\n      </div>\n\n      <div class=\"navbar-text pull-right\">\n        <a (click) = \"create()\" class=\"glyphiconblack\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n\n      <div class=\"navbar-header margin\">\n        <a class=\"navbar-brand\">\n          <b>New Page</b>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<div class=\"row container-fluid\">\n  <div class=\"col-sm-4 hidden-xs websites-col-sm-4\">\n\n    <ul class=\"list-group\">\n      <div class=\"container-fluid\">\n        <ul class=\"list-group\">\n          <div class=\"container-fluid\">\n            <div *ngFor = \"let page of pages\">\n              <li class=\"list-group-item borderless lightblue\">\n                <a routerLink=\"/user/website/{{ websiteId }}/page/{{ page._id }}/widget\">\n                  {{ page.name }}\n                </a>\n                <a routerLink=\"/user/website/{{ websiteId }}/page/{{ page._id }}/\">\n                  <span class = \"glyphicon glyphicon-cog pull-right\"></span>\n                </a>\n              </li>\n            </div>\n          </div>\n        </ul>\n      </div>\n    </ul>\n\n\n  </div>\n</div>\n\n<div class=\"col-xs-12 col-sm-8 pull-right\">\n  <div class=\"container-fluid\">\n    <form>\n      <div class=\"form-group\">\n        <label for=\"page-name\">Name</label>\n        <input [(ngModel)] = \"name\"\n               name = \"name\"\n               placeholder=\"Page Name\"\n               type=\"text\"\n               id = \"page-name\"\n               class=\"form-control\"/>\n      </div>\n    </form>\n\n    <div class=\"form-group\">\n      <form>\n        <label for=\"pagetitle\">Title</label>\n        <input [(ngModel)] = \"description\"\n               name = \"description\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"pagetitle\"\n               placeholder=\"Page Title\">\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid \">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/profile\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"row container-fluid\">\n    <div *ngIf=\"errFlag\" class=\"alert alert-danger\">\n      {{error}}\n    </div>\n    <div class=\"col-sm-4 hidden-xs\">\n      <div class=\"navbar-text pull-left\">\n        <a routerLink=\"/user/website/{{ wid }}/page\" class=\"glyphiconblack\">\n          <span class=\"glyphicon glyphicon-chevron-left\"></span>\n        </a>\n      </div>\n      <div class=\"navbar-header navbar-brand\">\n          <b>Pages</b>\n      </div>\n      <div class=\"navbar-text pull-right\">\n        <a routerLink=\"/user/website/{{ wid }}/page/new\" class=\"pull-right glyphiconblack\">\n          <span class=\"glyphicon glyphicon-plus\"></span>\n        </a>\n      </div>\n    </div>\n    <div class=\"col-sm-8\">\n      <div class=\"hidden-lg visible-xs\">\n        <div class=\"navbar-text pull-left\">\n          <a routerLink=\"/user/website/{{ wid }}/page\" class=\"glyphiconblack\">\n            <span class=\"glyphicon glyphicon-chevron-left hidden-lg visible-xs\"></span>\n          </a>\n        </div>\n      </div>\n\n      <div class=\"navbar-text pull-right\">\n        <a (click) = \"create()\" class=\"glyphiconblack\">\n          <span class=\"glyphicon glyphicon-ok\"></span>\n        </a>\n      </div>\n\n      <div class=\"navbar-header margin\">\n        <a class=\"navbar-brand\">\n          <b>New Page</b>\n        </a>\n      </div>\n    </div>\n  </div>\n</nav>\n\n<div class=\"row container-fluid\">\n  <div class=\"col-sm-4 hidden-xs websites-col-sm-4\">\n\n    <ul class=\"list-group\">\n      <div class=\"container-fluid\">\n        <ul class=\"list-group\">\n          <div class=\"container-fluid\">\n            <div *ngFor = \"let page of pages\">\n              <li class=\"list-group-item borderless lightblue\">\n                <a routerLink=\"/user/website/{{ wid }}/page/{{ page.pid }}/widget\">\n                  {{ page.name }}\n                </a>\n                <a routerLink=\"/user/website/{{ wid }}/page/{{ page.pid }}/\">\n                  <span class = \"glyphicon glyphicon-cog pull-right\"></span>\n                </a>\n              </li>\n            </div>\n          </div>\n        </ul>\n      </div>\n    </ul>\n\n\n  </div>\n</div>\n\n<div class=\"col-xs-12 col-sm-8 pull-right\">\n  <div class=\"container-fluid\">\n    <form>\n      <div class=\"form-group\">\n        <label for=\"page-name\">Name</label>\n        <input [(ngModel)] = \"page.name\"\n               name = \"name\"\n               placeholder=\"Page Name\"\n               type=\"text\"\n               id = \"page-name\"\n               class=\"form-control\"/>\n      </div>\n    </form>\n\n    <div class=\"form-group\">\n      <form>\n        <label for=\"pagetitle\">Title</label>\n        <input [(ngModel)] = \"page.description\"\n               name = \"description\"\n               type=\"text\"\n               class=\"form-control\"\n               id=\"pagetitle\"\n               placeholder=\"Page Title\">\n      </form>\n    </div>\n  </div>\n</div>\n\n<nav class=\"navbar navbar-default navbar-fixed-bottom\">\n  <div class=\"container-fluid \">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/profile\">\n        <span class=\"glyphicon glyphicon-user\"></span>\n      </a>\n    </p>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -616,7 +629,6 @@ var PageNewComponent = (function () {
         this.page = {
             name: '',
             title: '',
-            _websiteId: '',
             widgets: []
         };
     }
@@ -626,29 +638,42 @@ var PageNewComponent = (function () {
     };
     PageNewComponent.prototype.create = function () {
         var _this = this;
-        var newPage = {
-            pid: this.pid,
-            name: this.name,
-            _websiteId: this.wid,
-            description: this.title
-        };
-        this.pageService.createPage(this.wid, newPage)
-            .subscribe(function (page) {
-            // this.pages = pages;
-            return _this.router.navigate(['user', 'website', _this.wid, 'page']);
-        }, function (error) { return console.log(error); });
+        this.pageService.createPage(this.wid, this.page)
+            .subscribe(function (data) { return _this.router.navigate(['/user', 'website', _this.wid, 'page']); }, function (error) { return console.log(error); });
+        // const newPage: Page = {
+        //   pid: '',
+        //   name: this.name,
+        //   _websiteId: this.wid,
+        //   description: this.title
+        // };
+        //
+        // this.pageService.createPage(this.wid, newPage)
+        //   .subscribe((page) =>
+        //     // this.pages = pages;
+        //       this.router.navigate(['user', 'website', this.wid, 'page']),
+        //     (error: any) => console.log(error)
+        //   );
     };
     PageNewComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getUser();
+        this.errFlag = false;
+        this.error = 'Enter the name of the Page';
+        this.alert = 'Enter the Page name';
         this.activatedRoute.params.subscribe(function (params) {
             _this.wid = params['wid'];
-            _this.pid = params['pid'];
         });
-        this.pageService.findPageById(this.pid)
-            .subscribe(function (page) {
-            _this.page = page;
-        }, function (error) { return console.log(error); });
+        // this.getUser();
+        //
+        // this.activatedRoute.params.subscribe((params: any) => {
+        //   this.wid = params['wid'];
+        //   this.pid = params['pid'];
+        // });
+        //
+        // this.pageService.findPageById(this.pid)
+        //   .subscribe((page) => {
+        //     this.page = page;
+        // }, (error) => console.log(error)
+        //   );
         // this.pageService.findAllPagesForWebsite(this.wid)
         //   .subscribe((pages) => {
         //     this.pages = pages;
@@ -2035,7 +2060,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/website/{{ websiteId }}/page/{{ pageId }}/widget\" class=\"glyphiconblack\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand\">\n        <b>Widget Edit</b>\n      </a>\n    </p>\n\n    <p class=\"navbar-text pull-right\">\n      <a (click)=\"updateWidget()\" class=\"glyphiconblack\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input [(ngModel)]=\"widget.name\"\n           type=\"text\"\n           class=\"form-control\"\n           id=\"name\"\n           name=\"name\"\n           placeholder=\"Name of the image\">\n    <!--ngModel=\"{{ widget.name }}\"-->\n    <!--#name=\"ngModel\"-->\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"txt\">Text</label>\n    <input [(ngModel)]=\"widget.text\"\n           type=\"text\"\n           class=\"form-control\"\n           id=\"txt\"\n           name=\"text\"\n           placeholder=\"This image was taken in 2016\">\n    <!--ngModel=\"{{ widget.text }}\"-->\n    <!--#text=\"ngModel\"-->\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"imageurl\">URL</label>\n    <input [(ngModel)]=\"widget.url\"\n           type=\"text\"\n           class=\"form-control\"\n           id=\"imageurl\"\n           name=\"imageurl\"\n           placeholder=\"http://lorempixel.com/400/200/\">\n    <!--ngModel=\"{{ widget.text }}\"-->\n    <!--#text=\"ngModel\"-->\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"imagewidth\">Width</label>\n    <input [(ngModel)]=\"widget.width\"\n           type=\"text\"\n           min=\"0\"\n           max=\"100\"\n           class=\"form-control\"\n           id=\"imagewidth\"\n           name=\"imagewidth\"\n           placeholder=\"100%\">\n    <!--ngModel=\"{{ widget.width }}\"-->\n    <!--#width=\"ngModel\"-->\n  </div>\n\n\n    <form ngNoForm action=\"{{ baseUrl }}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n      <input  name=\"myFile\"   type=\"file\" class=\"form-control\"/>\n      <input  name=\"widgetId\" value=\"{{ widgetId }}\" style=\"display: none\"/>\n      <input  name=\"websiteId\" value=\"{{ websiteId }}\" style=\"display: none\"/>\n      <input  name=\"pageId\" value=\"{{ pageId }}\" style=\"display: none\"/>\n      <input  name=\"userId\" value=\"{{ userId }}\" style=\"display: none\"/>\n      <button type=\"submit\" class=\"btn btn-block btn-primary\">Upload Image</button>\n      <br/>\n    </form>\n\n\n  <a class=\"btn btn-primary btn-block \"\n     [routerLink]=\"['/user'+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId+'/flickr']\" >\n    Choose From Flickr</a>\n\n  <a (click)=\"deleteWidget()\" class=\"form-group btn btn-block btn-danger\">Delete\n    </a>\n\n    <a class=\"form-group btn btn-block btn-warning\"\n         routerLink=\"/user/website/{{ websiteId }}/page/{{ pageId }}/widget\">Cancel\n    </a>\n</div>\n\n\n\n  <nav class=\"navbar navbar-default navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <p class=\"navbar-text pull-right\">\n        <a routerLink=\"/profile\" class=\"glyphiconlightblue\">\n          <span class=\"glyphicon glyphicon-user\"></span>\n        </a>\n      </p>\n    </div>\n  </nav>\n\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-left\">\n      <a routerLink=\"/user/website/{{ websiteId }}/page/{{ pageId }}/widget\" class=\"glyphiconblack\">\n        <span class=\"glyphicon glyphicon-chevron-left\"></span>\n      </a>\n    </p>\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand\">\n        <b>Widget Edit</b>\n      </a>\n    </p>\n\n    <p class=\"navbar-text pull-right\">\n      <a (click)=\"updateWidget()\" class=\"glyphiconblack\">\n        <span class=\"glyphicon glyphicon-ok\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n<div class=\"container-fluid\">\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input [(ngModel)]=\"widget.name\"\n           type=\"text\"\n           class=\"form-control\"\n           id=\"name\"\n           name=\"name\"\n           placeholder=\"Name of the image\">\n    <!--ngModel=\"{{ widget.name }}\"-->\n    <!--#name=\"ngModel\"-->\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"txt\">Text</label>\n    <input [(ngModel)]=\"widget.text\"\n           type=\"text\"\n           class=\"form-control\"\n           id=\"txt\"\n           name=\"text\"\n           placeholder=\"This image was taken in 2016\">\n    <!--ngModel=\"{{ widget.text }}\"-->\n    <!--#text=\"ngModel\"-->\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"imageurl\">URL</label>\n    <input [(ngModel)]=\"widget.url\"\n           type=\"text\"\n           class=\"form-control\"\n           id=\"imageurl\"\n           name=\"imageurl\"\n           placeholder=\"http://lorempixel.com/400/200/\">\n    <!--ngModel=\"{{ widget.text }}\"-->\n    <!--#text=\"ngModel\"-->\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"imagewidth\">Width</label>\n    <input [(ngModel)]=\"widget.width\"\n           type=\"text\"\n           min=\"0\"\n           max=\"100\"\n           class=\"form-control\"\n           id=\"imagewidth\"\n           name=\"imagewidth\"\n           placeholder=\"100%\">\n    <!--ngModel=\"{{ widget.width }}\"-->\n    <!--#width=\"ngModel\"-->\n  </div>\n\n\n    <form ngNoForm action=\"{{ baseUrl }}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n      <input  name=\"myFile\"   type=\"file\" class=\"form-control\"/>\n      <input  name=\"widgetId\" value=\"{{ widgetId }}\" style=\"display: none\"/>\n      <input  name=\"websiteId\" value=\"{{ websiteId }}\" style=\"display: none\"/>\n      <input  name=\"pageId\" value=\"{{ pageId }}\" style=\"display: none\"/>\n      <input  name=\"userId\" value=\"{{ userId }}\" style=\"display: none\"/>\n      <button type=\"submit\" class=\"btn btn-block btn-primary\">Upload Image</button>\n      <br/>\n    </form>\n\n\n\n  <a class=\"btn btn-primary btn-block \"\n     [routerLink]=\"['/user'+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId+'/flickr']\" >\n    Choose From Flickr</a>\n\n  <a (click)=\"deleteWidget()\" class=\"form-group btn btn-block btn-danger\">Delete\n    </a>\n\n    <a class=\"form-group btn btn-block btn-warning\"\n         routerLink=\"/user/website/{{ websiteId }}/page/{{ pageId }}/widget\">Cancel\n    </a>\n</div>\n\n\n\n  <nav class=\"navbar navbar-default navbar-fixed-bottom\">\n    <div class=\"container-fluid\">\n      <p class=\"navbar-text pull-right\">\n        <a routerLink=\"/profile\" class=\"glyphiconlightblue\">\n          <span class=\"glyphicon glyphicon-user\"></span>\n        </a>\n      </p>\n    </div>\n  </nav>\n\n"
 
 /***/ }),
 
@@ -2853,14 +2878,14 @@ var WebsiteService = (function () {
         var url = this.baseUrl + '/api/website/' + websiteId;
         return this.http.put(url, editedWebsite)
             .map(function (response) {
-            return response.json();
+            return response;
         });
     };
     WebsiteService.prototype.deleteWebsite = function (websiteId) {
         var url = this.baseUrl + '/api/website/' + websiteId;
         return this.http.delete(url)
             .map(function (response) {
-            return response.json();
+            return response;
         });
     };
     return WebsiteService;

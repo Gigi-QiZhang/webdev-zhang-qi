@@ -51,18 +51,32 @@ export class PageEditComponent implements OnInit {
 
   updatePage() {
     const newPage: Page = {
-      pid: this.pid,
+      pid: '',
       name: this.page.name,
-      _websiteId: this.uid,
+      _websiteId: this.wid,
       description: this.page.description,
     };
     // console.log(this.page);
     this.pageService.updatePage(this.pid, newPage)
       .subscribe((page) => {
         this.router.navigate(['user', 'website', this.wid, 'page']);
-        console.log(this.page);
+        // console.log(this.page);
       });
   }
+  // updateWebsite () {
+  //   const newWebsite: Website = {
+  //     wid: this.wid,
+  //     name: this.website.name,
+  //     developerId: this.uid,
+  //     description: this.website.description,
+  //   };
+  //   this.websiteService.updateWebsite(this.wid, newWebsite)
+  //     .subscribe((status) => {
+  //       this.router.navigate(['user', 'website']);
+  //       // console.log(status);
+  //     });
+  // }
+
 
 
 
